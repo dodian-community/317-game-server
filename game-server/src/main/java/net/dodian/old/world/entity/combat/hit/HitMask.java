@@ -1,0 +1,18 @@
+package net.dodian.old.world.entity.combat.hit;
+
+/**
+ * Represents a Hit mask type/color.
+ * @author Gabriel Hannason
+ */
+
+public enum HitMask {
+	
+	BLUE,
+
+	RED,
+
+	GREEN,
+	
+	YELLOW;
+	
+}

@@ -1,0 +1,43 @@
+
+sourceCompatibility = 11
+targetCompatibility = 11
+
+ext {
+    jdaVersion = '4.1.0_95'
+    springVersion = '2.2.2.RELEASE'
+    springJDBCVersion = '5.2.2.RELEASE'
+}
+
+dependencies {
+    annotationProcessor 'org.projectlombok:lombok:1.18.10'
+    annotationProcessor "org.springframework.boot:spring-boot-configuration-processor:${springVersion}"
+
+    implementation 'com.google.code.gson:gson:2.8.6'
+    implementation "org.springframework.boot:spring-boot-starter-web:${springVersion}"
+    implementation "org.springframework.boot:spring-boot-starter-security:${springVersion}"
+    implementation "org.springframework.boot:spring-boot-starter-data-jpa:${springVersion}"
+
+    compile 'org.apache.commons:commons-compress:1.18'
+    compile 'io.netty:netty-all:4.1.8.Final'
+    compile 'javax.xml.bind:jaxb-api:2.3.0'
+    compile 'com.google.guava:guava:28.0-jre'
+    compile 'log4j:log4j:1.2.17'
+
+    compileOnly 'org.projectlombok:lombok:1.18.10'
+
+    testImplementation "org.springframework.boot:spring-boot-starter-test:${springVersion}"
+}
+
+jar {
+
+    manifest {
+        attributes(
+                'Class-Path': configurations.compile.collect { it.getName() }.join(' '),
+                'Main-Class': 'net.dodian.Server'
+        )
+    }
+
+    from {
+        configurations.compile.collect { it.isDirectory() ? it : zipTree(it) }
+    }
+}

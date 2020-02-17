@@ -1,0 +1,230 @@
+[
+    {
+        "id": 0,
+        "type": "NPC_STATEMENT",
+        "anim": "DEFAULT",
+        "lines": 1,
+        "line1": "Hello. What do you need?",
+        "next": 1,
+        "npcId": 315
+    },
+    {
+        "id": 1,
+        "type": "OPTION",
+        "lines": 4,
+        "line1": "Open Shop",
+        "line2": "Sell Emblems",
+        "line3": "Skull me",
+        "line4": "Cancel",
+        "next": -1,
+        "npcId": 315
+    },
+	{
+        "id": 2,
+        "type": "NPC_STATEMENT",
+        "anim": "DEFAULT",
+        "lines": 2,
+        "line1": "There we go.",
+		"line2": "Now, make sure not to die.",
+        "next": -1,
+        "npcId": 315
+    },
+	{
+        "id": 3,
+        "type": "NPC_STATEMENT",
+        "anim": "DEFAULT",
+        "lines": 1,
+        "line1": "You are already skulled..",
+        "next": -1,
+        "npcId": 315
+    },
+	{
+        "id": 4,
+        "type": "NPC_STATEMENT",
+        "anim": "DEFAULT",
+        "lines": 3,
+        "line1": "Thanks, adventurer..",
+		"line2": "You've received some blood money.",
+		"line3": "Spend it wisely.",
+        "next": -1,
+        "npcId": 315
+    },
+	{
+        "id": 5,
+        "type": "NPC_STATEMENT",
+        "anim": "DEFAULT",
+        "lines": 2,
+        "line1": "You don't have any emblems",
+		"line2": "in your inventory...",
+        "next": -1,
+        "npcId": 315
+    },
+    {
+        "id": 6,
+        "type": "STATEMENT",
+        "lines": 1,
+        "line1": "You don't have a Clan Chat Channel. Create one?",
+        "next": 7
+    },
+    {
+        "id": 7,
+        "type": "OPTION",
+        "lines": 2,
+        "line1": "Yes",
+        "line2": "Cancel",
+        "next": -1
+    },
+    {
+        "id": 8,
+        "type": "OPTION",
+        "lines": 4,
+        "line1": "Normal Spellbook",
+        "line2": "Ancient Spellbook",
+		"line3": "Lunar Spellbook",
+		"line4": "Cancel",
+        "next": -1
+    },
+	{
+        "id": 9,
+        "type": "NPC_STATEMENT",
+        "anim": "DEFAULT",
+        "lines": 3,
+        "line1": "This magical scroll will unlock the respective",
+		"line2": "Prayer for you. The scroll will then be",
+		"line3": "deleted afterwards. Do you want to continue?",
+        "next": 7,
+        "npcId": 315
+    },
+	{
+        "id": 10,
+        "type": "STATEMENT",
+        "lines": 1,
+        "line1": "That preset slot is empty. Create a new one in its place?",
+        "next": 7
+    },
+    {
+        "id": 11,
+        "type": "OPTION",
+        "lines": 5,
+        "line1": "Change name",
+        "line2": "Update items",
+		"line3": "Update stats/spellbook",
+		"line4": "Delete preset",
+		"line5": "Cancel",
+        "next": -1
+    },
+	{
+        "id": 12,
+        "type": "NPC_STATEMENT",
+        "anim": "DEFAULT",
+        "lines": 3,
+        "line1": "This magical scroll will unlock the",
+		"line2": "'Teleport to Target' spell. It will then be",
+		"line3": "deleted afterwards. Do you want to continue?",
+        "next": 7,
+        "npcId": 315
+    },
+	{
+        "id": 13,
+        "type": "NPC_STATEMENT",
+        "anim": "DEFAULT",
+        "lines": 4,
+        "line1": "Warning! You have valuable items on you.",
+		"line2": "Loading a preset will wipe out both your",
+		"line3": "inventory and equipment. Are you sure",
+		"line4": "you want to continue?",
+        "next": 7,
+        "npcId": 315
+    },
+	{
+        "id": 14,
+        "type": "NPC_STATEMENT",
+        "anim": "DEFAULT",
+        "lines": 2,
+        "line1": "Warning! Are you sure you want to do that?",
+		"line2": "It may lead you into deep Wilderness!",
+        "next": 7,
+        "npcId": 315
+    },
+	{
+        "id": 15,
+        "type": "NPC_STATEMENT",
+        "anim": "DEFAULT",
+        "lines": 4,
+        "line1": "Hello there. I'm here to give players items which",
+		"line2": "they have purchased from the online store at",
+		"line3": "@whi@www.osrspk.com/store",
+		"line4": "Have you bought any?",
+        "next": 7,
+        "npcId": 3310
+    },
+	{
+        "id": 16,
+        "type": "NPC_STATEMENT",
+        "anim": "DEFAULT",
+        "lines": 2,
+        "line1": "I've added the items to your account.",
+		"line2": "Thank you for supporting OSRS Pk!",
+        "next": -1,
+        "npcId": 3310
+    },
+	{
+        "id": 17,
+        "type": "NPC_STATEMENT",
+        "anim": "DEFAULT",
+        "lines": 3,
+        "line1": "Pfft. I could not find anything in the",
+		"line2": "database. You better run away before",
+		"line3": "I call one of those bots after you!",
+        "next": -1,
+        "npcId": 3310
+    },
+	{
+        "id": 18,
+        "type": "NPC_STATEMENT",
+        "anim": "DEFAULT",
+        "lines": 2,
+        "line1": "I've sent a request to check upon your purchase.",
+		"line2": "If it is found, you will receive your items shortly.",
+        "next": -1,
+        "npcId": 3310
+    },
+	{
+        "id": 19,
+        "type": "NPC_STATEMENT",
+        "anim": "DEFAULT",
+        "lines": 2,
+        "line1": "Do you have any items that need repairing?",
+		"line2": "I'll do it for a fairly low price.",
+        "next": 7,
+        "npcId": 7456
+    },
+	{
+        "id": 20,
+        "type": "NPC_STATEMENT",
+        "anim": "DEFAULT",
+        "lines": 2,
+        "line1": "No you don't.",
+		"line2": "Stop wasting my time.",
+        "next": -1,
+        "npcId": 7456
+    },
+	{
+        "id": 21,
+        "type": "NPC_STATEMENT",
+        "anim": "DEFAULT",
+        "lines": 1,
+        "line1": "Pleasure doing business with you!",
+        "next": -1,
+        "npcId": 7456
+    },
+    {
+        "id": 22,
+        "type": "OPTION",
+        "lines": 3,
+        "line1": "White Skull",
+        "line2": "Red Skull (Protect Item Disabled)",
+		"line3": "Cancel",
+        "next": -1
+    }
+]
