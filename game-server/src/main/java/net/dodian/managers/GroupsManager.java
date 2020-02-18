@@ -8,7 +8,6 @@ import net.dodian.orm.repositories.GroupRepository;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -18,7 +17,6 @@ import java.util.Optional;
 public class GroupsManager {
 
     private final GroupRepository groupRepository;
-    private final List<JsonObject> groupConfigurations = new ArrayList<>();
 
     public GroupsManager(GroupRepository groupRepository, GameConfiguration gameConfiguration) {
         this.groupRepository = groupRepository;

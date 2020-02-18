@@ -2,3 +2,24 @@
   apt:
     name: openjdk-11-jre-headless
     state: present
+
+- name: Create game directory if not exists
+  file:
+    path: ~/game
+    state: directory
+    mode: 0644
+
+- name: Copy the game-server.jar
+  copy:
+    src: "{{role_path}}/files/game-server.jar"
+    dest: ~/game/server.jar
+    mode: 0644
+
+- name: Copy game data to the game server
+  copy:
+    src: "{{role_path}}/files/data"
+    dest: ~/game/
+    mode: 0644
+
+- name: Copy server's config.json to the game server
+  template: src=templates/config.json dest=~/game/config.json owner=root mode=0600

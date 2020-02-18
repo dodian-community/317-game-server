@@ -20,7 +20,7 @@
   mysql_db: name=test state=absent
 
 - name: Create deploy user for MySQL
-  mysql_user: user="deply" host="%" password={{database_pass}} priv=*.*:ALL,GRANT
+  mysql_user: user="deply" host="%" password={{database.pass}} priv=*.*:ALL,GRANT
 
 - name: Ensure anonymous users are not in the database
   mysql_user: user='' host=$item state=absent
@@ -30,7 +30,7 @@
     - localhost
 
 - name: Update MySQL root password for all root accounts
-  mysql_user: name=root host={{item}} password={{database_pass}}
+  mysql_user: name=root host={{item}} password={{database.pass}}
   with_items:
     - 127.0.0.1
     - ::1
@@ -38,11 +38,11 @@
 
 - name: Create a new database
   mysql_db:
-    name: '{{database_name}}'
+    name: '{{database.name}}'
     state: present
 
 - name: Create a new database user for the application
   mysql_user:
-    name: '{{database_user}}'
-    password: '{{database_pass}}'
+    name: '{{database.user}}'
+    password: '{{database.pass}}'
     priv: 'dodian_%.*:ALL'

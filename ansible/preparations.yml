@@ -1,0 +1,15 @@
+- hosts: 127.0.0.1
+  connection: local
+  gather_facts: no
+  tasks:
+    - name: Running Gradle Build for game-server sub module
+      command: chdir=../game-server ../gradlew build
+
+    - name: Running bootJar for game-server sub module
+      command: chdir=../game-server ../gradlew bootJar
+
+    - name: Move the game-server.jar so the role can pick it up for deployment
+      command: cp -r ../game-server/build/libs/game-server.jar ./roles/gameworlds/files/game-server.jar
+
+    - name: Move data for the game server so the role can pick it up for deployment
+      command: cp -r ../game-server/data ./roles/gameworlds/files/data
