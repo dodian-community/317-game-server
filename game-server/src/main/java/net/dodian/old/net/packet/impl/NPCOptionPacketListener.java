@@ -13,6 +13,7 @@ import net.dodian.old.world.model.PlayerRights;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -25,8 +26,8 @@ public class NPCOptionPacketListener implements PacketListener {
     private final List<NpcOptionEventListener> npcOptionEvents;
 
     @Autowired
-    public NPCOptionPacketListener(List<NpcOptionEventListener> npcOptionEvents) {
-        this.npcOptionEvents = npcOptionEvents;
+    public NPCOptionPacketListener(Optional<List<NpcOptionEventListener>> npcOptionEvents) {
+        this.npcOptionEvents = npcOptionEvents.orElse(new ArrayList<>());
     }
 
     @Override

@@ -38,10 +38,10 @@ public class ItemActionPacketListener implements PacketListener {
         }
 
         switch (packet.getOpcode()) {
-            case PacketConstants.SECOND_ITEM_ACTION_OPCODE:
+            case PacketConstants.FIRST_ITEM_ACTION_OPCODE:
                 itemActionEventListeners.forEach(event -> event.onFirstClick(player, packet));
                 break;
-            case PacketConstants.FIRST_ITEM_ACTION_OPCODE:
+            case PacketConstants.SECOND_ITEM_ACTION_OPCODE:
                 itemActionEventListeners.forEach(event -> event.onSecondClick(player, packet));
                 break;
             case PacketConstants.THIRD_ITEM_ACTION_OPCODE:

@@ -23,6 +23,11 @@ public class DummyGroups implements ServerEventListener {
 
     @Override
     public void onStartedUp() {
+        groupRepository.findAll().forEach(group -> System.out.println("Group: " + group.getTitle()));
+    }
+
+    @Override
+    public void onStartup() {
         List<Group> groups = new ArrayList<>();
 
         Group memberGroup = new Group(1, "Regular Member");
@@ -48,11 +53,6 @@ public class DummyGroups implements ServerEventListener {
         groups.add(adminGroup);
 
         this.groupRepository.saveAll(groups);
-    }
-
-    @Override
-    public void onStartup() {
-
     }
 
     @Override

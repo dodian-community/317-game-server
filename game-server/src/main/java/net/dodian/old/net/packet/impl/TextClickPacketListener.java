@@ -6,8 +6,18 @@ import net.dodian.old.world.content.Presetables;
 import net.dodian.old.world.content.clan.ClanChatManager;
 import net.dodian.old.world.entity.impl.player.Player;
 import net.dodian.old.world.model.container.impl.Bank;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
+@Component
 public class TextClickPacketListener implements PacketListener {
+
+	private final Bank bank;
+
+	@Autowired
+	public TextClickPacketListener(Bank bank) {
+		this.bank = bank;
+	}
 
 	@Override
 	public void handleMessage(Player player, Packet packet) {
@@ -18,7 +28,7 @@ public class TextClickPacketListener implements PacketListener {
 			return;
 		}
 		
-		if(Bank.handleButton(player, frame, action)) {
+		if(bank.handleButton(player, frame, action)) {
 			return;
 		}
 		if(ClanChatManager.handleButton(player, frame, action)) {

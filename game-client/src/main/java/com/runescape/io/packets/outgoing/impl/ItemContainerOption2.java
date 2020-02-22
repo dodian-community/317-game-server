@@ -19,7 +19,7 @@ public class ItemContainerOption2 implements OutgoingPacket {
 	public void buildPacket(ByteBuffer buf) {
 		buf.putOpcode(117);
 		buf.putInt(interfaceId);
-		buf.writeSignedBigEndian(nodeId);
-		buf.writeUnsignedWordBigEndian(slot);
+		buf.writeUnsignedWordA(slot);
+		buf.writeUnsignedWordA(nodeId);
 	}
 }

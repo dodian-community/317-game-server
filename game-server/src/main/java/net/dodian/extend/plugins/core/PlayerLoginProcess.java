@@ -17,8 +17,7 @@ import org.springframework.stereotype.Component;
 
 import java.util.Optional;
 
-import static net.dodian.old.net.login.LoginResponses.LOGIN_INVALID_CREDENTIALS;
-import static net.dodian.old.net.login.LoginResponses.LOGIN_SUCCESSFUL;
+import static net.dodian.old.net.login.LoginResponses.*;
 
 @Component
 @Profile("prod")
@@ -70,7 +69,7 @@ public class PlayerLoginProcess implements PlayerSessionAndCharacterLoadEventLis
 
         Optional<Integer> loadingResponse = playerLoading.load(player);
 
-        if(loadingResponse.isPresent() && loadingResponse.get() == LOGIN_SUCCESSFUL) {
+        if(loadingResponse.isPresent() && (loadingResponse.get() == LOGIN_SUCCESSFUL || loadingResponse.get() == NEW_ACCOUNT)) {
             return Optional.of(LOGIN_SUCCESSFUL);
         }
 

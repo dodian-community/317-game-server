@@ -123,7 +123,10 @@ public class PacketConstants {
 			ButtonClickPacketListener buttonClickPacketListener,
 			ItemActionPacketListener itemActionPacketListener,
 			UseItemPacketListener useItemPacketListener,
-			NPCOptionPacketListener npcOptionPacketListener
+			NPCOptionPacketListener npcOptionPacketListener,
+			TextClickPacketListener textClickPacketListener,
+			ItemContainerActionPacketListener itemContainerActionPacketListener,
+			ObjectActionPacketListener objectActionPacketListener
 	) {
 		for(int i = 0; i < PACKETS.length; i++) {
 			PACKETS[i] = new SilencedPacketListener();
@@ -131,7 +134,7 @@ public class PacketConstants {
 
 		PACKETS[SPECIAL_ATTACK_OPCODE] = new SpecialAttackPacketListener();
 		PACKETS[BUTTON_CLICK_OPCODE] = buttonClickPacketListener;
-		PACKETS[TEXT_CLICK_OPCODE] = new TextClickPacketListener();
+		PACKETS[TEXT_CLICK_OPCODE] = textClickPacketListener;
 		PACKETS[CHAT_OPCODE_1] = new ChatPacketListener();
 
 		PACKETS[DROP_ITEM_OPCODE] = new DropItemPacketListener();
@@ -157,12 +160,12 @@ public class PacketConstants {
 		PACKETS[MAGIC_ON_PLAYER_OPCODE] = new MagicOnPlayerPacketListener();
 		PACKETS[BANK_TAB_CREATION_OPCODE] = new BankTabCreationPacketListener();
 
-		PACKETS[FIRST_ITEM_CONTAINER_ACTION_OPCODE] = new ItemContainerActionPacketListener();
-		PACKETS[SECOND_ITEM_CONTAINER_ACTION_OPCODE] = new ItemContainerActionPacketListener();
-		PACKETS[THIRD_ITEM_CONTAINER_ACTION_OPCODE] = new ItemContainerActionPacketListener();
-		PACKETS[FOURTH_ITEM_CONTAINER_ACTION_OPCODE] = new ItemContainerActionPacketListener();
-		PACKETS[FIFTH_ITEM_CONTAINER_ACTION_OPCODE] = new ItemContainerActionPacketListener();
-		PACKETS[SIXTH_ITEM_CONTAINER_ACTION_OPCODE] = new ItemContainerActionPacketListener();
+		PACKETS[FIRST_ITEM_CONTAINER_ACTION_OPCODE] = itemContainerActionPacketListener;
+		PACKETS[SECOND_ITEM_CONTAINER_ACTION_OPCODE] = itemContainerActionPacketListener;
+		PACKETS[THIRD_ITEM_CONTAINER_ACTION_OPCODE] = itemContainerActionPacketListener;
+		PACKETS[FOURTH_ITEM_CONTAINER_ACTION_OPCODE] = itemContainerActionPacketListener;
+		PACKETS[FIFTH_ITEM_CONTAINER_ACTION_OPCODE] = itemContainerActionPacketListener;
+		PACKETS[SIXTH_ITEM_CONTAINER_ACTION_OPCODE] = itemContainerActionPacketListener;
 
 		PACKETS[ATTACK_PLAYER_OPCODE] = new PlayerOptionPacketListener();
 		PACKETS[PLAYER_OPTION_1_OPCODE] = new PlayerOptionPacketListener();
@@ -170,11 +173,11 @@ public class PacketConstants {
 		PACKETS[PLAYER_OPTION_3_OPCODE] = new PlayerOptionPacketListener();
 
 
-		PACKETS[OBJECT_FIRST_CLICK_OPCODE] = new ObjectActionPacketListener();
-		PACKETS[OBJECT_SECOND_CLICK_OPCODE] = new ObjectActionPacketListener();
-		PACKETS[OBJECT_THIRD_CLICK_OPCODE] = new ObjectActionPacketListener();
-		PACKETS[OBJECT_FOURTH_CLICK_OPCODE] = new ObjectActionPacketListener();
-		PACKETS[OBJECT_FIFTH_CLICK_OPCODE] = new ObjectActionPacketListener();
+		PACKETS[OBJECT_FIRST_CLICK_OPCODE] = objectActionPacketListener;
+		PACKETS[OBJECT_SECOND_CLICK_OPCODE] = objectActionPacketListener;
+		PACKETS[OBJECT_THIRD_CLICK_OPCODE] = objectActionPacketListener;
+		PACKETS[OBJECT_FOURTH_CLICK_OPCODE] = objectActionPacketListener;
+		PACKETS[OBJECT_FIFTH_CLICK_OPCODE] = objectActionPacketListener;
 
 		PACKETS[ATTACK_NPC_OPCODE] = npcOptionPacketListener;
 		PACKETS[FIRST_CLICK_OPCODE] = npcOptionPacketListener;

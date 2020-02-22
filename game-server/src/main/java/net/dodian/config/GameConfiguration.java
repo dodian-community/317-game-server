@@ -11,6 +11,7 @@ import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.util.HashMap;
+import java.util.Optional;
 
 /**
  * This is the configuration utility that will fetch the configs from config.json.
@@ -49,7 +50,10 @@ public class GameConfiguration {
         configValues.put(key, value);
     }
 
-    public JsonElement get(String key) {
-        return this.configValues.get(key);
+    public Optional<JsonElement> get(String key) {
+        if(configValues.containsKey(key)) {
+            return Optional.of(configValues.get(key));
+        }
+        return Optional.empty();
     }
 }

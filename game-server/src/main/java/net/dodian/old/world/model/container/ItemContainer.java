@@ -344,6 +344,7 @@ public abstract class ItemContainer implements BeanFactoryAware {
 	 * @return			The ItemContainer instance.
 	 */
 	public ItemContainer switchItem(ItemContainer to, Item item, int slot, boolean sort, boolean refresh) {
+		DefinitionsManager definitionsManager = Server.getBeanFactory().getBean(DefinitionsManager.class);
 
 		if (getItems()[slot].getId() != item.getId()) {
 			return this;

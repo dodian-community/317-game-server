@@ -23,6 +23,11 @@ public class DummyAccounts implements ServerEventListener {
 
     @Override
     public void onStartedUp() {
+        accountRepository.findAll().forEach(account -> System.out.println("Account: " + account.getUsername()));
+    }
+
+    @Override
+    public void onStartup() {
         List<Account> accounts = new ArrayList<>();
         Account playerAccount = new Account(1, "player", 1);
         Account premiumAccount = new Account(2, "premium", 2);
@@ -37,11 +42,6 @@ public class DummyAccounts implements ServerEventListener {
         accounts.add(adminAccount);
 
         this.accountRepository.saveAll(accounts);
-    }
-
-    @Override
-    public void onStartup() {
-
     }
 
     @Override

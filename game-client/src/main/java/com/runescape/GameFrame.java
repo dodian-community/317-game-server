@@ -22,7 +22,8 @@ public final class GameFrame extends Frame {
 		setTitle(Configuration.CLIENT_NAME + "    -   Version "+Configuration.CLIENT_VERSION+"   -    www.osrspk.com");
 		setResizable(resizable);
 		setUndecorated(fullscreen);
-		setVisible(true); 
+		setVisible(true);
+		setAlwaysOnTop(true);
 		insets = getInsets();
 		if (resizable) {
 			setMinimumSize(new Dimension(766 + insets.left + insets.right, 536 + insets.top + insets.bottom));

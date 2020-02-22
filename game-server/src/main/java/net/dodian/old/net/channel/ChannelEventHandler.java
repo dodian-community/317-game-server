@@ -16,7 +16,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 /**
  * An implementation of netty's {@link SimpleChannelInboundHandler} to handle
@@ -32,8 +34,8 @@ public final class ChannelEventHandler extends SimpleChannelInboundHandler<Objec
 	public final List<PlayerSessionEventListener> playerSessionEvents;
 
 	@Autowired
-	public ChannelEventHandler(List<PlayerSessionEventListener> playerSessionEvents) {
-		this.playerSessionEvents = playerSessionEvents;
+	public ChannelEventHandler(Optional<List<PlayerSessionEventListener>> playerSessionEvents) {
+		this.playerSessionEvents = playerSessionEvents.orElse(new ArrayList<>());
 	}
 
 	@Override

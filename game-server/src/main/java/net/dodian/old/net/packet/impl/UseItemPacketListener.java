@@ -14,7 +14,9 @@ import net.dodian.old.world.model.Position;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Component
 public class UseItemPacketListener implements PacketListener {
@@ -22,8 +24,8 @@ public class UseItemPacketListener implements PacketListener {
     private final List<ItemUseEventListener> itemUseEventListeners;
 
     @Autowired
-    public UseItemPacketListener(List<ItemUseEventListener> itemUseEventListeners) {
-        this.itemUseEventListeners = itemUseEventListeners;
+    public UseItemPacketListener(Optional<List<ItemUseEventListener>> itemUseEventListeners) {
+        this.itemUseEventListeners = itemUseEventListeners.orElse(new ArrayList<>());
     }
 
     private void itemOnItem(Player player, Packet packet) {

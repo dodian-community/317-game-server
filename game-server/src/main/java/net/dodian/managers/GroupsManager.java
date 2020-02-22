@@ -20,8 +20,8 @@ public class GroupsManager {
 
     public GroupsManager(GroupRepository groupRepository, GameConfiguration gameConfiguration) {
         this.groupRepository = groupRepository;
-        gameConfiguration.get("groups").getAsJsonArray().forEach(jsonElement -> {
-            JsonObject groupConfigurations = jsonElement.getAsJsonObject();
+        gameConfiguration.get("groups").ifPresent(jsonElement -> jsonElement.getAsJsonArray().forEach(element -> {
+            JsonObject groupConfigurations = element.getAsJsonObject();
 
             Group group = null;
             if(groupConfigurations.has("id")) {
@@ -57,7 +57,7 @@ public class GroupsManager {
             }
 
             groupRepository.save(group);
-        });
+        }));
     }
 
     public Optional<Group> getGroupById(int id) {

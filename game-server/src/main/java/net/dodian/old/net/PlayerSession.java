@@ -43,6 +43,7 @@ import static net.dodian.old.net.login.LoginResponses.*;
 @Scope("prototype")
 public class PlayerSession {
 
+
 	/**
 	 * The queue which contains PRIORITIZED packets that will be handled on the next sequence.
 	 */
@@ -134,6 +135,7 @@ public class PlayerSession {
 	 * @param msg	The message to handle.
 	 */
 	public void processPacket(Packet msg) {
+		System.out.println("Opcode: " + msg.getOpcode());
 		PacketConstants.PACKETS[msg.getOpcode()].handleMessage(player, msg);
 	}
 

@@ -1,30 +1,30 @@
 package net.dodian.old.net.packet.impl;
 
 import net.dodian.Server;
+import net.dodian.extend.events.object.ObjectActionEventListener;
 import net.dodian.old.definitions.ObjectDefinition;
 import net.dodian.old.net.packet.Packet;
 import net.dodian.old.net.packet.PacketConstants;
 import net.dodian.old.net.packet.PacketListener;
 import net.dodian.old.world.collision.region.RegionClipping;
+import net.dodian.old.world.entity.impl.object.GameObject;
 import net.dodian.old.world.entity.impl.player.Player;
 import net.dodian.old.world.model.Position;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
+
+@Component
 public class ObjectActionPacketListener implements PacketListener {
 
-	private static void firstClick(final Player player, Packet packet) {
-	}
+	private final List<ObjectActionEventListener> objectActionEventListeners;
 
-	private static void secondClick(final Player player, Packet packet) {
-	}
-
-	private static void thirdClick(Player player, Packet packet) {
-	}
-
-	private static void fourthClick(Player player, Packet packet) {
-	}
-
-	private static void fifthClick(final Player player, Packet packet) {
-
+	@Autowired
+	public ObjectActionPacketListener(Optional<List<ObjectActionEventListener>> objectActionEventListeners) {
+		this.objectActionEventListeners = objectActionEventListeners.orElse(new ArrayList<>());
 	}
 
 	@Override
@@ -64,19 +64,24 @@ public class ObjectActionPacketListener implements PacketListener {
 
 		switch (packet.getOpcode()) {
 		case PacketConstants.OBJECT_FIRST_CLICK_OPCODE:
-			firstClick(player, packet);
+			objectActionEventListeners.forEach(objectActionEventListener -> objectActionEventListener
+					.onFirstClick(player, new GameObject(id, position)));
 			break;
 		case PacketConstants.OBJECT_SECOND_CLICK_OPCODE:
-			secondClick(player, packet);
+			objectActionEventListeners.forEach(objectActionEventListener -> objectActionEventListener
+					.onSecondClick(player, new GameObject(id, position)));
 			break;
 		case PacketConstants.OBJECT_THIRD_CLICK_OPCODE:
-			thirdClick(player, packet);
+			objectActionEventListeners.forEach(objectActionEventListener -> objectActionEventListener
+					.onThirdClick(player, new GameObject(id, position)));
 			break;
 		case PacketConstants.OBJECT_FOURTH_CLICK_OPCODE:
-			fourthClick(player, packet);
+			objectActionEventListeners.forEach(objectActionEventListener -> objectActionEventListener
+					.onFourthClick(player, new GameObject(id, position)));
 			break;
 		case PacketConstants.OBJECT_FIFTH_CLICK_OPCODE:
-			fifthClick(player, packet);
+			objectActionEventListeners.forEach(objectActionEventListener -> objectActionEventListener
+					.onFifthClick(player, new GameObject(id, position)));
 			break;
 		}
 	}

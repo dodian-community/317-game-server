@@ -19,7 +19,7 @@ public class ItemContainerOption3 implements OutgoingPacket {
 	public void buildPacket(ByteBuffer buf) {
 		buf.putOpcode(43);
 		buf.putInt(interfaceId);
-		buf.writeUnsignedWordA(nodeId);
 		buf.writeUnsignedWordA(slot);
+		buf.writeUnsignedWordA(nodeId);
 	}
 }

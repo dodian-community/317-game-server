@@ -18,8 +18,8 @@ public class ItemContainerOption4 implements OutgoingPacket {
 	@Override
 	public void buildPacket(ByteBuffer buf) {
 		buf.putOpcode(129);
-		buf.writeUnsignedWordA(slot);
 		buf.putInt(interfaceId);
+		buf.writeUnsignedWordA(slot);
 		buf.writeUnsignedWordA(nodeId);
 	}
 }

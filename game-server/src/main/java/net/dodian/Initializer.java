@@ -17,7 +17,6 @@ import net.dodian.old.net.channel.ChannelPipelineHandler;
 import net.dodian.old.util.PlayerPunishment;
 import net.dodian.old.util.ShutdownHook;
 import net.dodian.old.world.collision.region.RegionClipping;
-import net.dodian.old.world.content.clan.ClanChatManager;
 import net.dodian.old.world.model.dialogue.DialogueManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -79,7 +78,7 @@ public class Initializer {
             serviceLoader.execute(() -> DialogueManager.parse().load());
 
             //OTHERS
-            serviceLoader.execute(ClanChatManager::init);
+            //serviceLoader.execute(ClanChatManager::init);
             serviceLoader.execute(CombatPoisonEffect.CombatPoisonData::init);
             serviceLoader.execute(PlayerPunishment::init);
 

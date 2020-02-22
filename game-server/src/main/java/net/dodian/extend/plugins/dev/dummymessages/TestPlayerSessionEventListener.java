@@ -13,7 +13,7 @@ public class TestPlayerSessionEventListener implements PlayerSessionEventListene
 
     @Override
     public void onInitialize(PlayerSession playerSession, Object msg) {
-        System.out.println("Testing player session initialization...");
+        //System.out.println("Testing player session initialization...");
     }
 
     @Override

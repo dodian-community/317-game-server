@@ -1,6 +1,7 @@
 package net.dodian.old.world.model.container.impl;
 
 import net.dodian.Server;
+import net.dodian.managers.DefinitionsManager;
 import net.dodian.old.definitions.WeaponInterfaces;
 import net.dodian.old.world.entity.impl.player.Player;
 import net.dodian.old.world.model.Flag;
@@ -11,6 +12,7 @@ import net.dodian.old.world.model.container.StackType;
 import net.dodian.old.world.model.equipment.BonusManager;
 import net.dodian.old.world.model.syntax.impl.SearchBank;
 import net.dodian.orm.models.definitions.ItemDefinition;
+import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 
@@ -18,6 +20,7 @@ import java.util.ArrayList;
  * Pretty decent bank system without flaws.
  * @author Gabriel Hannason
  */
+@Component
 public class Bank extends ItemContainer {
 
 	public Bank(Player player) {
@@ -101,7 +104,7 @@ public class Bank extends ItemContainer {
 	 * @param slot
 	 * @param amount
 	 */
-	public static void withdraw(Player player, int item, int slot, int amount, int fromBankTab) {
+	public void withdraw(Player player, int item, int slot, int amount, int fromBankTab) {
 		
 		if(player.getStatus() == PlayerStatus.BANKING && player.getInterfaceId() == 5292) {
 
@@ -186,7 +189,7 @@ public class Bank extends ItemContainer {
 	 * @param slot
 	 * @param amount
 	 */
-	public static void deposit(Player player, int item, int slot, int amount) {
+	public void deposit(Player player, int item, int slot, int amount) {
 		if(player.getStatus() == PlayerStatus.BANKING && player.getInterfaceId() == 5292) {
 			if(player.getInventory().getItems()[slot].getId() != item) {
 				return;
@@ -346,7 +349,7 @@ public class Bank extends ItemContainer {
 	 * @param button
 	 * @return
 	 */
-	public static boolean handleButton(Player player, int button, int action) {
+	public boolean handleButton(Player player, int button, int action) {
 
 		if(player.getInterfaceId() == 32500) {
 			//Handle bank settings
@@ -481,6 +484,7 @@ public class Bank extends ItemContainer {
 
 	@Override
 	public Bank switchItem(ItemContainer to, Item item, int slot, boolean sort, boolean refresh) {
+		DefinitionsManager definitionsManager = Server.getBeanFactory().getBean(DefinitionsManager.class);
 
 		//Make sure we're actually banking!
 		if(getPlayer().getStatus() != PlayerStatus.BANKING || getPlayer().getInterfaceId() != 5292) {
