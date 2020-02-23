@@ -9,6 +9,7 @@ import io.netty.channel.socket.nio.NioServerSocketChannel;
 import io.netty.util.ResourceLeakDetector;
 import net.dodian.extend.events.system.ServerEventListener;
 import net.dodian.managers.DefinitionsManager;
+import net.dodian.managers.NpcSpawnsManager;
 import net.dodian.old.definitions.*;
 import net.dodian.old.engine.GameEngine;
 import net.dodian.old.engine.task.impl.CombatPoisonEffect;
@@ -32,18 +33,21 @@ public class Initializer {
     private final ChannelPipelineHandler channelPipelineHandler;
     private final GameEngine gameEngine;
     private final DefinitionsManager definitionsManager;
+    private final NpcSpawnsManager npcSpawnsManager;
     private final List<ServerEventListener> serverEvents;
 
     @Autowired
     public Initializer(
-            ChannelPipelineHandler channelPipelineHandler,
-            GameEngine gameEngine,
-            DefinitionsManager definitionsManager,
-            List<ServerEventListener> serverEvents
+        ChannelPipelineHandler channelPipelineHandler,
+        GameEngine gameEngine,
+        DefinitionsManager definitionsManager,
+        NpcSpawnsManager npcSpawnsManager,
+        List<ServerEventListener> serverEvents
     ) {
         this.channelPipelineHandler = channelPipelineHandler;
         this.gameEngine = gameEngine;
         this.definitionsManager = definitionsManager;
+        this.npcSpawnsManager = npcSpawnsManager;
         this.serverEvents = serverEvents;
     }
 
@@ -72,7 +76,8 @@ public class Initializer {
 
             serviceLoader.execute(() -> ObjectDefinition.parse().load());
             serviceLoader.execute(() -> NpcDefinition.parse().load());
-            serviceLoader.execute(() -> NpcSpawnsDefinition.parse().load());
+            serviceLoader.execute(npcSpawnsManager::loadDefinitions);
+            //serviceLoader.execute(() -> NpcSpawnsDefinition.parse().load());
             serviceLoader.execute(() -> NpcDropDefinition.parse().load());
             serviceLoader.execute(() -> ShopDefinition.parse().load());
             serviceLoader.execute(() -> DialogueManager.parse().load());

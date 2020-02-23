@@ -19,7 +19,7 @@ public final class GameFrame extends Frame {
 
 	public GameFrame(GameApplet applet, int width, int height, boolean resizable, boolean fullscreen) {
 		this.applet = applet;
-		setTitle(Configuration.CLIENT_NAME + "    -   Version "+Configuration.CLIENT_VERSION+"   -    www.osrspk.com");
+		setTitle("Dodian.net Client - Uber Server 2020");
 		setResizable(resizable);
 		setUndecorated(fullscreen);
 		setVisible(true);

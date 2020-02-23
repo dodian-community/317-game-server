@@ -14,7 +14,7 @@ public class EquipmentBonusesWindowButtonClick implements ButtonClickEventListen
     public void onClick(Player player, int button) {
         if(button == OPEN_EQUIPMENT_SCREEN && !player.busy()) {
             BonusManager.open(player);
-        } else {
+        } else if(button == OPEN_EQUIPMENT_SCREEN) {
             player.getPacketSender().sendMessage("You cannot do that right now.");
         }
     }

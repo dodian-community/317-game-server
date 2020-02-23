@@ -29,7 +29,7 @@ public final class Configuration {
 
 	public static final String CACHE_DIRECTORY = "./Cache/";//System.getProperty("user.home") + File.separator + "OSRSPKV"+CLIENT_VERSION+"/";
 	
-	public static boolean JAGCACHED_ENABLED = false;
+	public static boolean JAGCACHED_ENABLED = true;
 
 	/**
 	 * Toggles a security feature called RSA to prevent packet sniffers
@@ -39,7 +39,7 @@ public final class Configuration {
 	/**
 	 * A string which indicates the Client's name.
 	 */
-	public static final String CLIENT_NAME = "OSRS Pk";
+	public static final String CLIENT_NAME = "Dodian";
 
 	/**
 	 * Dumps map region images when new regions are loaded.

@@ -23,83 +23,9 @@ public class NpcDefinition {
 			@Override
 			public void load(JsonObject reader, Gson builder) {
 				
-				final int npcId = reader.get("npcId").getAsInt();
+				final int npcId = reader.get("id").getAsInt();
 				
-				definitions[npcId] = new NpcDefinition();
-				
-				definitions[npcId].id = npcId;
-				definitions[npcId].name = reader.get("name").getAsString();
-				definitions[npcId].examine = reader.get("examine").getAsString();
-				
-				if(reader.has("size")) {
-					definitions[npcId].size = reader.get("size").getAsInt();
-				}
-				if(reader.has("walk-radius")) {
-					definitions[npcId].walkRadius = reader.get("walk-radius").getAsInt();
-				}
-				if(reader.has("combat-follow")) {
-					definitions[npcId].combatFollowDistance = reader.get("combat-follow").getAsInt();
-				}
-				if(reader.has("attackable")) {
-					definitions[npcId].attackable = reader.get("attackable").getAsBoolean();
-				}
-				if(reader.has("aggressive")) {
-					definitions[npcId].aggressive = reader.get("aggressive").getAsBoolean();
-				}
-				if(reader.has("retreats")) {
-					definitions[npcId].retreats = reader.get("retreats").getAsBoolean();
-				}
-				if(reader.has("poisonous")) {
-					definitions[npcId].poisonous = reader.get("poisonous").getAsBoolean();
-				}
-				if(reader.has("respawn")) {
-					definitions[npcId].respawn = reader.get("respawn").getAsInt();
-				}
-				if(reader.has("max-hit")) {
-					definitions[npcId].maxHit = reader.get("max-hit").getAsInt();
-				}
-				if(reader.has("attack-speed")) {
-					definitions[npcId].attackSpeed = reader.get("attack-speed").getAsInt();
-				}
-				if(reader.has("attack-anim")) {
-					definitions[npcId].attackAnim = reader.get("attack-anim").getAsInt();
-				}
-				if(reader.has("defence-anim")) {
-					definitions[npcId].defenceAnim = reader.get("defence-anim").getAsInt();
-				}
-				if(reader.has("death-anim")) {
-					definitions[npcId].deathAnim = reader.get("death-anim").getAsInt();
-				}
-				if(reader.has("hitpoints")) {
-					definitions[npcId].hitpoints = reader.get("hitpoints").getAsInt();
-				}
-				if(reader.has("combat-level")) {
-					definitions[npcId].combatLevel = reader.get("combat-level").getAsInt();
-				}
-				if(reader.has("attack-level")) {
-					definitions[npcId].attackLevel = reader.get("attack-level").getAsInt();
-				}
-				if(reader.has("strength-level")) {
-					definitions[npcId].strengthLevel = reader.get("strength-level").getAsInt();
-				}
-				if(reader.has("ranged-level")) {
-					definitions[npcId].rangedLevel = reader.get("ranged-level").getAsInt();
-				}
-				if(reader.has("magic-level")) {
-					definitions[npcId].magicLevel = reader.get("magic-level").getAsInt();
-				}
-				if(reader.has("defence-melee")) {
-					definitions[npcId].defenceMelee = reader.get("defence-melee").getAsInt();
-				}
-				if(reader.has("defence-ranged")) {
-					definitions[npcId].defenceRange = reader.get("defence-ranged").getAsInt();
-				}
-				if(reader.has("defence-magic")) {
-					definitions[npcId].defenceMage = reader.get("defence-magic").getAsInt();
-				}
-				if(reader.has("slayer-req")) {
-					definitions[npcId].slayerLevel = reader.get("slayer-req").getAsInt();
-				}
+				definitions[npcId] = new Gson().fromJson(reader, NpcDefinition.class);
 			}
 
 			@Override

@@ -452,7 +452,15 @@ public class Player extends Character {
         //Packets
         getPacketSender().sendMapRegion().sendDetails(); //Map region, player index and player rights
         getPacketSender().sendTabs(); //Client sideicons
-        getPacketSender().sendMessage("Welcome to OSRS Pk! We hope you enjoy your stay.");
+        getPacketSender().sendMessage("Welcome to Uber Server");
+
+        if(getGroups().stream().anyMatch(Group::isPremium)) {
+            getPacketSender().sendMessage("You are a premium member");
+        } else {
+            getPacketSender().sendMessage("You are not a premium member. To subscribe click 'Become premium' on Dodian.net");
+        }
+
+        // TODO: Warning no recoveries set! Go to dodian.com and click 'Account Security' to set them.
 
         //Send levels and total exp
         long totalExp = 0;
@@ -517,7 +525,7 @@ public class Player extends Character {
                 sendString(52034, "@or1@Donated: " + getAmountDonated());
 
         //Join clanchat
-        ClanChatManager.onLogin(this);
+        //ClanChatManager.onLogin(this);
 
         //Handle timers and run tasks
         if (isPoisoned()) {
