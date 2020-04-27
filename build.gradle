@@ -26,3 +26,11 @@ allprojects {
         compile 'javax.xml.bind:jaxb-api:2.3.0'
     }
 }
+
+task runClient(type: JavaExec) {
+    group = "dodian-game"
+    description = "Run the Dodian game client."
+
+    classpath = sourceSets.main.runtimeClasspath
+    main = "com.runescape.Client"
+}

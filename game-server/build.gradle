@@ -51,3 +51,11 @@ jar {
         configurations.compile.collect { it.isDirectory() ? it : zipTree(it) }
     }
 }
+
+task runServer(type: JavaExec) {
+    group = "dodian-game"
+    description = "Run the Dodian game server."
+
+    classpath = sourceSets.main.runtimeClasspath
+    main = "net.dodian.Server"
+}
