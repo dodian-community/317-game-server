@@ -12,3 +12,10 @@ This is a new Dodian version based off of Professor Oak's Elvarg release. This h
 1. In the right side of IntelliJ, there should be a tab called **Gradle**. Expand that and find a tree structure, in that tree structure you should find: **dodian -> Tasks -> dodian-game**.
 2. Inside **dodian-game**, you should find two tasks (runClient and runServer). Double click them to start said service.
 3. Now you should be able to develop and test what you develop your local server/client instance. Good luck!
+
+#### Testing with the appropriate player rights
+When you run the server in dev mode. It will create some dummy data, among other things dummy users. Reference [DummyAccounts.java](./game-server/src/main/java/net/dodian/extend/plugins/dev/dummydata/DummyAccounts.java) for users.
+You specify the usernames found there for password. Example if you want to be an admin, you pick whatever username you desire and **admin** for password.
+
+#### How to write plugins?
+Currently plugins are contained in their own package in this project. There are some dummy plugins that serves the purpose of showing that events are working and how to hook up to them and use them. Reference the plugins found in [TestPlugins](./game-server/src/main/java/net/dodian/extend/plugins/dev).
