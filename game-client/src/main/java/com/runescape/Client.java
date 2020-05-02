@@ -7,6 +7,7 @@ import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Toolkit;
+import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
 import java.io.BufferedInputStream;
 import java.io.ByteArrayInputStream;
@@ -160,7 +161,6 @@ import com.runescape.util.PacketConstants;
 import com.runescape.util.SecondsTimer;
 import com.runescape.util.SkillConstants;
 import com.runescape.util.StringUtils;
-import com.sun.glass.events.KeyEvent;
 
 public class Client extends GameApplet {
 
