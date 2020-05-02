@@ -12,3 +12,25 @@ application {
 dependencies {
 
 }
+
+jar {
+
+    manifest {
+        attributes(
+                'Class-Path': configurations.compile.collect { it.getName() }.join(' '),
+                'Main-Class': 'com.runescape.Client'
+        )
+    }
+
+    from {
+        configurations.compile.collect { it.isDirectory() ? it : zipTree(it) }
+    }
+}
+
+task runClient(type: JavaExec) {
+    group = "dodian-game"
+    description = "Run the Dodian game client."
+
+    classpath = sourceSets.main.runtimeClasspath
+    main = "com.runescape.Client"
+}
