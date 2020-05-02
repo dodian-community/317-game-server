@@ -275,6 +275,9 @@ public class Player extends Character {
         //Process incoming packets...
         getSession().handleQueuedPackets(false);
 
+        //Process amount of players online, wilderness icon, etc..
+        sendAlwaysWalkable();
+
         //Process walking queue..
         getMovementQueue().onTick();
 
@@ -369,6 +372,13 @@ public class Player extends Character {
         if (session.getState() == SessionState.LOGGED_IN || session.getState() == SessionState.LOGGING_OUT) {
             PlayerSaving.save(this);
         }
+    }
+
+    public void sendAlwaysWalkable() {
+        getPacketSender().sendWalkableInterface(6673);
+        getPacketSender().sendString(6570, "Uber Server 3.0 (" + World.getPlayers().size() + " online)");
+        getPacketSender().sendString(6572, "");
+        getPacketSender().sendString(6664, "");
     }
 
     /**
