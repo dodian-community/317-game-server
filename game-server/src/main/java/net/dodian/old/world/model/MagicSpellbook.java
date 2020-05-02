@@ -11,8 +11,8 @@ import net.dodian.old.world.entity.impl.player.Player;
 
 public enum MagicSpellbook {
 
-	NORMAL(39000, TeleportType.NORMAL),
-	ANCIENT(39100, TeleportType.ANCIENT),
+	NORMAL(1151, TeleportType.NORMAL),
+	ANCIENT(12855, TeleportType.ANCIENT),
 	LUNAR(29999, TeleportType.LUNAR);
 
 	/**

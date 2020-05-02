@@ -452,7 +452,7 @@ public class Player extends Character {
         //Packets
         getPacketSender().sendMapRegion().sendDetails(); //Map region, player index and player rights
         getPacketSender().sendTabs(); //Client sideicons
-        getPacketSender().sendMessage("Welcome to OSRS Pk! We hope you enjoy your stay.");
+        getPacketSender().sendMessage("Welcome to Uber Server");
 
         //Send levels and total exp
         long totalExp = 0;

@@ -297,8 +297,8 @@ public final class Widget {
 
 		teleportInterface(textDrawingAreas);
 
-		mainTeleports();
-		normalSpellbookEdit(textDrawingAreas);
+		//mainTeleports();
+		//normalSpellbookEdit(textDrawingAreas);
 		ancientSpellbookEdit(textDrawingAreas);
 		settingsTab();
 
@@ -962,64 +962,88 @@ public final class Widget {
 	}
 
 	public static void ancientSpellbookEdit(GameFont[] t) {
-		Widget tab = addInterface(39100);
-		tab.totalChildren(36);
+		Widget tab = addInterface(12855);
+		tab.totalChildren(52);
 
 		//ADD "HOME" AND "OTHER" TELEPORTS
-		setBounds(39101, 10, 9, 0, tab);
-		setBounds(39102, 10, 9, 1, tab);
-		setBounds(39104, 105, 9, 2, tab);
-		setBounds(39105, 105, 9, 3, tab);
+		setBounds(39101, 10, 0, 0, tab);
+		setBounds(39102, 10, 0, 1, tab);
+		setBounds(39104, 105, 0, 2, tab);
+		setBounds(39105, 105, 0, 3, tab);
 
 		//Row 1
-		setBounds(12861, 25, 50, 4, tab);
-		setBounds(12901, 65, 50, 5, tab);
-		setBounds(12987, 105, 50, 6, tab);
-		setBounds(12939, 145, 50, 7, tab);
+		setBounds(12861, 145, 10, 4, tab);
+		setBounds(12901, 105, 10, 5, tab);
+		setBounds(12987, 65, 10, 6, tab);
+		setBounds(12939, 25, 10, 7, tab);
 
 		//Row 2
-		setBounds(12881, 25, 90, 8, tab);
-		setBounds(12919, 65, 90, 9, tab);
-		setBounds(13011, 105, 90, 10, tab);
-		setBounds(12963, 145, 90, 11, tab);
+		setBounds(12881, 145, 50, 8, tab);
+		setBounds(12919, 105, 50, 9, tab);
+		setBounds(13011, 65, 50, 10, tab);
+		setBounds(12963, 25, 50, 11, tab);
 
 		//Row 3
-		setBounds(12871, 25, 130, 12, tab);
-		setBounds(12911, 65, 130, 13, tab);
-		setBounds(12999, 105, 130, 14, tab);
-		setBounds(12951, 145, 130, 15, tab);
+		setBounds(12871, 145, 90, 12, tab);
+		setBounds(12911, 105, 90, 13, tab);
+		setBounds(12999, 65, 90, 14, tab);
+		setBounds(12951, 25, 90, 15, tab);
 
 		//Row 4
-		setBounds(12891, 25, 170, 16, tab);
-		setBounds(12929, 65, 170, 17, tab);
-		setBounds(13023, 105, 170, 18, tab);
-		setBounds(12975, 145, 170, 19, tab);
+		setBounds(12891, 145, 130, 16, tab);
+		setBounds(12929, 105, 130, 17, tab);
+		setBounds(13023, 65, 130, 18, tab);
+		setBounds(12975, 25, 130, 19, tab);
+
+		// Row 5
+		setBounds(21741, 25, 180, 20, tab);
+		setBounds(13035, 65, 180, 21, tab);
+		setBounds(13045, 105, 180, 22, tab);
+		setBounds(13053, 145, 180, 23, tab);
+
+		// Row 6
+		setBounds(13061, 25,220, 24, tab);
+		setBounds(13069, 65,220, 25, tab);
+		setBounds(13079, 105,220, 26, tab);
+		setBounds(13087, 145,220, 27, tab);
 
 		//Spell hovers
 
 		//Row 1
-		setBounds(21758, 3, 180, 20, tab);
-		setBounds(21793, 3, 180, 21, tab);
-		setBounds(21874, 3, 180, 22, tab);
-		setBounds(21903, 3, 180, 23, tab);
+		setBounds(21758, 3, 170, 28, tab);
+		setBounds(21793, 3, 170, 29, tab);
+		setBounds(21874, 3, 170, 30, tab);
+		setBounds(21903, 3, 170, 31, tab);
 
 		//Row 2
-		setBounds(21988, 3, 180, 24, tab);
-		setBounds(22018, 3, 180, 25, tab);
-		setBounds(22068, 3, 180, 26, tab);
-		setBounds(22093, 3, 180, 27, tab);
+		setBounds(21988, 3, 170, 32, tab);
+		setBounds(22018, 3, 170, 33, tab);
+		setBounds(22068, 3, 170, 34, tab);
+		setBounds(22093, 3, 170, 35, tab);
 
 		//Row 3
-		setBounds(22169, 3, 180, 28, tab);
-		setBounds(22198, 3, 180, 29, tab);
-		setBounds(22252, 3, 180, 30, tab);
-		setBounds(22277, 3, 180, 31, tab);
+		setBounds(22169, 3, 170, 36, tab);
+		setBounds(22198, 3, 170, 37, tab);
+		setBounds(22252, 3, 170, 38, tab);
+		setBounds(22277, 3, 170, 39, tab);
 
 		//Row 4
-		setBounds(22352, 3, 10, 32, tab);
-		setBounds(22381, 3, 10, 33, tab);
-		setBounds(22431, 3, 10, 34, tab);
-		setBounds(22460, 3, 10, 35, tab);
+		setBounds(22352, 3, 170, 40, tab);
+		setBounds(22381, 3, 160, 41, tab); // Shadow Barrage
+		setBounds(22431, 3, 170, 42, tab);
+		setBounds(22460, 3, 170, 43, tab);
+
+		// Row 5
+		setBounds(21747, 3, 0, 44, tab);
+		setBounds(21828, 3, 0, 45, tab);
+		setBounds(21928, 3, 0, 46, tab);
+		setBounds(22047, 3, 0, 47, tab);
+
+		// Row 6
+		setBounds(22118, 3, 0, 48, tab);
+		setBounds(22227, 3, 0, 49, tab);
+		setBounds(22302, 3, 0, 50, tab);
+		setBounds(22410, 3, 0, 51, tab);
 	}
 
 	public static void normalSpellbookEdit(GameFont[] t) {

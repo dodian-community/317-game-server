@@ -39,7 +39,7 @@ public final class Configuration {
 	/**
 	 * A string which indicates the Client's name.
 	 */
-	public static final String CLIENT_NAME = "OSRS Pk";
+	public static final String CLIENT_NAME = "Dodian.net Client";
 
 	/**
 	 * Dumps map region images when new regions are loaded.

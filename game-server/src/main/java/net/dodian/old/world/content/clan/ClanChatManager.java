@@ -763,7 +763,7 @@ public class ClanChatManager {
 
 	public static void onLogin(Player player) {
 		resetInterface(player);
-		ClanChatManager.join(player, player.getClanChatName());
+		//ClanChatManager.join(player, player.getClanChatName());
 	}
 
 	public static void resetInterface(Player player) {
