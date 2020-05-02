@@ -47,7 +47,7 @@ public class GameConstants {
 	/**
 	 *  The default position in game.
 	 */
-	public static final Position DEFAULT_POSITION = new Position(3093, 3509);
+	public static final Position DEFAULT_POSITION = new Position(2606, 3102);
 	
 	/**
 	 * Blood money.

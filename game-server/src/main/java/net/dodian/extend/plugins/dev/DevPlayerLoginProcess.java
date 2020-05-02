@@ -9,6 +9,7 @@ import net.dodian.old.net.login.LoginDetailsMessage;
 import net.dodian.old.net.packet.Packet;
 import net.dodian.old.world.entity.impl.player.Player;
 import net.dodian.old.world.entity.impl.player.PlayerLoading;
+import net.dodian.old.world.model.MagicSpellbook;
 import net.dodian.orm.models.Account;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Profile;
@@ -65,6 +66,10 @@ public class DevPlayerLoginProcess implements PlayerSessionAndCharacterLoadEvent
         }
 
         Optional<Integer> loadingResponse = playerLoading.load(player);
+
+        if(loadingResponse.isPresent() && loadingResponse.get().equals(NEW_ACCOUNT)) {
+            player.setSpellbook(MagicSpellbook.ANCIENT);
+        }
 
         if(loadingResponse.isPresent() && (loadingResponse.get() == LOGIN_SUCCESSFUL || loadingResponse.get() == NEW_ACCOUNT)) {
             return Optional.of(LOGIN_SUCCESSFUL);
