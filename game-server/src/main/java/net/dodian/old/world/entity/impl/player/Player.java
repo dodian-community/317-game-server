@@ -415,7 +415,6 @@ public class Player extends Character {
         }
 
         //Do stuff...
-        BossPets.pickup(this, getCurrentPet());
         getRelations().updateLists(false);
         BountyHunter.unassign(this);
         getPacketSender().sendLogout();

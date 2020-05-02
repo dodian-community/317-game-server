@@ -1,5 +1,6 @@
 package net.dodian.old.net.packet;
 
+import com.google.gson.internal.$Gson$Preconditions;
 import net.dodian.old.net.packet.impl.BankTabCreationPacketListener;
 import net.dodian.old.net.packet.impl.ButtonClickPacketListener;
 import net.dodian.old.net.packet.impl.TextClickPacketListener;
@@ -126,7 +127,8 @@ public class PacketConstants {
 			NPCOptionPacketListener npcOptionPacketListener,
 			TextClickPacketListener textClickPacketListener,
 			ItemContainerActionPacketListener itemContainerActionPacketListener,
-			ObjectActionPacketListener objectActionPacketListener
+			ObjectActionPacketListener objectActionPacketListener,
+			ExamineNpcPacketListener examineNpcPacketListener
 	) {
 		for(int i = 0; i < PACKETS.length; i++) {
 			PACKETS[i] = new SilencedPacketListener();
@@ -142,7 +144,7 @@ public class PacketConstants {
 		PACKETS[CHANGE_MAP_REGION_OPCODE] = new RegionChangePacketListener();
 		PACKETS[CLOSE_INTERFACE_OPCODE] = new CloseInterfacePacketListener();
 		PACKETS[EXAMINE_ITEM_OPCODE] = new ExamineItemPacketListener();
-		PACKETS[EXAMINE_NPC_OPCODE] = new ExamineNpcPacketListener();
+		PACKETS[EXAMINE_NPC_OPCODE] = examineNpcPacketListener;
 		PACKETS[CHANGE_APPEARANCE] = new ChangeAppearancePacketListener();
 		PACKETS[DIALOGUE_OPCODE] = new DialoguePacketListener();
 		PACKETS[ENTER_AMOUNT_OPCODE] = new EnterInputPacketListener();

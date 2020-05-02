@@ -5,7 +5,6 @@ import com.google.gson.JsonObject;
 import net.dodian.GameConstants;
 import net.dodian.old.util.JsonLoader;
 import net.dodian.old.util.Misc;
-import net.dodian.old.world.content.BossPets;
 import net.dodian.old.world.entity.impl.npc.NPC;
 import net.dodian.old.world.entity.impl.player.Player;
 import net.dodian.old.world.grounditems.GroundItemManager;
@@ -184,9 +183,6 @@ public class NpcDropDefinition {
 						
 						//Drop the item we received as long as it isn't a pet..
 						//Otherwise spawn it for the player.
-						if(!BossPets.spawnFor(player, toDrop.get().getId(), true)) {
-							GroundItemManager.spawnGroundItem(player, new GroundItem(toDrop.get(), npc.getPosition(), player.getUsername(), false, 150, true, 120));
-						}
 						
 						//Add the drop table chance..
 						parsedTables.add(chance.get());

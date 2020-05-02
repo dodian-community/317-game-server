@@ -12,6 +12,7 @@ import net.dodian.orm.repositories.NpcSpawnRepository;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Component
@@ -23,10 +24,10 @@ public class DefinitionsManager {
     private final NpcDropRepository npcDropRepository;
     private final NpcSpawnRepository npcSpawnRepository;
 
-    private List<ItemDefinition> itemDefinitions;
-    private List<NpcDefinition> npcDefinitions;
-    private List<NpcDropDefinition> npcDropDefinitions;
-    private List<NpcSpawnDefinition> npcSpawnDefinitions;
+    private List<ItemDefinition> itemDefinitions = new ArrayList<>();
+    private List<NpcDefinition> npcDefinitions = new ArrayList<>();
+    private List<NpcDropDefinition> npcDropDefinitions = new ArrayList<>();
+    private List<NpcSpawnDefinition> npcSpawnDefinitions = new ArrayList<>();
 
     public DefinitionsManager(
             ItemRepository itemRepository,

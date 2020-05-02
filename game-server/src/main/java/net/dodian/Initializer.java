@@ -18,6 +18,7 @@ import net.dodian.old.util.PlayerPunishment;
 import net.dodian.old.util.ShutdownHook;
 import net.dodian.old.world.collision.region.RegionClipping;
 import net.dodian.old.world.model.dialogue.DialogueManager;
+import net.dodian.orm.models.definitions.NpcDefinition;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -71,8 +72,6 @@ public class Initializer {
             serviceLoader.execute(RegionClipping::init);
 
             serviceLoader.execute(() -> ObjectDefinition.parse().load());
-            serviceLoader.execute(() -> NpcDefinition.parse().load());
-            serviceLoader.execute(() -> NpcSpawnsDefinition.parse().load());
             serviceLoader.execute(() -> NpcDropDefinition.parse().load());
             serviceLoader.execute(() -> ShopDefinition.parse().load());
             serviceLoader.execute(() -> DialogueManager.parse().load());

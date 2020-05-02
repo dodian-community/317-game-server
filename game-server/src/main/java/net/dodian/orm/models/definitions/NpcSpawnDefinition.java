@@ -11,7 +11,7 @@ public class NpcSpawnDefinition {
     @Id
     private int id;
     private int npcId;
-    private int face = 0;
+    private String face = "SOUTH";
     private int type = 10;
     private int x;
     private int y;

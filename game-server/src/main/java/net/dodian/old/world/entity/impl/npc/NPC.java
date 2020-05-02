@@ -1,6 +1,6 @@
 package net.dodian.old.world.entity.impl.npc;
 
-import net.dodian.old.definitions.NpcDefinition;
+import net.dodian.managers.DefinitionsManager;
 import net.dodian.old.engine.task.TaskManager;
 import net.dodian.old.engine.task.impl.NPCDeathTask;
 import net.dodian.old.world.entity.combat.CombatFactory;
@@ -13,12 +13,12 @@ import net.dodian.old.world.entity.impl.player.Player;
 import net.dodian.old.world.model.Flag;
 import net.dodian.old.world.model.Locations;
 import net.dodian.old.world.model.Position;
+import net.dodian.orm.models.definitions.NpcDefinition;
 
 /**
  * Represents a non-playable character, which players can interact with.
  * @author Professor Oak
  */
-
 public class NPC extends Character {
 
 	/**
@@ -83,15 +83,18 @@ public class NPC extends Character {
 	 */
 	private CombatMethod combatMethod;
 
+	private final DefinitionsManager definitionsManager;
+
 	/**
 	 * Constructs a new npc.
 	 * @param id		The npc id.
 	 * @param position	The npc spawn (default) position.
 	 */
-	public NPC(int id, Position position) {
+	public NPC(int id, Position position, DefinitionsManager definitionsManager) {
 		super(position);
 		this.id = id;
 		this.spawnPosition = position;
+		this.definitionsManager = definitionsManager;
 		setHitpoints(getDefinition().getHitpoints());
 		NPCBotHandler.assignBotHandler(this);
 		CombatFactory.assignCombatMethod(this);
@@ -278,7 +281,7 @@ public class NPC extends Character {
 	}
 
 	public NpcDefinition getDefinition() {
-		return NpcDefinition.forId(id);
+		return definitionsManager.getNpcDefinitionById(id);
 	}
 
 	public Position getSpawnPosition() {

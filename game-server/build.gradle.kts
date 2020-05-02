@@ -48,3 +48,12 @@ tasks.register<JavaExec>("runServer") {
     classpath = sourceSets["main"].runtimeClasspath
     main = "net.dodian.Server"
 }
+
+tasks.register<JavaExec>("runServerProd") {
+    group = "dodian-game"
+    description = "Run the Dodian game server in production mode."
+
+    args(" -Dspring.profiles.active=prod")
+    classpath = sourceSets["main"].runtimeClasspath
+    main = "net.dodian.Server"
+}

@@ -2,7 +2,6 @@ package net.dodian.old.net.packet.impl;
 
 import net.dodian.old.net.packet.Packet;
 import net.dodian.old.net.packet.PacketListener;
-import net.dodian.old.world.content.BossPets;
 import net.dodian.old.world.entity.impl.player.Player;
 import net.dodian.old.world.grounditems.GroundItemManager;
 import net.dodian.old.world.model.GroundItem;
@@ -50,10 +49,6 @@ public class DropItemPacketListener implements PacketListener {
 		}
 		
 		player.getPacketSender().sendInterfaceRemoval();
-		
-		if(BossPets.spawnFor(player, id, false)) {
-			return;
-		}
 		
 		if(item.getDefinition().isDropable()) {
 			
