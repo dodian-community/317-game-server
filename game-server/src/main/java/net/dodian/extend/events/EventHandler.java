@@ -1,9 +1,8 @@
-package net.dodian.packets;
+package net.dodian.extend.events;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 
 @Retention(RetentionPolicy.RUNTIME)
-public @interface Opcode {
-    int value();
+public @interface EventHandler {
 }

@@ -138,7 +138,6 @@ public class PlayerSession {
 	 * @param msg	The message to handle.
 	 */
 	public void processPacket(Packet msg) {
-		System.out.println("Opcode: " + msg.getOpcode());
 		//PacketConstants.PACKETS[msg.getOpcode()].handleMessage(player, msg);
 		packetProvider.handlePacket(msg, this.player);
 	}

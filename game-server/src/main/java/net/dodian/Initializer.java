@@ -7,7 +7,6 @@ import io.netty.channel.EventLoopGroup;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
 import io.netty.util.ResourceLeakDetector;
-import io.reactivex.rxjava3.core.Observable;
 import net.dodian.extend.events.system.ServerEventListener;
 import net.dodian.managers.DefinitionsManager;
 import net.dodian.old.definitions.NpcDropDefinition;
@@ -51,8 +50,6 @@ public class Initializer {
     }
 
     public void initialize() {
-        Observable.fromArray(new String[]{"Hello", "there"}).subscribe(System.out::println).dispose();
-
         serverEvents.forEach(ServerEventListener::onStartup);
 
         Runtime.getRuntime().addShutdownHook(new ShutdownHook());
