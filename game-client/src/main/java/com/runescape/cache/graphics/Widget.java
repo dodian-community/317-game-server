@@ -302,12 +302,12 @@ public final class Widget {
 		ancientSpellbookEdit(textDrawingAreas);
 		settingsTab();
 
-		pvpTab(textDrawingAreas);
-		spawnTab(textDrawingAreas);
-		presets(textDrawingAreas);
+		//pvpTab(textDrawingAreas);
+		//spawnTab(textDrawingAreas);
+		//presets(textDrawingAreas);
 
 		basicSettings(textDrawingAreas);
-		skillTab(textDrawingAreas);
+		//skillTab(textDrawingAreas);
 		fKeys(textDrawingAreas);
 		levelUpInterfaces();
 		
