@@ -20,6 +20,7 @@ import net.dodian.old.util.Misc;
 import net.dodian.old.util.PlayerPunishment;
 import net.dodian.old.world.World;
 import net.dodian.old.world.entity.impl.player.Player;
+import net.dodian.packets.PacketProvider;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
@@ -54,6 +55,7 @@ public class PlayerSession {
 	 */
 	private final Queue<Packet> packetsQueue = new ConcurrentLinkedQueue<>();
 	private final LoginResponses loginResponses;
+	private final PacketProvider packetProvider;
 
 	/**
 	 * The channel that will manage the connection for this player.
@@ -71,9 +73,10 @@ public class PlayerSession {
 	private SessionState state = SessionState.LOGGING_IN;
 
 	@Autowired
-	public PlayerSession(LoginResponses loginResponses, Player player) {
+	public PlayerSession(LoginResponses loginResponses, Player player, PacketProvider packetProvider) {
 		this.loginResponses = loginResponses;
 		this.player = player;
+		this.packetProvider = packetProvider;
 		this.player.setSession(this);
 	}
 
@@ -136,7 +139,8 @@ public class PlayerSession {
 	 */
 	public void processPacket(Packet msg) {
 		System.out.println("Opcode: " + msg.getOpcode());
-		PacketConstants.PACKETS[msg.getOpcode()].handleMessage(player, msg);
+		//PacketConstants.PACKETS[msg.getOpcode()].handleMessage(player, msg);
+		packetProvider.handlePacket(msg, this.player);
 	}
 
 	/**

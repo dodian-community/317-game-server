@@ -39,6 +39,8 @@ dependencies {
 
     testImplementation("org.springframework.boot:spring-boot-starter-test:${springVersion}")
 
+    implementation("io.reactivex.rxjava3:rxjava:3.0.3")
+
 }
 
 tasks.register<JavaExec>("runServer") {

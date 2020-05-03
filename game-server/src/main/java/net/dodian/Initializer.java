@@ -7,9 +7,12 @@ import io.netty.channel.EventLoopGroup;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
 import io.netty.util.ResourceLeakDetector;
+import io.reactivex.rxjava3.core.Observable;
 import net.dodian.extend.events.system.ServerEventListener;
 import net.dodian.managers.DefinitionsManager;
-import net.dodian.old.definitions.*;
+import net.dodian.old.definitions.NpcDropDefinition;
+import net.dodian.old.definitions.ObjectDefinition;
+import net.dodian.old.definitions.ShopDefinition;
 import net.dodian.old.engine.GameEngine;
 import net.dodian.old.engine.task.impl.CombatPoisonEffect;
 import net.dodian.old.net.NetworkConstants;
@@ -18,7 +21,6 @@ import net.dodian.old.util.PlayerPunishment;
 import net.dodian.old.util.ShutdownHook;
 import net.dodian.old.world.collision.region.RegionClipping;
 import net.dodian.old.world.model.dialogue.DialogueManager;
-import net.dodian.orm.models.definitions.NpcDefinition;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -49,6 +51,8 @@ public class Initializer {
     }
 
     public void initialize() {
+        Observable.fromArray(new String[]{"Hello", "there"}).subscribe(System.out::println).dispose();
+
         serverEvents.forEach(ServerEventListener::onStartup);
 
         Runtime.getRuntime().addShutdownHook(new ShutdownHook());
