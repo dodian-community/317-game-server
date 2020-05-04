@@ -19,7 +19,7 @@ import net.dodian.packets.impl.player.EquipItemPacket;
 import org.springframework.stereotype.Component;
 
 @Component
-public class EquipItemPacketHandler extends PacketListener {
+public class EquipItemPacketHandler implements PacketListener {
 
     @PacketHandler
     public void onEquipItem(EquipItemPacket packet) {

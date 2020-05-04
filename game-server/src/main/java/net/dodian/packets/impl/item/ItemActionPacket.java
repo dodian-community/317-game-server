@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
 
 import java.util.Arrays;
 
-import static net.dodian.old.net.packet.PacketConstants.*;
+import static net.dodian.packets.PacketConstants.*;
 
 @Component
 @Opcodes({FIRST_ITEM_ACTION_OPCODE, SECOND_ITEM_ACTION_OPCODE, THIRD_ITEM_ACTION_OPCODE})

@@ -9,7 +9,6 @@ import org.springframework.stereotype.Component;
 @Component
 public abstract class GamePacket {
     public Player player;
-    public int opcode;
     public boolean cancelled = false;
 
     public abstract GamePacket createFrom(Packet packet, Player player);

@@ -17,7 +17,7 @@ public class MagicAttackNpcPacket extends GamePacket {
     private int spellId;
 
     @Override
-    public MagicAttackNpcPacket createFrom(Packet packet, Player player) {
+    public GamePacket createFrom(Packet packet, Player player) {
         this.player = player;
         this.npcIndex = packet.readLEShortA();
         this.spellId = packet.readShortA();

@@ -18,7 +18,7 @@ public class PacketConstants {
 	public static final int CLOSE_INTERFACE_OPCODE = 130;
 	public static final int EXAMINE_ITEM_OPCODE = 2;
 	public static final int EXAMINE_NPC_OPCODE = 6;
-	public static final int CHANGE_APPEARANCE_OPCODE = 11;
+	public static final int CHANGE_APPEARANCE = 11;
 	public static final int DIALOGUE_OPCODE = 40;
 	public static final int ENTER_AMOUNT_OPCODE = 208, ENTER_SYNTAX_OPCODE = 60;
 	public static final int EQUIP_ITEM_OPCODE = 41;
@@ -61,20 +61,20 @@ public class PacketConstants {
 	
 	public static final int 
 	ATTACK_NPC_OPCODE = 72, 
-	FIRST_NPC_CLICK_OPCODE = 155,
+	FIRST_CLICK_OPCODE = 155, 
 	MAGIC_NPC_OPCODE = 131,
-	SECOND_NPC_CLICK_OPCODE = 17,
-	THIRD_NPC_CLICK_OPCODE = 21,
-	FOURTH_NPC_CLICK_OPCODE = 18;
+	SECOND_CLICK_OPCODE = 17, 
+	THIRD_CLICK_OPCODE = 21, 
+	FOURTH_CLICK_OPCODE = 18;
 	
 	public static final int FIRST_ITEM_ACTION_OPCODE = 122;
 	public static final int SECOND_ITEM_ACTION_OPCODE = 75;
 	public static final int THIRD_ITEM_ACTION_OPCODE = 16;
 	
 	public static final int
-	ITEM_ON_NPC_OPCODE = 57,
-	ITEM_ON_ITEM_OPCODE = 53,
-	ITEM_ON_OBJECT_OPCODE = 192,
-	ITEM_ON_GROUND_ITEM_OPCODE = 25,
-	ITEM_ON_PLAYER_OPCODE = 14;
+	ITEM_ON_NPC = 57,
+	ITEM_ON_ITEM = 53,
+	ITEM_ON_OBJECT = 192,
+	ITEM_ON_GROUND_ITEM = 25,
+	ITEM_ON_PLAYER = 14;
 }

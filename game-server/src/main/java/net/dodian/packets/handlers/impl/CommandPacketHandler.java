@@ -13,7 +13,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Component
-public class CommandPacketHandler extends PacketListener {
+public class CommandPacketHandler implements PacketListener {
 
     private final List<Command> commands;
 

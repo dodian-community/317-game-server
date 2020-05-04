@@ -8,7 +8,7 @@ import net.dodian.packets.GamePacket;
 import net.dodian.packets.Opcodes;
 import org.springframework.stereotype.Component;
 
-import static net.dodian.old.net.packet.PacketConstants.EXAMINE_ITEM_OPCODE;
+import static net.dodian.packets.PacketConstants.EXAMINE_ITEM_OPCODE;
 
 @Component
 @Opcodes(EXAMINE_ITEM_OPCODE)
