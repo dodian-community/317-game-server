@@ -1,56 +1,47 @@
 package net.dodian.packets.handlers.impl;
 
+import net.dodian.events.EventsProvider;
 import net.dodian.events.impl.player.interact.item.PlayerItemFirstClickEvent;
 import net.dodian.events.impl.player.interact.item.PlayerItemSecondClickEvent;
 import net.dodian.events.impl.player.interact.item.PlayerItemThirdClickEvent;
-import net.dodian.old.world.model.Item;
 import net.dodian.packets.handlers.PacketHandler;
 import net.dodian.packets.handlers.PacketListener;
-import net.dodian.packets.impl.item.actions.ItemActionPacket;
-import net.dodian.packets.impl.item.actions.ItemFirstActionPacket;
-import net.dodian.packets.impl.item.actions.ItemSecondActionPacket;
-import net.dodian.packets.impl.item.actions.ItemThirdActionPacket;
+import net.dodian.packets.impl.item.ItemActionPacket;
 import org.springframework.stereotype.Component;
 
 @Component
-public class ItemActionPacketHandler extends PacketListener {
+public class ItemActionPacketHandler implements PacketListener {
 
-    public boolean checkItem(ItemActionPacket packet) {
-        if(packet.getSlot() < 0 || packet.getSlot() > packet.getPlayer().getInventory().capacity()) {
-            return false;
-        }
+    private final EventsProvider eventsProvider;
 
-        if(packet.getPlayer().getInventory().getItems()[packet.getSlot()].getId() != packet.getItemId()) {
-            return false;
-        }
-
-        return true;
+    public ItemActionPacketHandler(EventsProvider eventsProvider) {
+        this.eventsProvider = eventsProvider;
     }
 
     @PacketHandler
-    public void onFirstClick(ItemFirstActionPacket packet) {
-        if (!checkItem(packet)) {
+    public void onFirstClick(ItemActionPacket packet) {
+        if(!ItemActionPacket.Action.FIRST.equals(packet.getAction())) {
             return;
         }
 
-        eventsProvider.executeListeners(new PlayerItemFirstClickEvent().create(packet.getPlayer(), new Item(packet.getItemId()).setSlot(packet.getSlot())));
+        eventsProvider.executeListeners(PlayerItemFirstClickEvent.class, packet);
     }
 
     @PacketHandler
-    public void onSecondClick(ItemSecondActionPacket packet) {
-        if (!checkItem(packet)) {
+    public void onSecondClick(ItemActionPacket packet) {
+        if(!ItemActionPacket.Action.SECOND.equals(packet.getAction())) {
             return;
         }
 
-        eventsProvider.executeListeners(new PlayerItemSecondClickEvent().create(packet.getPlayer(), new Item(packet.getItemId()).setSlot(packet.getSlot())));
+        eventsProvider.executeListeners(PlayerItemSecondClickEvent.class, packet);
     }
 
     @PacketHandler
-    public void onThirdClick(ItemThirdActionPacket packet) {
-        if (!checkItem(packet)) {
+    public void onThirdClick(ItemActionPacket packet) {
+        if(!ItemActionPacket.Action.THIRD.equals(packet.getAction())) {
             return;
         }
 
-        eventsProvider.executeListeners(new PlayerItemThirdClickEvent().create(packet.getPlayer(), new Item(packet.getItemId()).setSlot(packet.getSlot())));
+        eventsProvider.executeListeners(PlayerItemThirdClickEvent.class, packet);
     }
 }

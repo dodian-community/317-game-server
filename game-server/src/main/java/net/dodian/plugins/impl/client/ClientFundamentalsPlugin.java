@@ -1,13 +1,12 @@
 package net.dodian.plugins.impl.client;
 
-import net.dodian.old.definitions.WeaponInterfaces;
 import net.dodian.packets.handlers.PacketHandler;
 import net.dodian.packets.handlers.PacketListener;
 import net.dodian.packets.impl.ButtonClickPacket;
 import org.springframework.stereotype.Component;
 
 @Component
-public class ClientFundamentalsPlugin extends PacketListener {
+public class ClientFundamentalsPlugin implements PacketListener {
 
     @PacketHandler
     public void onLogoutButtonClick(ButtonClickPacket packet) {
@@ -21,10 +20,5 @@ public class ClientFundamentalsPlugin extends PacketListener {
         }
 
         packet.getPlayer().logout();
-    }
-
-    @PacketHandler
-    public void onChangeAttackStyle(ButtonClickPacket packet) {
-        WeaponInterfaces.changeCombatSettings(packet.getPlayer(), packet.getButton());
     }
 }

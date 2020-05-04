@@ -17,7 +17,7 @@ import net.dodian.old.net.login.LoginResponsePacket;
 import net.dodian.old.net.login.LoginResponses;
 import net.dodian.old.net.packet.Packet;
 import net.dodian.old.net.packet.PacketBuilder;
-import net.dodian.packets.PacketConstants;
+import net.dodian.old.net.packet.PacketConstants;
 import net.dodian.old.util.Misc;
 import net.dodian.old.util.PlayerPunishment;
 import net.dodian.old.world.World;
@@ -264,7 +264,7 @@ public class PlayerSession {
 		int responseCode = optionalCanLogin.orElse(LOGIN_SUCCESSFUL);
 
 		if(responseCode == LOGIN_SUCCESSFUL) {
-			Optional<Integer> optionalResponseCode = this.eventsProvider.executeListeners(new CharacterLoadingEvent().create(player), Integer.class);
+			Optional<Integer> optionalResponseCode = this.eventsProvider.executeListeners(CharacterLoadingEvent.class, Integer.class, player);
 			responseCode = optionalResponseCode.orElse(LOGIN_REJECT_SESSION);
 		}
 
@@ -282,7 +282,7 @@ public class PlayerSession {
 			return;
 		}
 
-		this.eventsProvider.executeListeners(new PlayerLoggedInEvent().create(player));
+		this.eventsProvider.executeListeners(PlayerLoggedInEvent.class, Void.class, player);
 
 		//Wait...
 		future.awaitUninterruptibly();

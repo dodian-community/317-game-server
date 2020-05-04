@@ -43,7 +43,7 @@ public final class ChannelEventHandler extends SimpleChannelInboundHandler<Objec
 			throw new IllegalStateException("session == null");
 		}
 
-		eventsProvider.executeListeners(new PlayerConnectEvent().create(session, msg));
+		eventsProvider.executeListeners(PlayerConnectEvent.class, session, msg);
 	}
 
 
