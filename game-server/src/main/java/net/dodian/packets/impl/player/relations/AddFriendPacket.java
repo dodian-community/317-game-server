@@ -1,4 +1,4 @@
-package net.dodian.packets.impl.item;
+package net.dodian.packets.impl.player.relations;
 
 import lombok.Getter;
 import net.dodian.old.net.packet.Packet;
@@ -7,19 +7,19 @@ import net.dodian.packets.GamePacket;
 import net.dodian.packets.Opcodes;
 import org.springframework.stereotype.Component;
 
-import static net.dodian.packets.PacketConstants.EXAMINE_ITEM_OPCODE;
+import static net.dodian.packets.PacketConstants.ADD_FRIEND_OPCODE;
 
 @Component
 @Getter
-@Opcodes(EXAMINE_ITEM_OPCODE)
-public class ExamineItemPacket extends GamePacket {
+@Opcodes(ADD_FRIEND_OPCODE)
+public class AddFriendPacket extends GamePacket {
 
-    private short id;
+    private long username;
 
     @Override
-    public ExamineItemPacket createFrom(Packet packet, Player player) {
+    public AddFriendPacket createFrom(Packet packet, Player player) {
         this.player = player;
-        this.id = packet.readShort();
+        this.username = packet.readLong();
         return this;
     }
 }

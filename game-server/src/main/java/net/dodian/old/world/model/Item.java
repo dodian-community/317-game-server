@@ -72,8 +72,9 @@ public class Item {
 		return this.slot;
 	}
 	
-	public void setSlot(int slot) {
+	public Item setSlot(int slot) {
 		this.slot = slot;
+		return this;
 	}
 
 	/**

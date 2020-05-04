@@ -18,7 +18,7 @@ public class EquipItemPacket extends GamePacket {
     private int interfaceId;
 
     @Override
-    public GamePacket createFrom(Packet packet, Player player) {
+    public EquipItemPacket createFrom(Packet packet, Player player) {
         this.player = player;
         this.id = packet.readShort();
         this.slot = packet.readShortA();

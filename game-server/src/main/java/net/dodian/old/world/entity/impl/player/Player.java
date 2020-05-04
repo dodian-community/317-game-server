@@ -55,9 +55,9 @@ public class Player extends Character {
     @Getter @Setter private Long longUsername;
     @Getter private final List<Player> localPlayers = new LinkedList<>();
     @Getter private final List<NPC> localNpcs = new LinkedList<>();
-    @Getter private final PacketSender packetSender = new PacketSender(this);
+    @Getter public final PacketSender packetSender = new PacketSender(this);
     @Getter private final Appearance appearance = new Appearance(this);
-    @Getter private final SkillManager skillManager = new SkillManager(this);
+    @Getter public final SkillManager skillManager = new SkillManager(this);
     @Getter private final PlayerRelations relations = new PlayerRelations(this);
     @Getter private final ChatMessage chatMessages = new ChatMessage();
     @Getter private final FrameUpdater frameUpdater = new FrameUpdater();

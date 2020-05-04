@@ -51,7 +51,7 @@ public class Initializer {
     }
 
     public void initialize() {
-        this.eventsProvider.executeListeners(ServerStartingUpEvent.class, this);
+        this.eventsProvider.executeListeners(new ServerStartingUpEvent());
 
         Runtime.getRuntime().addShutdownHook(new ShutdownHook());
 
@@ -113,6 +113,6 @@ public class Initializer {
             System.exit(1);
         }
 
-        this.eventsProvider.executeListeners(ServerStartedUpEvent.class, this);
+        this.eventsProvider.executeListeners(new ServerStartedUpEvent());
     }
 }

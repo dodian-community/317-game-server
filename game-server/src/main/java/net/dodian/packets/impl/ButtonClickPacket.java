@@ -16,7 +16,7 @@ public class ButtonClickPacket extends GamePacket {
     @Getter @Setter private int button;
 
     @Override
-    public GamePacket createFrom(Packet packet, Player player) {
+    public ButtonClickPacket createFrom(Packet packet, Player player) {
         this.button = packet.readInt();
         this.player = player;
         return this;

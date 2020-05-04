@@ -264,7 +264,7 @@ public class PlayerSession {
 		int responseCode = optionalCanLogin.orElse(LOGIN_SUCCESSFUL);
 
 		if(responseCode == LOGIN_SUCCESSFUL) {
-			Optional<Integer> optionalResponseCode = this.eventsProvider.executeListeners(CharacterLoadingEvent.class, Integer.class, player);
+			Optional<Integer> optionalResponseCode = this.eventsProvider.executeListeners(new CharacterLoadingEvent().create(player), Integer.class);
 			responseCode = optionalResponseCode.orElse(LOGIN_REJECT_SESSION);
 		}
 
@@ -282,7 +282,7 @@ public class PlayerSession {
 			return;
 		}
 
-		this.eventsProvider.executeListeners(PlayerLoggedInEvent.class, Void.class, player);
+		this.eventsProvider.executeListeners(new PlayerLoggedInEvent().create(player));
 
 		//Wait...
 		future.awaitUninterruptibly();

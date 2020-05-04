@@ -7,20 +7,20 @@ import net.dodian.packets.GamePacket;
 import net.dodian.packets.Opcodes;
 import org.springframework.stereotype.Component;
 
-import static net.dodian.packets.PacketConstants.MAGIC_NPC_OPCODE;
+import static net.dodian.packets.PacketConstants.*;
 
 @Component
 @Getter
-@Opcodes(MAGIC_NPC_OPCODE)
-public class MagicAttackNpcPacket extends GamePacket {
+@Opcodes({FIRST_NPC_CLICK_OPCODE, SECOND_NPC_CLICK_OPCODE,
+        THIRD_NPC_CLICK_OPCODE, FOURTH_NPC_CLICK_OPCODE})
+public class NpcOptionPacket extends GamePacket {
+
     private int npcIndex;
-    private int spellId;
 
     @Override
-    public MagicAttackNpcPacket createFrom(Packet packet, Player player) {
+    public NpcOptionPacket createFrom(Packet packet, Player player) {
         this.player = player;
-        this.npcIndex = packet.readLEShortA();
-        this.spellId = packet.readShortA();
+        this.npcIndex = packet.readLEShort();
         return this;
     }
 }

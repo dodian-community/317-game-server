@@ -4,6 +4,7 @@ import net.dodian.events.EventsProvider;
 import net.dodian.events.impl.player.interact.item.PlayerItemFirstClickEvent;
 import net.dodian.events.impl.player.interact.item.PlayerItemSecondClickEvent;
 import net.dodian.events.impl.player.interact.item.PlayerItemThirdClickEvent;
+import net.dodian.old.world.model.Item;
 import net.dodian.packets.handlers.PacketHandler;
 import net.dodian.packets.handlers.PacketListener;
 import net.dodian.packets.impl.item.ItemActionPacket;
@@ -26,7 +27,7 @@ public class ItemActionPacketHandler implements PacketListener {
             return;
         }
 
-        eventsProvider.executeListeners(PlayerItemFirstClickEvent.class, packet);
+        eventsProvider.executeListeners(new PlayerItemFirstClickEvent().create(packet.getPlayer(), new Item(packet.getItemId()).setSlot(packet.getSlot())));
     }
 
     @PacketHandler
@@ -35,7 +36,7 @@ public class ItemActionPacketHandler implements PacketListener {
             return;
         }
 
-        eventsProvider.executeListeners(PlayerItemSecondClickEvent.class, packet);
+        eventsProvider.executeListeners(new PlayerItemSecondClickEvent().create(packet.getPlayer(), new Item(packet.getItemId()).setSlot(packet.getSlot())));
     }
 
     @PacketHandler
@@ -44,6 +45,6 @@ public class ItemActionPacketHandler implements PacketListener {
             return;
         }
 
-        eventsProvider.executeListeners(PlayerItemThirdClickEvent.class, packet);
+        eventsProvider.executeListeners(new PlayerItemThirdClickEvent().create(packet.getPlayer(), new Item(packet.getItemId()).setSlot(packet.getSlot())));
     }
 }

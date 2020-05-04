@@ -5,7 +5,9 @@ val springVersion: String by project
 plugins {
     application
     kotlin("jvm")
-    id("org.springframework.boot") version "2.0.5.RELEASE"
+    kotlin("plugin.spring") version "1.3.72"
+    kotlin("plugin.jpa") version "1.3.72"
+    id("org.springframework.boot") version "2.2.6.RELEASE"
     id("io.spring.dependency-management") version "1.0.7.RELEASE"
 }
 
@@ -28,6 +30,10 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-web:${springVersion}")
     implementation("org.springframework.boot:spring-boot-starter-security:${springVersion}")
     implementation("org.springframework.boot:spring-boot-starter-data-jpa:${springVersion}")
+
+    implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
+    implementation("org.jetbrains.kotlin:kotlin-reflect")
+    implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
 
     implementation("io.netty:netty-all:4.1.8.Final")
     implementation("com.google.guava:guava:28.0-jre")
