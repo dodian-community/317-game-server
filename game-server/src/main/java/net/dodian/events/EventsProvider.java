@@ -14,14 +14,10 @@ import java.util.logging.Level;
 @Component
 public class EventsProvider {
 
-    private final List<GameEvent> gameEvents;
     private final List<EventListener> eventListeners;
 
-    //private Map<GameEvent, List<EventListener>> eventSubscribers;
-
     @Autowired
-    public EventsProvider(List<GameEvent> gameEvents, List<EventListener> eventListeners) {
-        this.gameEvents = gameEvents;
+    public EventsProvider(List<EventListener> eventListeners) {
         this.eventListeners = eventListeners;
     }
 

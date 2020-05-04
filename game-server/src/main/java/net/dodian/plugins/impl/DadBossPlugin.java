@@ -11,7 +11,7 @@ public class DadBossPlugin implements EventListener {
     @EventHandler
     public Boolean onAttackDad(PlayerAttackNpcEvent event) {
         if(event.getNpc().getId() != 4130) {
-            return false;
+            return true;
         }
 
         if(event.player.skillManager.getCombatLevel() < 60) {
