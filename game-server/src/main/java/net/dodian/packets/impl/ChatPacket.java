@@ -8,7 +8,7 @@ import net.dodian.packets.GamePacket;
 import net.dodian.packets.Opcodes;
 import org.springframework.stereotype.Component;
 
-import static net.dodian.old.net.packet.PacketConstants.CHAT_OPCODE_1;
+import static net.dodian.packets.PacketConstants.CHAT_OPCODE_1;
 
 @Component
 @Opcodes(CHAT_OPCODE_1)

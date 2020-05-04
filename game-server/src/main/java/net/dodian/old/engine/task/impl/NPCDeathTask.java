@@ -1,5 +1,6 @@
 package net.dodian.old.engine.task.impl;
 
+import net.dodian.managers.DefinitionsManager;
 import net.dodian.old.definitions.NpcDropDefinition;
 import net.dodian.old.engine.task.Task;
 import net.dodian.old.engine.task.TaskManager;
@@ -19,14 +20,17 @@ import net.dodian.old.world.model.movement.MovementStatus;
 
 public class NPCDeathTask extends Task {
 
+	private final DefinitionsManager definitionsManager;
+
 	/**
 	 * The NPCDeathTask constructor.
 	 * @param npc	The npc being killed.
 	 */
-	public NPCDeathTask(NPC npc) {
+	public NPCDeathTask(NPC npc, DefinitionsManager definitionsManager) {
 		super(2);
 		this.npc = npc;
 		this.ticks = 2;
+		this.definitionsManager = definitionsManager;
 	}
 
 	/**
@@ -101,7 +105,7 @@ public class NPCDeathTask extends Task {
 
 		//respawn
 		if(npc.getDefinition().getRespawn() > 0) {
-			TaskManager.submit(new NPCRespawnTask(npc, npc.getDefinition().getRespawn()));
+			TaskManager.submit(new NPCRespawnTask(npc, npc.getDefinition().getRespawn(), this.definitionsManager));
 		}
 
 		World.getNpcRemoveQueue().add(npc);

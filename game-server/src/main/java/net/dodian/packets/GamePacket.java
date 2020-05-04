@@ -8,8 +8,8 @@ import org.springframework.stereotype.Component;
 @Data
 @Component
 public abstract class GamePacket {
-    protected Player player;
-    protected boolean cancelled = false;
+    public Player player;
+    public boolean cancelled = false;
 
     public abstract GamePacket createFrom(Packet packet, Player player);
 

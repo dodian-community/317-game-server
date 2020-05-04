@@ -1,4 +1,4 @@
-package net.dodian.old.net.packet;
+package net.dodian.packets;
 
 /**
  * Defining all packets and other packet-related-constants 
@@ -6,8 +6,6 @@ package net.dodian.old.net.packet;
  * @author Gabriel Hannason
  */
 public class PacketConstants {
-
-	public static final PacketListener[] PACKETS = new PacketListener[257];
 	
 	public static final int SPECIAL_ATTACK_OPCODE = 184;
 	public static final int BUTTON_CLICK_OPCODE = 185;
@@ -64,7 +62,7 @@ public class PacketConstants {
 	public static final int 
 	ATTACK_NPC_OPCODE = 72, 
 	FIRST_CLICK_OPCODE = 155, 
-	MAGE_NPC_OPCODE = 131, 
+	MAGIC_NPC_OPCODE = 131,
 	SECOND_CLICK_OPCODE = 17, 
 	THIRD_CLICK_OPCODE = 21, 
 	FOURTH_CLICK_OPCODE = 18;

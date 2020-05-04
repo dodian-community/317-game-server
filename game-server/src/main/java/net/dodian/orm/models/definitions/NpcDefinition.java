@@ -14,7 +14,7 @@ public class NpcDefinition {
     private String examine;
     private int size;
     private int walkRadius;
-    private boolean attackable;
+    public boolean attackable;
     private boolean retreats;
     private boolean aggressive;
     private boolean poisonous;

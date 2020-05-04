@@ -7,6 +7,7 @@ import net.dodian.events.impl.player.interact.item.PlayerItemThirdClickEvent;
 import net.dodian.packets.handlers.PacketHandler;
 import net.dodian.packets.handlers.PacketListener;
 import net.dodian.packets.impl.item.ItemActionPacket;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -14,6 +15,7 @@ public class ItemActionPacketHandler implements PacketListener {
 
     private final EventsProvider eventsProvider;
 
+    @Autowired
     public ItemActionPacketHandler(EventsProvider eventsProvider) {
         this.eventsProvider = eventsProvider;
     }

@@ -17,7 +17,7 @@ import net.dodian.old.net.login.LoginResponsePacket;
 import net.dodian.old.net.login.LoginResponses;
 import net.dodian.old.net.packet.Packet;
 import net.dodian.old.net.packet.PacketBuilder;
-import net.dodian.old.net.packet.PacketConstants;
+import net.dodian.packets.PacketConstants;
 import net.dodian.old.util.Misc;
 import net.dodian.old.util.PlayerPunishment;
 import net.dodian.old.world.World;

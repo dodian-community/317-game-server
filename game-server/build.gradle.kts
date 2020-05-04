@@ -1,3 +1,5 @@
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+
 val springVersion: String by project
 
 plugins {
@@ -40,6 +42,7 @@ dependencies {
     testImplementation("org.springframework.boot:spring-boot-starter-test:${springVersion}")
 
     implementation("io.reactivex.rxjava3:rxjava:3.0.3")
+    implementation(kotlin("stdlib-jdk8"))
 
 }
 
@@ -58,4 +61,15 @@ tasks.register<JavaExec>("runServerProd") {
     args(" -Dspring.profiles.active=prod")
     classpath = sourceSets["main"].runtimeClasspath
     main = "net.dodian.Server"
+}
+repositories {
+    mavenCentral()
+}
+val compileKotlin: KotlinCompile by tasks
+compileKotlin.kotlinOptions {
+    jvmTarget = "1.8"
+}
+val compileTestKotlin: KotlinCompile by tasks
+compileTestKotlin.kotlinOptions {
+    jvmTarget = "1.8"
 }

@@ -1,4 +1,4 @@
-package net.dodian.packets.impl;
+package net.dodian.packets.impl.player;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -9,8 +9,8 @@ import net.dodian.packets.GamePacket;
 import net.dodian.packets.Opcodes;
 import org.springframework.stereotype.Component;
 
-import static net.dodian.old.net.packet.PacketConstants.GAME_MOVEMENT_OPCODE;
-import static net.dodian.old.net.packet.PacketConstants.MINIMAP_MOVEMENT_OPCODE;
+import static net.dodian.packets.PacketConstants.GAME_MOVEMENT_OPCODE;
+import static net.dodian.packets.PacketConstants.MINIMAP_MOVEMENT_OPCODE;
 
 @Component
 @Opcodes({GAME_MOVEMENT_OPCODE, MINIMAP_MOVEMENT_OPCODE})

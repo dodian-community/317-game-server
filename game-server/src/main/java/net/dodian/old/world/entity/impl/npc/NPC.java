@@ -142,7 +142,7 @@ public class NPC extends Character {
 	@Override
 	public void appendDeath() {
 		if(!isDying) {
-			TaskManager.submit(new NPCDeathTask(this));
+			TaskManager.submit(new NPCDeathTask(this, this.definitionsManager));
 			isDying = true;
 		}
 	}
@@ -281,6 +281,10 @@ public class NPC extends Character {
 	}
 
 	public NpcDefinition getDefinition() {
+		if(definitionsManager == null) {
+			return null;
+		}
+
 		return definitionsManager.getNpcDefinitionById(id);
 	}
 

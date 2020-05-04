@@ -3,7 +3,7 @@ package net.dodian.packets.handlers.impl;
 import net.dodian.old.world.model.Position;
 import net.dodian.packets.handlers.PacketHandler;
 import net.dodian.packets.handlers.PacketListener;
-import net.dodian.packets.impl.GameMovementPacket;
+import net.dodian.packets.impl.player.GameMovementPacket;
 import org.springframework.stereotype.Component;
 
 @Component
