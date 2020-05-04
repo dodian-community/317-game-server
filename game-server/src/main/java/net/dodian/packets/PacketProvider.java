@@ -3,8 +3,8 @@ package net.dodian.packets;
 import net.dodian.Server;
 import net.dodian.old.net.packet.Packet;
 import net.dodian.old.world.entity.impl.player.Player;
-import net.dodian.testing.Listener;
-import net.dodian.testing.PacketHandler;
+import net.dodian.packets.handlers.PacketListener;
+import net.dodian.packets.handlers.PacketHandler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -20,17 +20,17 @@ import java.util.stream.Collectors;
 public class PacketProvider {
 
     private final List<GamePacket> packets;
-    private final List<Listener> listeners;
+    private final List<PacketListener> listeners;
 
     @Autowired
-    public PacketProvider(List<GamePacket> packets, List<Listener> listeners) {
+    public PacketProvider(List<GamePacket> packets, List<PacketListener> listeners) {
         this.packets = packets;
         this.listeners = listeners;
     }
 
-    public void handlePacket(Packet packet, Player player) {
+    public boolean handlePacket(Packet packet, Player player) {
         if(packet.getOpcode() <= 0) {
-            return;
+            return false;
         }
 
         Server.getLogger().log(Level.INFO, "Received packet with opcode: " + packet.getOpcode());
@@ -41,7 +41,7 @@ public class PacketProvider {
 
         if(optionalGamePacket.isEmpty()) {
             Server.getLogger().log(Level.INFO, "Couldn't find the packet for opcode: " + packet.getOpcode());
-            return;
+            return false;
         }
 
         GamePacket gamePacket = optionalGamePacket.get().createFrom(packet, player);
@@ -66,6 +66,8 @@ public class PacketProvider {
         });
 
         gamePacket.setCancelled(false);
+
+        return true;
     }
 
     private boolean gamePacketHasOpcode(GamePacket gamePacket, int opcode) {

@@ -1,13 +1,13 @@
-package net.dodian.testing.impl;
+package net.dodian.packets.handlers.impl;
 
 import net.dodian.old.world.model.Position;
+import net.dodian.packets.handlers.PacketHandler;
+import net.dodian.packets.handlers.PacketListener;
 import net.dodian.packets.impl.GameMovementPacket;
-import net.dodian.testing.Listener;
-import net.dodian.testing.PacketHandler;
 import org.springframework.stereotype.Component;
 
 @Component
-public class PlayerWalk implements Listener {
+public class PlayerMovementPacketHandler implements PacketListener {
 
     @PacketHandler
     public void onPlayerWalk(GameMovementPacket packet) {
