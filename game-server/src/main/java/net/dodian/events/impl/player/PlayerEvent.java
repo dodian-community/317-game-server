@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
 @Setter
 @Component
 public abstract class PlayerEvent extends GameEvent {
-    protected Player player;
+    public Player player;
 
     public GameEvent create(Player player) {
         this.player = player;

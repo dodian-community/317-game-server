@@ -16,7 +16,7 @@ public class MeleeAttackNpcPacket extends GamePacket {
     public int npcIndex;
 
     @Override
-    public GamePacket createFrom(Packet packet, Player player) {
+    public MeleeAttackNpcPacket createFrom(Packet packet, Player player) {
         this.player = player;
         this.npcIndex = packet.readShortA();
         return this;

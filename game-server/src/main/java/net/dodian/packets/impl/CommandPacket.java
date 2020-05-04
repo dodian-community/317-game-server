@@ -16,7 +16,7 @@ public class CommandPacket extends GamePacket {
     private String command;
 
     @Override
-    public GamePacket createFrom(Packet packet, Player player) {
+    public CommandPacket createFrom(Packet packet, Player player) {
         this.player = player;
         this.command = packet.readString();
         return this;

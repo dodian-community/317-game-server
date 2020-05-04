@@ -17,64 +17,33 @@ public class EventsProvider {
     private final List<GameEvent> gameEvents;
     private final List<EventListener> eventListeners;
 
+    //private Map<GameEvent, List<EventListener>> eventSubscribers;
+
     @Autowired
     public EventsProvider(List<GameEvent> gameEvents, List<EventListener> eventListeners) {
         this.gameEvents = gameEvents;
         this.eventListeners = eventListeners;
     }
 
-    public <T extends GameEvent> void executeListeners(Class<T> eventType, Object... eventArguments) {
-        this.executeListeners(eventType, Void.class, eventArguments);
+    public void executeListeners(GameEvent event) {
+        this.executeListeners(event, Void.class);
     }
 
-    public <R, T extends GameEvent> Optional<R> executeListeners(Class<T> eventType, Class<R> returnType, Object... eventArguments) {
-        Optional<? extends GameEvent> optionalGameEvent = gameEvents.stream()
-                .filter(event -> event.getClass().equals(eventType))
-                .findFirst();
-
-        if(optionalGameEvent.isEmpty()) {
-            Server.getLogger().log(Level.INFO, "Couldn't find the event: " + eventType.getSimpleName());
-            return Optional.empty();
-        }
-
-        GameEvent gameEvent = optionalGameEvent.get();
-        Optional<Method> optionalCreateMethod = Arrays.stream(gameEvent.getClass().getMethods())
-                .filter(method -> method.getName().equalsIgnoreCase("create"))
-                .findFirst();
-
-        T createdEvent = null;
-        if(optionalCreateMethod.isPresent()) {
-            try {
-                createdEvent = eventType.cast(optionalCreateMethod.get().invoke(gameEvent, eventArguments));
-            } catch (IllegalAccessException | InvocationTargetException e) {
-                e.printStackTrace();
-            }
-        } else {
-            try {
-                createdEvent = eventType.cast(gameEvent.getClass().getConstructor().newInstance());
-            } catch (InstantiationException | InvocationTargetException | NoSuchMethodException | IllegalAccessException e) {
-                e.printStackTrace();
-            }
-        }
-
-        if(createdEvent == null) {
-            return Optional.empty();
-        }
-
+    public <R> Optional<R> executeListeners(GameEvent event, Class<R> returnType) {
         for(EventListener listener : eventListeners) {
-            Optional<Method> optionalMethod = Arrays.stream(listener.getClass().getMethods())
+            Optional<Method> optionalEventHandler = Arrays.stream(listener.getClass().getMethods())
                     .filter(m -> m.isAnnotationPresent(EventHandler.class))
-                    .filter(m -> m.getParameterTypes()[0].equals(eventType))
+                    .filter(m -> m.getParameterTypes()[0].equals(event.getClass()))
                     .findFirst();
 
-            if(optionalMethod.isPresent() && !createdEvent.isCancelled()) {
+            if(optionalEventHandler.isPresent() && !event.isCancelled()) {
                 try {
-                    if(!returnType.equals(Void.class) && optionalMethod.get().getReturnType().equals(returnType)) {
-                        return Optional.of(returnType.cast(optionalMethod.get().invoke(listener, createdEvent)));
+                    if(!returnType.equals(Void.class) && optionalEventHandler.get().getReturnType().equals(returnType)) {
+                        return Optional.of(returnType.cast(optionalEventHandler.get().invoke(listener, event)));
                     } else {
-                        optionalMethod.get().invoke(listener, createdEvent);
+                        optionalEventHandler.get().invoke(listener, event);
                         if(!returnType.equals(Void.class)) {
-                            Server.getLogger().log(Level.INFO, "Invoked " + optionalMethod.get().getName() + " with event: " + createdEvent.getClass().getSimpleName() + " without returning.");
+                            Server.getLogger().log(Level.INFO, "Invoked " + optionalEventHandler.get().getName() + " with event: " + event.getClass().getSimpleName() + " without returning.");
                         }
                     }
                 } catch (IllegalAccessException | InvocationTargetException e) {
@@ -83,7 +52,7 @@ public class EventsProvider {
             }
         }
 
-        createdEvent.setCancelled(false);
+        event.setCancelled(false);
 
         return Optional.empty();
     }

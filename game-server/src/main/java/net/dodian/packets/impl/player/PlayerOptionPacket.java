@@ -1,4 +1,4 @@
-package net.dodian.packets.impl.npc;
+package net.dodian.packets.impl.player;
 
 import lombok.Getter;
 import net.dodian.old.net.packet.Packet;
@@ -11,16 +11,16 @@ import static net.dodian.packets.PacketConstants.*;
 
 @Component
 @Getter
-@Opcodes({FIRST_NPC_CLICK_OPCODE, SECOND_NPC_CLICK_OPCODE,
-        THIRD_NPC_CLICK_OPCODE, FOURTH_NPC_CLICK_OPCODE})
-public class NpcOptionPacket extends GamePacket {
+@Opcodes({PLAYER_OPTION_1_OPCODE, PLAYER_OPTION_2_OPCODE,
+        PLAYER_OPTION_3_OPCODE})
+public class PlayerOptionPacket  extends GamePacket {
 
-    private int npcIndex;
+    private int id;
 
     @Override
-    public NpcOptionPacket createFrom(Packet packet, Player player) {
+    public PlayerOptionPacket createFrom(Packet packet, Player player) {
         this.player = player;
-        this.npcIndex = packet.readLEShort();
+        this.id = packet.readShort() & 0xFFFF;
         return this;
     }
 }

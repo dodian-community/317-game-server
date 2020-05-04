@@ -21,7 +21,7 @@ public class ItemActionPacket extends GamePacket {
     private Action action;
 
     @Override
-    public GamePacket createFrom(Packet packet, Player player) {
+    public ItemActionPacket createFrom(Packet packet, Player player) {
         this.player = player;
         this.itemId = packet.readShort();
         this.slot = packet.readShort();
