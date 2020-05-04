@@ -7,7 +7,9 @@ import io.netty.channel.EventLoopGroup;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
 import io.netty.util.ResourceLeakDetector;
-import net.dodian.extend.events.system.ServerEventListener;
+import net.dodian.events.EventsProvider;
+import net.dodian.events.impl.server.ServerStartedUpEvent;
+import net.dodian.events.impl.server.ServerStartingUpEvent;
 import net.dodian.managers.DefinitionsManager;
 import net.dodian.old.definitions.NpcDropDefinition;
 import net.dodian.old.definitions.ObjectDefinition;
@@ -23,7 +25,6 @@ import net.dodian.old.world.model.dialogue.DialogueManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
@@ -34,23 +35,23 @@ public class Initializer {
     private final ChannelPipelineHandler channelPipelineHandler;
     private final GameEngine gameEngine;
     private final DefinitionsManager definitionsManager;
-    private final List<ServerEventListener> serverEvents;
+    private final EventsProvider eventsProvider;
 
     @Autowired
     public Initializer(
             ChannelPipelineHandler channelPipelineHandler,
             GameEngine gameEngine,
             DefinitionsManager definitionsManager,
-            List<ServerEventListener> serverEvents
+            EventsProvider eventsProvider
     ) {
         this.channelPipelineHandler = channelPipelineHandler;
         this.gameEngine = gameEngine;
         this.definitionsManager = definitionsManager;
-        this.serverEvents = serverEvents;
+        this.eventsProvider = eventsProvider;
     }
 
     public void initialize() {
-        serverEvents.forEach(ServerEventListener::onStartup);
+        this.eventsProvider.executeListeners(ServerStartingUpEvent.class, this);
 
         Runtime.getRuntime().addShutdownHook(new ShutdownHook());
 
@@ -112,6 +113,6 @@ public class Initializer {
             System.exit(1);
         }
 
-        serverEvents.forEach(ServerEventListener::onStartedUp);
+        this.eventsProvider.executeListeners(ServerStartedUpEvent.class, this);
     }
 }

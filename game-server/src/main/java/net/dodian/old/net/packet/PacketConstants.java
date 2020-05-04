@@ -1,15 +1,10 @@
 package net.dodian.old.net.packet;
 
-import net.dodian.old.net.packet.impl.*;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
-
 /**
  * Defining all packets and other packet-related-constants 
  * that are in the 317 protocol.
  * @author Gabriel Hannason
  */
-@Component
 public class PacketConstants {
 
 	public static final PacketListener[] PACKETS = new PacketListener[257];
@@ -84,94 +79,4 @@ public class PacketConstants {
 	ITEM_ON_OBJECT = 192,
 	ITEM_ON_GROUND_ITEM = 25,
 	ITEM_ON_PLAYER = 14;
-
-	@Autowired
-	public PacketConstants(
-			CommandPacketListener commandPacketListener,
-			ButtonClickPacketListener buttonClickPacketListener,
-			ItemActionPacketListener itemActionPacketListener,
-			UseItemPacketListener useItemPacketListener,
-			NPCOptionPacketListener npcOptionPacketListener,
-			TextClickPacketListener textClickPacketListener,
-			ItemContainerActionPacketListener itemContainerActionPacketListener,
-			ObjectActionPacketListener objectActionPacketListener,
-			ExamineNpcPacketListener examineNpcPacketListener
-	) {
-		for(int i = 0; i < PACKETS.length; i++) {
-			PACKETS[i] = new SilencedPacketListener();
-		}
-
-		PACKETS[SPECIAL_ATTACK_OPCODE] = new SpecialAttackPacketListener();
-		PACKETS[BUTTON_CLICK_OPCODE] = buttonClickPacketListener;
-		PACKETS[TEXT_CLICK_OPCODE] = textClickPacketListener;
-		PACKETS[CHAT_OPCODE_1] = new ChatPacketListener();
-
-		PACKETS[DROP_ITEM_OPCODE] = new DropItemPacketListener();
-		PACKETS[FINALIZED_MAP_REGION_OPCODE] = new FinalizedMapRegionChangePacketListener();
-		PACKETS[CHANGE_MAP_REGION_OPCODE] = new RegionChangePacketListener();
-		PACKETS[CLOSE_INTERFACE_OPCODE] = new CloseInterfacePacketListener();
-		PACKETS[EXAMINE_ITEM_OPCODE] = new ExamineItemPacketListener();
-		PACKETS[EXAMINE_NPC_OPCODE] = examineNpcPacketListener;
-		PACKETS[CHANGE_APPEARANCE] = new ChangeAppearancePacketListener();
-		PACKETS[DIALOGUE_OPCODE] = new DialoguePacketListener();
-		PACKETS[ENTER_AMOUNT_OPCODE] = new EnterInputPacketListener();
-		PACKETS[EQUIP_ITEM_OPCODE] = new EquipPacketListener();
-		PACKETS[PLAYER_INACTIVE_OPCODE] = new PlayerInactivePacketListener();
-		PACKETS[CHAT_SETTINGS_OPCODE] = new ChatSettingsPacketListener();
-		PACKETS[COMMAND_OPCODE] = commandPacketListener;
-		PACKETS[UPDATE_PLANE_OPCODE] = new HeightCheckPacketListener();
-		PACKETS[PICKUP_ITEM_OPCODE] = new PickupItemPacketListener();
-		PACKETS[SWITCH_ITEM_SLOT_OPCODE] = new SwitchItemSlotPacketListener();
-		PACKETS[FOLLOW_PLAYER_OPCODE] = new FollowPlayerPacketListener();
-		PACKETS[MAGIC_ON_PLAYER_OPCODE] = new MagicOnPlayerPacketListener();
-		PACKETS[BANK_TAB_CREATION_OPCODE] = new BankTabCreationPacketListener();
-
-		PACKETS[FIRST_ITEM_CONTAINER_ACTION_OPCODE] = itemContainerActionPacketListener;
-		PACKETS[SECOND_ITEM_CONTAINER_ACTION_OPCODE] = itemContainerActionPacketListener;
-		PACKETS[THIRD_ITEM_CONTAINER_ACTION_OPCODE] = itemContainerActionPacketListener;
-		PACKETS[FOURTH_ITEM_CONTAINER_ACTION_OPCODE] = itemContainerActionPacketListener;
-		PACKETS[FIFTH_ITEM_CONTAINER_ACTION_OPCODE] = itemContainerActionPacketListener;
-		PACKETS[SIXTH_ITEM_CONTAINER_ACTION_OPCODE] = itemContainerActionPacketListener;
-
-		PACKETS[ATTACK_PLAYER_OPCODE] = new PlayerOptionPacketListener();
-		PACKETS[PLAYER_OPTION_1_OPCODE] = new PlayerOptionPacketListener();
-		PACKETS[PLAYER_OPTION_2_OPCODE] = new PlayerOptionPacketListener();
-		PACKETS[PLAYER_OPTION_3_OPCODE] = new PlayerOptionPacketListener();
-
-
-		PACKETS[OBJECT_FIRST_CLICK_OPCODE] = objectActionPacketListener;
-		PACKETS[OBJECT_SECOND_CLICK_OPCODE] = objectActionPacketListener;
-		PACKETS[OBJECT_THIRD_CLICK_OPCODE] = objectActionPacketListener;
-		PACKETS[OBJECT_FOURTH_CLICK_OPCODE] = objectActionPacketListener;
-		PACKETS[OBJECT_FIFTH_CLICK_OPCODE] = objectActionPacketListener;
-
-		PACKETS[ATTACK_NPC_OPCODE] = npcOptionPacketListener;
-		PACKETS[FIRST_CLICK_OPCODE] = npcOptionPacketListener;
-		PACKETS[MAGE_NPC_OPCODE] = npcOptionPacketListener;
-		PACKETS[SECOND_CLICK_OPCODE] = npcOptionPacketListener;
-		PACKETS[THIRD_CLICK_OPCODE] = npcOptionPacketListener;
-		PACKETS[FOURTH_CLICK_OPCODE] = npcOptionPacketListener;
-
-		PACKETS[FIRST_ITEM_ACTION_OPCODE] = itemActionPacketListener;
-		PACKETS[SECOND_ITEM_ACTION_OPCODE] = itemActionPacketListener;
-		PACKETS[THIRD_ITEM_ACTION_OPCODE] = itemActionPacketListener;
-
-		PACKETS[ITEM_ON_NPC] = useItemPacketListener;
-		PACKETS[ITEM_ON_ITEM] = useItemPacketListener;
-		PACKETS[ITEM_ON_OBJECT] = useItemPacketListener;
-		PACKETS[ITEM_ON_GROUND_ITEM] = useItemPacketListener;
-		PACKETS[ITEM_ON_PLAYER] = useItemPacketListener;
-
-
-		PACKETS[ADD_FRIEND_OPCODE] = new PlayerRelationPacketListener();
-		PACKETS[REMOVE_FRIEND_OPCODE] = new PlayerRelationPacketListener();
-		PACKETS[ADD_IGNORE_OPCODE] = new PlayerRelationPacketListener();
-		PACKETS[REMOVE_IGNORE_OPCODE] = new PlayerRelationPacketListener();
-		PACKETS[SEND_PM_OPCODE] = new PlayerRelationPacketListener();
-
-		PACKETS[ENTER_AMOUNT_OPCODE] = new EnterInputPacketListener();
-		PACKETS[ENTER_SYNTAX_OPCODE] = new EnterInputPacketListener();
-
-		PACKETS[TRADE_REQUEST_OPCODE] = new TradeRequestPacketListener();
-	}
 }

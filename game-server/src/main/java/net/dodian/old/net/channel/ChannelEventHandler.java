@@ -6,7 +6,8 @@ import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
 import io.netty.handler.timeout.IdleState;
 import io.netty.handler.timeout.IdleStateEvent;
-import net.dodian.extend.events.player.PlayerSessionEventListener;
+import net.dodian.events.EventsProvider;
+import net.dodian.events.impl.player.session.PlayerConnectEvent;
 import net.dodian.old.net.NetworkConstants;
 import net.dodian.old.net.PlayerSession;
 import net.dodian.old.net.SessionState;
@@ -15,10 +16,6 @@ import net.dodian.old.world.entity.impl.player.Player;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
 
 /**
  * An implementation of netty's {@link SimpleChannelInboundHandler} to handle
@@ -31,11 +28,11 @@ import java.util.Optional;
 @Scope("prototype")
 public final class ChannelEventHandler extends SimpleChannelInboundHandler<Object> {
 
-	public final List<PlayerSessionEventListener> playerSessionEvents;
+	private final EventsProvider eventsProvider;
 
 	@Autowired
-	public ChannelEventHandler(Optional<List<PlayerSessionEventListener>> playerSessionEvents) {
-		this.playerSessionEvents = playerSessionEvents.orElse(new ArrayList<>());
+	public ChannelEventHandler(EventsProvider eventsProvider) {
+		this.eventsProvider = eventsProvider;
 	}
 
 	@Override
@@ -46,7 +43,7 @@ public final class ChannelEventHandler extends SimpleChannelInboundHandler<Objec
 			throw new IllegalStateException("session == null");
 		}
 
-		playerSessionEvents.forEach(event -> event.onInitialize(session, msg));
+		eventsProvider.executeListeners(PlayerConnectEvent.class, session, msg);
 	}
 
 
