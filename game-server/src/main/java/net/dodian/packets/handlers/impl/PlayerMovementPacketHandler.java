@@ -11,7 +11,7 @@ import net.dodian.packets.impl.player.GameMovementPacket;
 import org.springframework.stereotype.Component;
 
 @Component
-public class PlayerMovementPacketHandler implements PacketListener {
+public class PlayerMovementPacketHandler extends PacketListener {
 
     @PacketHandler
     public void onPlayerWalk(GameMovementPacket packet) {

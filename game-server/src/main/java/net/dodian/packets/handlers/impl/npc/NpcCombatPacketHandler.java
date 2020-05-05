@@ -1,7 +1,6 @@
 package net.dodian.packets.handlers.impl.npc;
 
 import net.dodian.Server;
-import net.dodian.events.EventsProvider;
 import net.dodian.events.impl.player.PlayerGetCombatSpellEvent;
 import net.dodian.events.impl.player.interact.npc.PlayerAttackNpcEvent;
 import net.dodian.events.impl.player.interact.npc.PlayerMagicOnNpcEvent;
@@ -13,21 +12,13 @@ import net.dodian.packets.handlers.PacketHandler;
 import net.dodian.packets.handlers.PacketListener;
 import net.dodian.packets.impl.npc.MagicAttackNpcPacket;
 import net.dodian.packets.impl.npc.MeleeAttackNpcPacket;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.Optional;
 import java.util.logging.Level;
 
 @Component
-public class NpcCombatPacketHandler implements PacketListener {
-
-    private final EventsProvider eventsProvider;
-
-    @Autowired
-    public NpcCombatPacketHandler(EventsProvider eventsProvider) {
-        this.eventsProvider = eventsProvider;
-    }
+public class NpcCombatPacketHandler extends PacketListener {
 
     private Optional<NPC> getTarget(int npcIndex, Player player) {
         if(npcIndex < 0 || npcIndex > World.getNpcs().capacity()) {

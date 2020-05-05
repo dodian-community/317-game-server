@@ -1,6 +1,5 @@
 package net.dodian.packets.handlers.impl;
 
-import net.dodian.events.EventsProvider;
 import net.dodian.events.impl.player.interact.item.PlayerItemFirstClickEvent;
 import net.dodian.events.impl.player.interact.item.PlayerItemSecondClickEvent;
 import net.dodian.events.impl.player.interact.item.PlayerItemThirdClickEvent;
@@ -11,18 +10,10 @@ import net.dodian.packets.impl.item.actions.ItemActionPacket;
 import net.dodian.packets.impl.item.actions.ItemFirstActionPacket;
 import net.dodian.packets.impl.item.actions.ItemSecondActionPacket;
 import net.dodian.packets.impl.item.actions.ItemThirdActionPacket;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
-public class ItemActionPacketHandler implements PacketListener {
-
-    private final EventsProvider eventsProvider;
-
-    @Autowired
-    public ItemActionPacketHandler(EventsProvider eventsProvider) {
-        this.eventsProvider = eventsProvider;
-    }
+public class ItemActionPacketHandler extends PacketListener {
 
     public boolean checkItem(ItemActionPacket packet) {
         if(packet.getSlot() < 0 || packet.getSlot() > packet.getPlayer().getInventory().capacity()) {
