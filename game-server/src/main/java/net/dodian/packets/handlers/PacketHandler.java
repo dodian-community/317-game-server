@@ -11,4 +11,5 @@ import java.lang.annotation.*;
 @Target(ElementType.METHOD)
 @Documented
 public @interface PacketHandler {
+    int value() default 0;
 }

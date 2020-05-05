@@ -7,13 +7,9 @@ import net.dodian.old.util.Misc;
 import net.dodian.old.world.World;
 import net.dodian.old.world.entity.combat.bountyhunter.BountyHunter;
 import net.dodian.old.world.entity.impl.player.Player;
-import net.dodian.old.world.model.Flag;
-import net.dodian.old.world.model.Graphic;
-import net.dodian.old.world.model.Item;
-import net.dodian.old.world.model.Skill;
+import net.dodian.old.world.model.*;
 import net.dodian.old.world.model.equipment.BonusManager;
 import net.dodian.old.world.model.syntax.impl.SetLevel;
-import net.dodian.old.world.model.*;
 
 /**
  * Represents a player's skills in the game, also manages

@@ -4,9 +4,6 @@ import net.dodian.managers.DefinitionsManager;
 import net.dodian.old.engine.task.Task;
 import net.dodian.old.world.World;
 import net.dodian.old.world.entity.impl.npc.NPC;
-import org.springframework.beans.BeansException;
-import org.springframework.beans.factory.BeanFactory;
-import org.springframework.beans.factory.BeanFactoryAware;
 
 /**
  * A {@link Task} implementation which handles the respawn
@@ -14,13 +11,14 @@ import org.springframework.beans.factory.BeanFactoryAware;
  * 
  * @author Professor Oak
  */
-public class NPCRespawnTask extends Task implements BeanFactoryAware {
+public class NPCRespawnTask extends Task {
 
 	private DefinitionsManager definitionsManager;
 
-	public NPCRespawnTask(NPC npc, int respawn) {
+	public NPCRespawnTask(NPC npc, int respawn, DefinitionsManager definitionsManager) {
 		super(respawn);
 		this.npc = npc;
+		this.definitionsManager = definitionsManager;
 	}
 
 	private final NPC npc;
@@ -36,10 +34,5 @@ public class NPCRespawnTask extends Task implements BeanFactoryAware {
 		
 		//Stop the task
 		stop();
-	}
-
-	@Override
-	public void setBeanFactory(BeanFactory beanFactory) throws BeansException {
-		this.definitionsManager = beanFactory.getBean(DefinitionsManager.class);
 	}
 }

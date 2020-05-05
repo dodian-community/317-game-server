@@ -14,6 +14,6 @@ public class NpcOption2 implements OutgoingPacket {
 	@Override
 	public void buildPacket(ByteBuffer buf) {
 		buf.putOpcode(17);
-		buf.writeSignedBigEndian(nodeId);
+		buf.writeUnsignedWordBigEndian(nodeId);
 	}
 }

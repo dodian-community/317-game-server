@@ -7,7 +7,9 @@ import io.netty.channel.socket.SocketChannel;
 import lombok.Data;
 import net.dodian.GameConstants;
 import net.dodian.Server;
-import net.dodian.extend.events.player.PlayerSessionAndCharacterLoadEventListener;
+import net.dodian.events.EventsProvider;
+import net.dodian.events.impl.player.character.CharacterLoadingEvent;
+import net.dodian.events.impl.player.session.PlayerLoggedInEvent;
 import net.dodian.old.net.codec.PacketDecoder;
 import net.dodian.old.net.codec.PacketEncoder;
 import net.dodian.old.net.login.LoginDetailsMessage;
@@ -15,7 +17,7 @@ import net.dodian.old.net.login.LoginResponsePacket;
 import net.dodian.old.net.login.LoginResponses;
 import net.dodian.old.net.packet.Packet;
 import net.dodian.old.net.packet.PacketBuilder;
-import net.dodian.old.net.packet.PacketConstants;
+import net.dodian.packets.PacketConstants;
 import net.dodian.old.util.Misc;
 import net.dodian.old.util.PlayerPunishment;
 import net.dodian.old.world.World;
@@ -28,6 +30,7 @@ import org.springframework.stereotype.Component;
 import java.util.Optional;
 import java.util.Queue;
 import java.util.concurrent.ConcurrentLinkedQueue;
+import java.util.logging.Level;
 
 import static net.dodian.old.net.login.LoginResponses.*;
 
@@ -56,6 +59,7 @@ public class PlayerSession {
 	private final Queue<Packet> packetsQueue = new ConcurrentLinkedQueue<>();
 	private final LoginResponses loginResponses;
 	private final PacketProvider packetProvider;
+	private final EventsProvider eventsProvider;
 
 	/**
 	 * The channel that will manage the connection for this player.
@@ -73,10 +77,11 @@ public class PlayerSession {
 	private SessionState state = SessionState.LOGGING_IN;
 
 	@Autowired
-	public PlayerSession(LoginResponses loginResponses, Player player, PacketProvider packetProvider) {
+	public PlayerSession(LoginResponses loginResponses, Player player, PacketProvider packetProvider, EventsProvider eventsProvider) {
 		this.loginResponses = loginResponses;
 		this.player = player;
 		this.packetProvider = packetProvider;
+		this.eventsProvider = eventsProvider;
 		this.player.setSession(this);
 	}
 
@@ -138,8 +143,8 @@ public class PlayerSession {
 	 * @param msg	The message to handle.
 	 */
 	public void processPacket(Packet msg) {
-		if(!packetProvider.handlePacket(msg, this.player)) {
-			PacketConstants.PACKETS[msg.getOpcode()].handleMessage(player, msg);
+		if(!packetProvider.handlePacket(msg, this.player) && msg.getOpcode() != 0) {
+			Server.getLogger().log(Level.INFO,"Not handling packet with opcode: " + msg.getOpcode());
 		}
 	}
 
@@ -243,7 +248,7 @@ public class PlayerSession {
 		return Optional.empty();
 	}
 
-	public void login(LoginDetailsMessage loginDetailsMessage, PlayerSessionAndCharacterLoadEventListener playerSessionEventListener) {
+	public void login(LoginDetailsMessage loginDetailsMessage) {
 		Player player = this.getPlayer();
 
 		SocketChannel channel = (SocketChannel) loginDetailsMessage.getContext().channel();
@@ -259,7 +264,7 @@ public class PlayerSession {
 		int responseCode = optionalCanLogin.orElse(LOGIN_SUCCESSFUL);
 
 		if(responseCode == LOGIN_SUCCESSFUL) {
-			Optional<Integer> optionalResponseCode = playerSessionEventListener.onCharacterLoad(player);
+			Optional<Integer> optionalResponseCode = this.eventsProvider.executeListeners(new CharacterLoadingEvent().create(player), Integer.class);
 			responseCode = optionalResponseCode.orElse(LOGIN_REJECT_SESSION);
 		}
 
@@ -277,7 +282,7 @@ public class PlayerSession {
 			return;
 		}
 
-		playerSessionEventListener.onLoginSuccessful(player);
+		this.eventsProvider.executeListeners(new PlayerLoggedInEvent().create(player));
 
 		//Wait...
 		future.awaitUninterruptibly();
