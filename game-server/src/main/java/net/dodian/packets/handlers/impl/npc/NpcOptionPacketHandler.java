@@ -1,27 +1,19 @@
 package net.dodian.packets.handlers.impl.npc;
 
-import net.dodian.events.EventsProvider;
-import net.dodian.events.impl.player.interact.npc.*;
+import net.dodian.events.impl.player.interact.npc.PlayerNpcEvent;
+import net.dodian.events.impl.player.interact.npc.PlayerNpcFirstClickEvent;
 import net.dodian.old.engine.task.impl.WalkToTask;
 import net.dodian.old.world.World;
 import net.dodian.old.world.entity.impl.npc.NPC;
 import net.dodian.packets.handlers.PacketHandler;
 import net.dodian.packets.handlers.PacketListener;
 import net.dodian.packets.impl.npc.*;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.Optional;
 
 @Component
-public class NpcOptionPacketHandler implements PacketListener {
-
-    private final EventsProvider eventsProvider;
-
-    @Autowired
-    public NpcOptionPacketHandler(EventsProvider eventsProvider) {
-        this.eventsProvider = eventsProvider;
-    }
+public class NpcOptionPacketHandler extends PacketListener {
 
     public Optional<NPC> getTarget(NpcOptionPacket packet) {
         if(packet.getNpcIndex() < 0 || packet.getNpcIndex() > World.getNpcs().capacity()) {

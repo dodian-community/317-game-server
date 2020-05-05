@@ -13,7 +13,7 @@ import org.springframework.stereotype.Component;
 import java.util.logging.Level;
 
 @Component
-public class DebugMessagesPlugin implements PacketListener {
+public class DebugMessagesPlugin extends PacketListener {
 
     @PacketHandler
     public void onButtonClick(ButtonClickPacket packet) {

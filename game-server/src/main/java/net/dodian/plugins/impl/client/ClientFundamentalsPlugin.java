@@ -7,7 +7,7 @@ import net.dodian.packets.impl.ButtonClickPacket;
 import org.springframework.stereotype.Component;
 
 @Component
-public class ClientFundamentalsPlugin implements PacketListener {
+public class ClientFundamentalsPlugin extends PacketListener {
 
     @PacketHandler
     public void onLogoutButtonClick(ButtonClickPacket packet) {
