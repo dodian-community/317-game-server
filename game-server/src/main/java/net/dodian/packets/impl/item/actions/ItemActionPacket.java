@@ -1,11 +1,9 @@
-package net.dodian.packets.impl.item;
+package net.dodian.packets.impl.item.actions;
 
 import lombok.Getter;
-import lombok.Setter;
 import net.dodian.old.net.packet.Packet;
 import net.dodian.old.world.entity.impl.player.Player;
 import net.dodian.packets.GamePacket;
-import net.dodian.packets.Opcodes;
 import org.springframework.stereotype.Component;
 
 import java.util.Arrays;
@@ -13,8 +11,7 @@ import java.util.Arrays;
 import static net.dodian.packets.PacketConstants.*;
 
 @Component
-@Opcodes({FIRST_ITEM_ACTION_OPCODE, SECOND_ITEM_ACTION_OPCODE, THIRD_ITEM_ACTION_OPCODE})
-@Getter @Setter
+@Getter
 public class ItemActionPacket extends GamePacket {
     private int itemId;
     private int slot;

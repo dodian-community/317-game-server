@@ -45,6 +45,7 @@ public class PacketProvider {
         }
 
         GamePacket gamePacket = optionalGamePacket.get().createFrom(packet, player);
+        gamePacket.setOpcode(packet.getOpcode());
 
         listeners.forEach(listener -> {
             List<Method> methods = Arrays.stream(listener.getClass().getMethods())

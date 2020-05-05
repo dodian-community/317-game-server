@@ -1,4 +1,4 @@
-package net.dodian.packets.impl.item;
+package net.dodian.packets.impl.item.use;
 
 import lombok.Getter;
 import net.dodian.old.net.packet.Packet;

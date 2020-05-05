@@ -1,6 +1,10 @@
 package net.dodian.packets.handlers.impl;
 
+import net.dodian.old.world.content.Dueling;
 import net.dodian.old.world.model.Position;
+import net.dodian.old.world.model.dialogue.DialogueManager;
+import net.dodian.old.world.model.movement.MovementStatus;
+import net.dodian.packets.PacketConstants;
 import net.dodian.packets.handlers.PacketHandler;
 import net.dodian.packets.handlers.PacketListener;
 import net.dodian.packets.impl.player.GameMovementPacket;
@@ -26,7 +30,39 @@ public class PlayerMovementPacketHandler implements PacketListener {
         packet.getPlayer().getCombat().setCastSpell(null);
         packet.getPlayer().getCombat().reset();
 
-        // TODO: Implement requirements check
+        if (!packet.getPlayer().getCombat().getFreezeTimer().finished()) {
+            if(packet.getOpcode() != PacketConstants.COMMAND_MOVEMENT_OPCODE) {
+                packet.getPlayer().getPacketSender().sendMessage("A magical spell has made you unable to move.");
+            }
+            return;
+        }
+
+        if(!packet.getPlayer().getTrading().getButtonDelay().finished() || !packet.getPlayer().getDueling().getButtonDelay().finished()) {
+            packet.getPlayer().getPacketSender().sendMessage("You cannot do that right now.");
+            return;
+        }
+
+        //Duel, disabled movement?
+        if(packet.getPlayer().getDueling().inDuel() && packet.getPlayer().getDueling().getRules()[Dueling.DuelRule.NO_MOVEMENT.ordinal()]) {
+            if(packet.getOpcode() != PacketConstants.COMMAND_MOVEMENT_OPCODE) {
+                DialogueManager.sendStatement(packet.getPlayer(), "Movement has been disabled in this duel!");
+            }
+            return;
+        }
+
+        //Stun
+        if(packet.getPlayer().getCombat().isStunned()) {
+            packet.getPlayer().getPacketSender().sendMessage("You're currently stunned and cannot move.");
+            return;
+        }
+
+        if(packet.getPlayer().isNeedsPlacement()) {
+            return;
+        }
+
+        if(packet.getPlayer().getMovementQueue().getMovementStatus() == MovementStatus.DISABLED) {
+            return;
+        }
 
         packet.getPlayer().getPacketSender().sendInterfaceRemoval();
 
