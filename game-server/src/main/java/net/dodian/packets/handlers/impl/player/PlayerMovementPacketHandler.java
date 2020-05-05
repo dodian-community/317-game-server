@@ -1,4 +1,4 @@
-package net.dodian.packets.handlers.impl;
+package net.dodian.packets.handlers.impl.player;
 
 import net.dodian.old.world.content.Dueling;
 import net.dodian.old.world.model.Position;
