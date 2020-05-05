@@ -1,7 +1,6 @@
 package net.dodian.packets.handlers.impl.npc;
 
-import net.dodian.events.impl.player.interact.npc.PlayerNpcEvent;
-import net.dodian.events.impl.player.interact.npc.PlayerNpcFirstClickEvent;
+import net.dodian.events.impl.player.interact.npc.*;
 import net.dodian.old.engine.task.impl.WalkToTask;
 import net.dodian.old.world.World;
 import net.dodian.old.world.entity.impl.npc.NPC;
@@ -24,8 +23,8 @@ public class NpcOptionPacketHandler extends PacketListener {
             return;
         }
 
-        packet.getPlayer().setEntityInteraction(target);
         packet.getPlayer().setWalkToTask(new WalkToTask(packet.player, target.getPosition(), target.getSize(), () -> {
+            packet.getPlayer().setEntityInteraction(target);
             eventsProvider.executeListeners(event.create(packet.getPlayer(), target));
             packet.getPlayer().setPositionToFace(target.getPosition());
             target.setPositionToFace(packet.getPlayer().getPosition());
@@ -39,16 +38,16 @@ public class NpcOptionPacketHandler extends PacketListener {
 
     @PacketHandler
     public void onSecondClick(NpcSecondOptionPacket packet) {
-        handleClick(new PlayerNpcFirstClickEvent(), packet);
+        handleClick(new PlayerNpcSecondClickEvent(), packet);
     }
 
     @PacketHandler
     public void onThirdClick(NpcThirdOptionPacket packet) {
-        handleClick(new PlayerNpcFirstClickEvent(), packet);
+        handleClick(new PlayerNpcThirdClickEvent(), packet);
     }
 
     @PacketHandler
     public void onFourthClick(NpcFourthOptionPacket packet) {
-        handleClick(new PlayerNpcFirstClickEvent(), packet);
+        handleClick(new PlayerNpcFourthClickEvent(), packet);
     }
 }

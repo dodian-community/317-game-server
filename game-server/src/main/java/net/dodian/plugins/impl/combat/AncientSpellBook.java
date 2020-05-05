@@ -42,7 +42,6 @@ public class AncientSpellBook implements Plugin, EventListener {
         GNOME_STRONGHOLD(2472,3438,0,13087)
         ;
 
-
         private int x;
         private int y;
         private int z;

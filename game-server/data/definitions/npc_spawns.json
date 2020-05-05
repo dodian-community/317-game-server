@@ -95,6 +95,16 @@
     "description": "",
     "face": "SOUTH",
     "radius": 0,
+    "x": 2611,
+    "y": 3094,
+    "z": 0
+  },
+  {
+    "id": 15,
+    "npcId": 394,
+    "description": "",
+    "face": "SOUTH",
+    "radius": 0,
     "x": 2727,
     "y": 3378,
     "z": 0

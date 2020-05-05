@@ -18,8 +18,8 @@ public class ObjectOption3 implements OutgoingPacket {
 	@Override
 	public void buildPacket(ByteBuffer buf) {
 		buf.putOpcode(70);
-		buf.writeUnsignedWordBigEndian(val1);
-		buf.putShort(val2);
-		buf.writeSignedBigEndian(id);
+		buf.putShort(id);
+		buf.writeSignedBigEndian(val1);
+		buf.writeUnsignedWordA(val2);
 	}
 }
