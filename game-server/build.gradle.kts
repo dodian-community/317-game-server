@@ -24,12 +24,12 @@ dependencies {
     runtimeOnly("com.h2database:h2:1.4.200")
 
     annotationProcessor("org.projectlombok:lombok:1.18.10")
-    annotationProcessor("org.springframework.boot:spring-boot-configuration-processor:${springVersion}")
+    annotationProcessor("org.springframework.boot:spring-boot-configuration-processor:$springVersion")
 
     implementation("com.google.code.gson:gson:2.8.6")
-    implementation("org.springframework.boot:spring-boot-starter-web:${springVersion}")
-    implementation("org.springframework.boot:spring-boot-starter-security:${springVersion}")
-    implementation("org.springframework.boot:spring-boot-starter-data-jpa:${springVersion}")
+    implementation("org.springframework.boot:spring-boot-starter-web:$springVersion")
+    implementation("org.springframework.boot:spring-boot-starter-security:$springVersion")
+    implementation("org.springframework.boot:spring-boot-starter-data-jpa:$springVersion")
 
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
     implementation("org.jetbrains.kotlin:kotlin-reflect")
@@ -45,32 +45,22 @@ dependencies {
 
     compileOnly("org.projectlombok:lombok:1.18.10")
 
-    testImplementation("org.springframework.boot:spring-boot-starter-test:${springVersion}")
+    testImplementation("org.springframework.boot:spring-boot-starter-test:$springVersion")
 
     implementation("io.reactivex.rxjava3:rxjava:3.0.3")
     implementation(kotlin("stdlib-jdk8"))
 
 }
 
-tasks.register<JavaExec>("runServer") {
-    group = "dodian-game"
-    description = "Run the Dodian game server."
-
-    classpath = sourceSets["main"].runtimeClasspath
-    main = "net.dodian.Server"
-}
-
-tasks.register<JavaExec>("runServerProd") {
-    group = "dodian-game"
-    description = "Run the Dodian game server in production mode."
-
-    args(" -Dspring.profiles.active=prod")
-    classpath = sourceSets["main"].runtimeClasspath
-    main = "net.dodian.Server"
-}
 repositories {
     mavenCentral()
 }
+
+tasks.register<JavaExec>("runServer") {
+    group = "dodian-game"
+    dependsOn(":bootRun")
+}
+
 val compileKotlin: KotlinCompile by tasks
 compileKotlin.kotlinOptions {
     jvmTarget = "1.8"

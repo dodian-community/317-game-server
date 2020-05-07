@@ -17,8 +17,5 @@ dependencies {
 
 tasks.register<JavaExec>("runClient") {
     group = "dodian-game"
-    description = "Run the Dodian game client."
-
-    classpath = sourceSets["main"].runtimeClasspath
-    main = "com.runescape.Client"
+    dependsOn(":run")
 }
