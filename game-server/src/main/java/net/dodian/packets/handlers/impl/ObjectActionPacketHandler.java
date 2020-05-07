@@ -1,5 +1,6 @@
 package net.dodian.packets.handlers.impl;
 
+import net.dodian.Server;
 import net.dodian.events.impl.player.interact.object.*;
 import net.dodian.old.definitions.ObjectDefinition;
 import net.dodian.old.engine.task.impl.WalkToTask;
@@ -10,11 +11,16 @@ import net.dodian.packets.handlers.PacketListener;
 import net.dodian.packets.impl.object.*;
 import org.springframework.stereotype.Component;
 
+import java.util.logging.Level;
+
 @Component
 public class ObjectActionPacketHandler extends PacketListener {
 
     public <T extends PlayerObjectEvent> void handleClick(T event, ObjectActionPacket packet) {
+        Server.getLogger().log(Level.SEVERE, "[" + packet.getClass().getSimpleName() + "] Attempting to use object: " + packet.getId() + " at " + packet.getPosition().toString());
+
         if(!RegionClipping.objectExists(packet.getId(), packet.getPosition())) {
+            Server.getLogger().log(Level.SEVERE, "[" + packet.getClass().getSimpleName() + "] Object not found: " + packet.getId() + " at " + packet.getPosition().toString());
             return;
         }
 

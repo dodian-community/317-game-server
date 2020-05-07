@@ -8,6 +8,7 @@ public class ObjectOption2 implements OutgoingPacket {
 	int id;
 	int val1;
 	int val2;
+
 	public ObjectOption2(int id, int val1, int val2) {
 		this.id = id;
 		this.val1 = val1;
@@ -18,7 +19,7 @@ public class ObjectOption2 implements OutgoingPacket {
 	public void buildPacket(ByteBuffer buf) {
 		buf.putOpcode(252);
 		buf.putShort(id);
-		buf.writeSignedBigEndian(val1);
-		buf.writeUnsignedWordA(val2);
+		buf.writeSignedBigEndian(val2);
+		buf.writeUnsignedWordA(val1);
 	}
 }

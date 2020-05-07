@@ -6,10 +6,6 @@ import net.dodian.old.world.entity.impl.player.Player;
 import net.dodian.packets.GamePacket;
 import org.springframework.stereotype.Component;
 
-import java.util.Arrays;
-
-import static net.dodian.packets.PacketConstants.*;
-
 @Component
 @Getter
 public class ItemContainerActionPacket extends GamePacket {
@@ -17,7 +13,6 @@ public class ItemContainerActionPacket extends GamePacket {
     private int interfaceId;
     private int slot;
     private int id;
-    private Action action;
 
     @Override
     public ItemContainerActionPacket createFrom(Packet packet, Player player) {
@@ -25,28 +20,11 @@ public class ItemContainerActionPacket extends GamePacket {
         this.interfaceId = packet.readInt();
         this.slot = packet.readShortA();
         this.id = packet.readShortA();
-        this.action = Arrays.stream(Action.values())
-                .filter(action -> action.getOpcode() == packet.getOpcode())
-                .findFirst().orElse(Action.FIRST);
         return this;
     }
 
-    private enum Action {
-        FIRST(FIRST_ITEM_CONTAINER_ACTION_OPCODE),
-        SECOND(SECOND_ITEM_CONTAINER_ACTION_OPCODE),
-        THIRD(THIRD_ITEM_CONTAINER_ACTION_OPCODE),
-        FOURTH(FOURTH_ITEM_CONTAINER_ACTION_OPCODE),
-        FIFTH(FIFTH_ITEM_CONTAINER_ACTION_OPCODE),
-        SIXTH(SIXTH_ITEM_CONTAINER_ACTION_OPCODE);
-
-        int opcode;
-
-        Action(int opcode) {
-            this.opcode = opcode;
-        }
-
-        public int getOpcode() {
-            return opcode;
-        }
+    @Override
+    public String toString() {
+        return "[" + this.getClass().getSimpleName() + "] interfaceId: " + interfaceId + " | slot: " + slot + " | id: "  + id;
     }
 }

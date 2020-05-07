@@ -34,6 +34,12 @@ public class GameObject extends Entity {
 		this.id = id;
 	}
 
+	public GameObject(int id, Position position, String message) {
+		super(position);
+		this.id = id;
+		this.message = message;
+	}
+
 	
 	/**
 	 * GameObject constructor to call upon a new game object.
@@ -130,6 +136,8 @@ public class GameObject extends Entity {
 	 */
 	private int face;
 
+	private String message;
+
 	/**
 	 * Gets the object's current face direction.
 	 * @return	face.
@@ -187,5 +195,23 @@ public class GameObject extends Entity {
 		if(definition == null)
 			return 1;
 		return (definition.getSizeX() + definition.getSizeY()) - 1;
+	}
+
+	public void setMessage(String message) {
+		this.message = message;
+	}
+
+	public String getMessage() {
+		return message;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if(obj.getClass() != this.getClass()) {
+			return false;
+		}
+
+		GameObject object = (GameObject) obj;
+		return object.getId() == id && object.getPosition().equals(getPosition());
 	}
 }

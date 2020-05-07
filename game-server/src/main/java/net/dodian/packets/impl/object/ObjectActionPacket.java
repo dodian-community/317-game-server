@@ -18,8 +18,8 @@ public class ObjectActionPacket extends GamePacket {
     public ObjectActionPacket createFrom(Packet packet, Player player) {
         this.player = player;
         this.id = packet.readUnsignedShort();
-        int y = packet.readLEShortA();
-        int x = packet.readUnsignedShortA();
+        int x = packet.readLEShortA();
+        int y = packet.readUnsignedShortA();
         this.position = new Position(x, y, player.getPosition().getZ());
         return this;
     }

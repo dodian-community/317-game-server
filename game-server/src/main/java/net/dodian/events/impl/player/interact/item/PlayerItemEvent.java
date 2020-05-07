@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 @Getter
-public class PlayerItemEvent extends PlayerEvent {
+public abstract class PlayerItemEvent extends PlayerEvent {
     protected Item item;
 
     public PlayerItemEvent create(Player player, Item item) {

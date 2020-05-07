@@ -1,7 +1,5 @@
 package net.dodian.old.world.entity.updating;
 
-import java.util.Iterator;
-
 import net.dodian.old.net.packet.ByteOrder;
 import net.dodian.old.net.packet.PacketBuilder;
 import net.dodian.old.net.packet.ValueType;
@@ -13,6 +11,8 @@ import net.dodian.old.world.model.Direction;
 import net.dodian.old.world.model.Flag;
 import net.dodian.old.world.model.Position;
 import net.dodian.old.world.model.UpdateFlag;
+
+import java.util.Iterator;
 
 /**
  * Represents a player's npc updating task, which loops through all local

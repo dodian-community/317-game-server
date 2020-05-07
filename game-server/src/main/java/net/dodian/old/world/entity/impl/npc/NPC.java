@@ -100,6 +100,27 @@ public class NPC extends Character {
 		CombatFactory.assignCombatMethod(this);
 	}
 
+	public NPC(int id, Position position, String face, DefinitionsManager definitionsManager) {
+		super(position);
+		this.id = id;
+		this.spawnPosition = position;
+		this.definitionsManager = definitionsManager;
+		setHitpoints(getDefinition().getHitpoints());
+		NPCBotHandler.assignBotHandler(this);
+		CombatFactory.assignCombatMethod(this);
+		Position facing = new Position(position.getX(), position.getY(), position.getZ());
+		if(face.equalsIgnoreCase("NORTH")) {
+			facing.add(0, 1);
+		} else if(face.equalsIgnoreCase("WEST")) {
+			facing.add(-1, 0);
+		} else if(face.equalsIgnoreCase("SOUTH")) {
+			facing.add(0, -1);
+		} else if(face.equalsIgnoreCase("EAST")) {
+			facing.add(1, 0);
+		}
+		this.setPositionToFace(facing);
+	}
+
 	/**
 	 * Processes this npc.
 	 */

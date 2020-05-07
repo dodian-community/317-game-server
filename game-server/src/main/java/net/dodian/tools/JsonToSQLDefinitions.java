@@ -104,13 +104,14 @@ public class JsonToSQLDefinitions {
         logAndInformIssuer("Migrating npc spawn definitions from JSON to SQL.");
 
         try {
-            List<NpcSpawnDefinition> npcSpawnDefinitions = mapper.readValue(new File(npcSpawnDefinitionsJson), new TypeReference<List<NpcSpawnDefinition>>() {});
+            List<NpcSpawnDefinition> npcSpawnDefinitions = mapper.readValue(new File(npcSpawnDefinitionsJson), new TypeReference<>() {});
             npcSpawnRepository.saveAll(npcSpawnDefinitions);
 
             npcSpawnDefinitions.forEach(spawnDefinition -> World.getNpcAddQueue().add(
                 new NPC(
                     spawnDefinition.getNpcId(),
                     new Position(spawnDefinition.getX(), spawnDefinition.getY(), spawnDefinition.getZ()),
+                    "WEST",
                     this.definitionsManager)
                 )
             );
