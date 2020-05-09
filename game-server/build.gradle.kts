@@ -50,6 +50,8 @@ dependencies {
     implementation("io.reactivex.rxjava3:rxjava:3.0.3")
     implementation(kotlin("stdlib-jdk8"))
 
+    testCompileOnly("org.mockito:mockito-core:2.+")
+    testCompileOnly("org.junit.platform:junit-platform-commons:1.6.2")
 }
 
 repositories {
@@ -58,7 +60,7 @@ repositories {
 
 tasks.register<JavaExec>("runServer") {
     group = "dodian-game"
-    dependsOn(":bootRun")
+    dependsOn("bootRun")
 }
 
 val compileKotlin: KotlinCompile by tasks

@@ -17,5 +17,5 @@ dependencies {
 
 tasks.register<JavaExec>("runClient") {
     group = "dodian-game"
-    dependsOn(":run")
+    dependsOn("run")
 }
