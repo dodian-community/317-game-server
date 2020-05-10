@@ -1,6 +1,6 @@
 package net.dodian.packets.handlers.impl.player;
 
-import net.dodian.events.impl.player.interact.PlayerButtonClickEvent;
+import net.dodian.game.events.impl.player.interact.PlayerButtonClickEvent;
 import net.dodian.packets.handlers.PacketHandler;
 import net.dodian.packets.handlers.PacketListener;
 import net.dodian.packets.impl.ButtonClickPacket;

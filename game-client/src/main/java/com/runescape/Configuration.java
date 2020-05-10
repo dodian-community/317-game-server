@@ -70,7 +70,7 @@ public final class Configuration {
 	 * Enables extra frames in-between animations to give the animation a smooth
 	 * look
 	 */
-	public static boolean enableTweening = true;
+	public static boolean enableTweening = false;
 
 	/**
 	 * Used to repack indexes Index 1 = Models Index 2 = Animations Index 3 =
@@ -83,7 +83,7 @@ public final class Configuration {
 	 * Dump Indexes Index 1 = Models Index 2 = Animations Index 3 = Sounds/Music
 	 * Index 4 = Maps
 	 */
-	public static boolean dumpIndexOne = false, dumpIndexTwo = false, dumpIndexThree = false, dumpIndexFour = true;
+	public static boolean dumpIndexOne = false, dumpIndexTwo = false, dumpIndexThree = false, dumpIndexFour = false;
 
 	/**
 	 * Used to merge all the OS Buddy XP Drops so the counter doesn't get too

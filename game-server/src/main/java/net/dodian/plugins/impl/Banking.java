@@ -1,26 +1,17 @@
 package net.dodian.plugins.impl;
 
-import net.dodian.events.EventHandler;
-import net.dodian.events.EventListener;
-import net.dodian.events.impl.player.interact.PlayerButtonClickEvent;
-import net.dodian.events.impl.player.interact.item.container.PlayerItemContainerFirstClickEvent;
-import net.dodian.events.impl.player.interact.npc.PlayerNpcSecondClickEvent;
-import net.dodian.events.impl.player.interact.object.PlayerObjectSecondClickEvent;
-import net.dodian.old.world.model.container.impl.Bank;
-import org.springframework.beans.factory.annotation.Autowired;
+import net.dodian.game.events.EventHandler;
+import net.dodian.game.events.EventListener;
+import net.dodian.game.events.impl.player.interact.PlayerButtonClickEvent;
+import net.dodian.game.events.impl.player.interact.item.container.PlayerItemContainerFirstClickEvent;
+import net.dodian.game.events.impl.player.interact.npc.PlayerNpcSecondClickEvent;
+import net.dodian.game.events.impl.player.interact.object.PlayerObjectSecondClickEvent;
 import org.springframework.stereotype.Component;
 
 import java.util.Arrays;
 
 @Component
 public class Banking implements EventListener {
-
-    private final Bank bank;
-
-    @Autowired
-    public Banking(Bank bank) {
-        this.bank = bank;
-    }
 
     @EventHandler
     public void onButtonClick(PlayerButtonClickEvent event) {
@@ -55,7 +46,9 @@ public class Banking implements EventListener {
 
     @EventHandler
     public void onItemContainerFirstClick(PlayerItemContainerFirstClickEvent event) {
-        if(event.getInterfaceId() >= Bank.CONTAINER_START && event.getInterfaceId() < Bank.CONTAINER_START + Bank.TOTAL_BANK_TABS) {
+
+
+        /*if(event.getInterfaceId() >= Bank.CONTAINER_START && event.getInterfaceId() < Bank.CONTAINER_START + Bank.TOTAL_BANK_TABS) {
             Bank.withdraw(event.getPlayer(), event.getItem().getId(), event.getSlot(), 1, event.getInterfaceId() - Bank.CONTAINER_START);
             return;
         }
@@ -63,6 +56,6 @@ public class Banking implements EventListener {
         if(event.getInterfaceId() == Bank.INVENTORY_INTERFACE_ID) {
             Bank.deposit(event.getPlayer(), event.getItem().getId(), event.getSlot(), 1);
             return;
-        }
+        }*/
     }
 }

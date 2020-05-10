@@ -1,6 +1,6 @@
 package net.dodian.packets.handlers.impl.item;
 
-import net.dodian.events.impl.player.interact.item.container.*;
+import net.dodian.game.events.impl.player.interact.item.container.*;
 import net.dodian.old.world.model.Item;
 import net.dodian.packets.handlers.PacketHandler;
 import net.dodian.packets.handlers.PacketListener;

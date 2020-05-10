@@ -1,10 +1,10 @@
 package net.dodian.plugins.impl.combat;
 
 import lombok.Getter;
-import net.dodian.events.EventHandler;
-import net.dodian.events.EventListener;
-import net.dodian.events.impl.player.PlayerGetCombatSpellEvent;
-import net.dodian.events.impl.player.interact.PlayerButtonClickEvent;
+import net.dodian.game.events.EventHandler;
+import net.dodian.game.events.EventListener;
+import net.dodian.game.events.impl.player.PlayerGetCombatSpellEvent;
+import net.dodian.game.events.impl.player.interact.PlayerButtonClickEvent;
 import net.dodian.old.world.entity.combat.magic.CombatSpell;
 import net.dodian.old.world.model.Position;
 import net.dodian.old.world.model.teleportation.TeleportHandler;

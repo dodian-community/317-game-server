@@ -1,6 +1,6 @@
 package net.dodian.packets.handlers.impl.npc;
 
-import net.dodian.events.impl.player.interact.npc.*;
+import net.dodian.game.events.impl.player.interact.npc.*;
 import net.dodian.old.engine.task.impl.WalkToTask;
 import net.dodian.old.world.World;
 import net.dodian.old.world.entity.impl.npc.NPC;

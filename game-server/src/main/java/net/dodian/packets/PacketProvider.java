@@ -29,7 +29,7 @@ public class PacketProvider {
     }
 
     public boolean handlePacket(Packet packet, Player player) {
-        if(packet.getOpcode() <= 0) {
+        if (packet.getOpcode() <= 0) {
             return false;
         }
 
@@ -39,7 +39,7 @@ public class PacketProvider {
                 .filter(gamePacket -> gamePacketHasOpcode(gamePacket, packet.getOpcode()))
                 .findFirst();
 
-        if(optionalGamePacket.isEmpty()) {
+        if (optionalGamePacket.isEmpty()) {
             Server.getLogger().log(Level.INFO, "Couldn't find the packet for opcode: " + packet.getOpcode());
             return false;
         }
@@ -55,7 +55,7 @@ public class PacketProvider {
 
             methods.forEach(method -> {
                 try {
-                    if(!gamePacket.isCancelled()) {
+                    if (!gamePacket.isCancelled()) {
                         method.invoke(listener, gamePacket);
                     } else {
                         Server.getLogger().log(Level.INFO, listener.getClass().getSimpleName() + ": packet execution was cancelled by a previous listener.");
@@ -72,7 +72,7 @@ public class PacketProvider {
     }
 
     private boolean gamePacketHasOpcode(GamePacket gamePacket, int opcode) {
-        if(gamePacket.getClass().isAnnotationPresent(Opcodes.class)) {
+        if (gamePacket.getClass().isAnnotationPresent(Opcodes.class)) {
             return Arrays.stream(gamePacket.getClass().getAnnotation(Opcodes.class).value())
                     .anyMatch(code -> code == opcode);
         }

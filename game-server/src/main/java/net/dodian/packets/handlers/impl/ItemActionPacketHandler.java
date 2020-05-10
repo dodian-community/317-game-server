@@ -1,8 +1,8 @@
 package net.dodian.packets.handlers.impl;
 
-import net.dodian.events.impl.player.interact.item.PlayerItemFirstClickEvent;
-import net.dodian.events.impl.player.interact.item.PlayerItemSecondClickEvent;
-import net.dodian.events.impl.player.interact.item.PlayerItemThirdClickEvent;
+import net.dodian.game.events.impl.player.interact.item.PlayerItemFirstClickEvent;
+import net.dodian.game.events.impl.player.interact.item.PlayerItemSecondClickEvent;
+import net.dodian.game.events.impl.player.interact.item.PlayerItemThirdClickEvent;
 import net.dodian.old.world.model.Item;
 import net.dodian.packets.handlers.PacketHandler;
 import net.dodian.packets.handlers.PacketListener;

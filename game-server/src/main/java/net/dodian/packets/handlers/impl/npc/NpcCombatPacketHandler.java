@@ -1,9 +1,9 @@
 package net.dodian.packets.handlers.impl.npc;
 
 import net.dodian.Server;
-import net.dodian.events.impl.player.PlayerGetCombatSpellEvent;
-import net.dodian.events.impl.player.interact.npc.PlayerAttackNpcEvent;
-import net.dodian.events.impl.player.interact.npc.PlayerMagicOnNpcEvent;
+import net.dodian.game.events.impl.player.PlayerGetCombatSpellEvent;
+import net.dodian.game.events.impl.player.interact.npc.PlayerAttackNpcEvent;
+import net.dodian.game.events.impl.player.interact.npc.PlayerMagicOnNpcEvent;
 import net.dodian.old.world.World;
 import net.dodian.old.world.entity.combat.magic.CombatSpell;
 import net.dodian.old.world.entity.impl.npc.NPC;

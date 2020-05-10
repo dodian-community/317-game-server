@@ -1,9 +1,9 @@
 package net.dodian.plugins.impl.dummydata;
 
-import net.dodian.events.EventHandler;
-import net.dodian.events.EventListener;
-import net.dodian.events.impl.server.ServerStartedUpEvent;
-import net.dodian.events.impl.server.ServerStartingUpEvent;
+import net.dodian.game.events.EventHandler;
+import net.dodian.game.events.EventListener;
+import net.dodian.game.events.impl.server.ServerStartedUpEvent;
+import net.dodian.game.events.impl.server.ServerStartingUpEvent;
 import net.dodian.orm.models.Group;
 import net.dodian.orm.repositories.GroupRepository;
 import org.springframework.beans.factory.annotation.Autowired;

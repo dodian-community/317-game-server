@@ -1,9 +1,9 @@
 package net.dodian.plugins.impl;
 
-import net.dodian.events.EventHandler;
-import net.dodian.events.EventListener;
-import net.dodian.events.impl.player.character.CharacterLoadingEvent;
-import net.dodian.events.impl.player.session.PlayerConnectEvent;
+import net.dodian.game.events.EventHandler;
+import net.dodian.game.events.EventListener;
+import net.dodian.game.events.impl.player.character.CharacterLoadingEvent;
+import net.dodian.game.events.impl.player.session.PlayerConnectEvent;
 import net.dodian.managers.AccountManager;
 import net.dodian.managers.GroupsManager;
 import net.dodian.old.net.PlayerSession;

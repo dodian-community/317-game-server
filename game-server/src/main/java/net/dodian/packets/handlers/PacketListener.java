@@ -1,6 +1,6 @@
 package net.dodian.packets.handlers;
 
-import net.dodian.events.EventsProvider;
+import net.dodian.game.events.EventsProvider;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.BeanFactory;
 import org.springframework.beans.factory.BeanFactoryAware;
