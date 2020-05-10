@@ -1,10 +1,10 @@
-package net.dodian.plugins.impl.dungeons.Icequeenlair;
+package net.dodian.plugins.impl.dungeons;
 
-import net.dodian.events.EventHandler;
-import net.dodian.events.EventListener;
-import net.dodian.events.impl.player.interact.object.PlayerObjectEvent;
-import net.dodian.events.impl.player.interact.object.PlayerObjectFirstClickEvent;
-import net.dodian.events.impl.player.interact.object.PlayerObjectSecondClickEvent;
+import net.dodian.game.events.EventHandler;
+import net.dodian.game.events.EventListener;
+import net.dodian.game.events.impl.player.interact.object.PlayerObjectEvent;
+import net.dodian.game.events.impl.player.interact.object.PlayerObjectFirstClickEvent;
+import net.dodian.game.events.impl.player.interact.object.PlayerObjectSecondClickEvent;
 import net.dodian.old.world.entity.impl.object.GameObject;
 import net.dodian.old.world.entity.impl.player.Player;
 import net.dodian.old.world.model.Position;
@@ -13,7 +13,7 @@ import org.springframework.stereotype.Component;
 import java.util.Arrays;
 
 @Component
-public class IceQueenTunnels implements EventListener {
+public class IceQueenLair implements EventListener {
 
     private final GameObject IceQueenRockslide = new GameObject(2634, new Position(2838, 3517), "You need a mininglevel 50 to clear this rockslide!");
 
