@@ -1,5 +1,6 @@
 package net.dodian.packets.handlers.impl.player;
 
+import net.dodian.old.engine.task.TaskManager;
 import net.dodian.old.world.content.Dueling;
 import net.dodian.old.world.model.Position;
 import net.dodian.old.world.model.dialogue.DialogueManager;
@@ -95,5 +96,6 @@ public class PlayerMovementPacketHandler extends PacketListener {
                 packet.getPlayer().getMovementQueue().addStep(packet.getPositions()[i]);
             }
         }
+        TaskManager.cancelTasks(packet.getPlayer()); //Might cause issues to other tasks?
     }
 }

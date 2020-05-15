@@ -2,9 +2,11 @@ package net.dodian.plugins.impl.skill;
 
 import net.dodian.game.events.EventHandler;
 import net.dodian.game.events.EventListener;
+import net.dodian.game.events.impl.player.interact.object.PlayerObjectEvent;
 import net.dodian.game.events.impl.player.interact.object.PlayerObjectFirstClickEvent;
 import net.dodian.old.engine.task.Task;
 import net.dodian.old.engine.task.TaskManager;
+import net.dodian.old.world.entity.impl.object.GameObject;
 import net.dodian.old.world.entity.impl.player.Player;
 import net.dodian.old.world.model.Animation;
 import net.dodian.old.world.model.Item;
@@ -15,13 +17,13 @@ import org.springframework.stereotype.Component;
 @Component
 public class Mining implements EventListener {
     private enum pickaxeData {
-        BRONZE(1265, 1, new Animation(625), 0.03),
-        IRON(1267, 1, new Animation(626), 0.05),
-        STEEL(1269, 6, new Animation(627), 0.09),
-        MITHRIL(1273, 21, new Animation(628), 0.13),
-        ADAMANT(1271, 31, new Animation(629), 0.16),
-        RUNE(1275, 41, new Animation(624), 0.20),
-        DRAGON(15259, 61, new Animation(624), 0.25)
+        BRONZE(1265, 1, new Animation(625), 1.03),
+        IRON(1267, 1, new Animation(626), 1.05),
+        STEEL(1269, 6, new Animation(627), 1.09),
+        MITHRIL(1273, 21, new Animation(628), 1.13),
+        ADAMANT(1271, 31, new Animation(629), 1.16),
+        RUNE(1275, 41, new Animation(624), 1.20),
+        DRAGON(15259, 61, new Animation(624), 1.25)
         ;
         int id, level;
         Animation animation;
@@ -81,29 +83,34 @@ public class Mining implements EventListener {
             return;
         }
         TaskManager.cancelTasks(event.getPlayer()); //Might cause issues to other tasks?
-        initiate(event.getPlayer(), rock, pickaxe);
+        initiate(event, rock, pickaxe);
     }
 
-    private void initiate(Player player, rockData rock, pickaxeData pickaxe) {
-        Task task = new Task(1, player, true) {
+    private <T extends PlayerObjectEvent> void initiate(T event, rockData rock, pickaxeData pickaxe) {
+        event.getPlayer().getPacketSender().sendMessage("You swing your pickaxe at the " + new GameObject(rock.object[0], event.getObject().getPosition()).getDefinition().getName().toLowerCase() + "...");
+        Task task = new Task(1, event.getPlayer(), true) {
             int cycle = 3;
             @Override
             protected void execute() {
+                /* Stops action! */
+                if(event.getPlayer().getInventory().isFull() ||
+                    event.getPlayer().getMovementQueue().getMovementStatus().equals(MovementStatus.DISABLED))
+                    stop();
+                /* Cycle action! */
                 if(cycle == 3)
-                    player.performAnimation(pickaxe.animation);
+                    event.getPlayer().performAnimation(pickaxe.animation);
                 if(cycle > 0)
                     cycle--;
                 else { //Every 3 ticks preform a check for loot!
                     //TODO: Add lootation chance per rock!
-                    player.getInventory().add(new Item(rock.produceItem, 1));
-                    player.getPacketSender().sendMessage("I obtained a ore!");
+                    /*
+                    Prototype: (baseChance + woodCuttingLevel / 3) * pickaxeBonus : 255
+                     */
+                    Item item = new Item(rock.produceItem, 1);
+                    event.getPlayer().getInventory().add(item);
+                    event.getPlayer().getPacketSender().sendMessage("You mine some " + item.getDefinition().getName().toLowerCase() + ".");
                     cycle = 3;
                 }
-                /* Stops action! */
-                if(player.getInventory().isFull() ||
-                player.getMovementQueue().isMoving() ||
-                player.getMovementQueue().getMovementStatus().equals(MovementStatus.DISABLED))
-                    stop();
             }
         };
         TaskManager.submit(task);
