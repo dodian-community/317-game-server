@@ -114,8 +114,11 @@ public class Woodcutting implements EventListener {
                     event.getPlayer().getSkillManager().addExperience(Skill.WOODCUTTING, tree.xp);
                     event.getPlayer().getPacketSender().sendMessage("You cut some " + item.getDefinition().getName().toLowerCase() + ".");
                     cycle = (int) getWoodcuttingSpeed(event.getPlayer(), axe, tree.time) / 900;
+                    if(Misc.getRandom(49) == 0) {
+                        event.getPlayer().getPacketSender().sendMessage("You take a rest");
+                        stop();
+                    }
                 }
-
             }
         };
         TaskManager.submit(task);
