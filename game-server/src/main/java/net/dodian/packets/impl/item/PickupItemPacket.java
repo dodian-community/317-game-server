@@ -22,7 +22,7 @@ public class PickupItemPacket extends GamePacket {
     public PickupItemPacket createFrom(Packet packet, Player player) {
         this.player = player;
         int y = packet.readLEShort();
-        this.id = packet.readShortA();
+        this.id = packet.readShort();
         int x = packet.readLEShort();
         this.position = new Position(x, y, player.getPosition().getZ());
         return this;
