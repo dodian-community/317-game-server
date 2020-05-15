@@ -12,7 +12,7 @@ public class Stairs implements EventListener {
 
     @EventHandler
     public void onFirstClick(PlayerObjectFirstClickEvent event) {
-        RegionClipping.removeObject(event.getObject());
+            RegionClipping.removeObject(event.getObject());
     }
 
     @EventHandler

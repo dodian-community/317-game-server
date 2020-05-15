@@ -14,8 +14,8 @@ public class DadBossPlugin implements EventListener {
             return true;
         }
 
-        if(event.player.skillManager.getCombatLevel() < 60) {
-            event.player.packetSender.sendMessage("You need to be more than 60 combat to attack Dad.");
+        if(event.player.skillManager.getCombatLevel() < 50) {
+            event.player.packetSender.sendMessage("You need to be more than 50 combat to attack Dad.");
             return false;
         }
 
