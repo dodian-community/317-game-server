@@ -1,11 +1,9 @@
 package net.dodian.packets.handlers.impl;
 
-import ch.qos.logback.core.net.server.Client;
 import net.dodian.old.util.PlayerPunishment;
 import net.dodian.old.world.entity.impl.player.Player;
 import net.dodian.old.world.model.ChatMessage;
 import net.dodian.old.world.model.Flag;
-import net.dodian.old.world.model.container.impl.Equipment;
 import net.dodian.packets.handlers.PacketHandler;
 import net.dodian.packets.handlers.PacketListener;
 import net.dodian.packets.impl.ChatPacket;

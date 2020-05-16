@@ -9,9 +9,11 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class RegionChangePacketHandler extends PacketListener {
+
     @PacketHandler
     public void onRegionChange(RegionChangePacket packet) {
         Player player = packet.getPlayer();
+
         if (player.isAllowRegionChangePacket()) {
             GroundItemManager.onRegionChange(player);
             player.setAllowRegionChangePacket(false);
