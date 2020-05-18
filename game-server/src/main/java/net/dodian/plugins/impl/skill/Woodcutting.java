@@ -24,7 +24,8 @@ public class Woodcutting implements EventListener {
         MITHRIL(1355, 21, new Animation(871), 1.13),
         ADAMANT(1357, 31, new Animation(869), 1.16),
         RUNE(1359, 41, new Animation(867), 1.20),
-        DRAGON(6739, 61, new Animation(2846), 1.25)
+        DRAGON(6739, 61, new Animation(2846), 1.25),
+        THIRD_AGE(20011, 81, new Animation(7264), 1.40)
         ;
         int id, level;
         Animation animation;
@@ -51,7 +52,11 @@ public class Woodcutting implements EventListener {
 
     private enum treeData {
         NORMAL(1, 80, 1200, 1511, 1276),
-        OAK(15, 152, 1800, 1521, 1751)
+        OAK(15, 152, 1800, 1521, 1751),
+        WILLOW(30, 272, 3000, 1519, 1750),
+        MAPLE(45, 400, 4200, 1517, 1759),
+        YEW(60, 700, 5400, 1515, 1753),
+        MAGIC(75, 1000, 7200, 1513, 1761)
         ;
 
         int level, xp, time, produceItem;
@@ -79,6 +84,10 @@ public class Woodcutting implements EventListener {
         if(tree == null) {
             return;
         }
+        if(tree.level > event.getPlayer().getSkillManager().getCurrentLevel(Skill.WOODCUTTING)) {
+            event.getPlayer().getPacketSender().sendMessage("You need level " + tree.level + " woodcutting to cut the "+ event.getObject().getDefinition().getName() +"!");
+            return;
+        }
         axeData axe = getAxe(event.getPlayer());
         if(axe == null) {
             event.getPlayer().getPacketSender().sendMessage("You do not have a suitable axe for your level to use!");
@@ -93,33 +102,39 @@ public class Woodcutting implements EventListener {
             event.getPlayer().performAnimation(axe.animation);
             event.getPlayer().getPacketSender().sendMessage("You swing your axe at the " + new GameObject(tree.object[0], event.getObject().getPosition()).getDefinition().getName().toLowerCase() + "...");
             Task task = new Task(1, event.getPlayer(), true) {
-            int cycle = (int) getWoodcuttingSpeed(event.getPlayer(), axe, tree.time) / 900;
+            double cycle = getWoodcuttingSpeed(event.getPlayer(), axe, tree.time) / 900D;
             @Override
             protected void execute() {
                 /* Stops action! */
                 if (event.getPlayer().getInventory().isFull() ||
                 event.getPlayer().getMovementQueue().getMovementStatus().equals(MovementStatus.DISABLED)) {
-                    event.getPlayer().performAnimation(new Animation(65535));
                     stop();
                 }
                 /* Cycle action! */
                 emoteAxe[0] = getAxe(event.getPlayer()); //Need to check if a player has a different axe!
-                if(cycle % 3 == 0)
+                if(emoteAxe[0] == null)
+                    stop();
+                if((int)cycle % 3 == 0)
                     event.getPlayer().performAnimation(emoteAxe[0].animation);
                 if(cycle > 0)
                     cycle--;
-                else { //Every 3 ticks preform a check for loot!
+                else {
                     Item item = new Item(tree.produceItem, 1);
                     event.getPlayer().getInventory().add(item);
                     event.getPlayer().getSkillManager().addExperience(Skill.WOODCUTTING, tree.xp);
                     event.getPlayer().getPacketSender().sendMessage("You cut some " + item.getDefinition().getName().toLowerCase() + ".");
-                    cycle = (int) getWoodcuttingSpeed(event.getPlayer(), axe, tree.time) / 900;
+                    cycle = getWoodcuttingSpeed(event.getPlayer(), axe, tree.time) / 900D;
                     if(Misc.getRandom(49) == 0) {
                         event.getPlayer().getPacketSender().sendMessage("You take a rest");
                         stop();
                     }
                 }
             }
+                @Override
+                public void stop() {
+                    event.getPlayer().performAnimation(new Animation(65535));
+                    this.setEventRunning(false);
+                }
         };
         TaskManager.submit(task);
     }
