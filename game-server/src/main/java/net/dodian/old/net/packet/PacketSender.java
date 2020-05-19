@@ -8,6 +8,7 @@ import net.dodian.old.world.model.*;
 import net.dodian.old.world.model.container.ItemContainer;
 import net.dodian.old.world.model.container.impl.Bank;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -413,6 +414,47 @@ public class PacketSender {
 		return this;
 	}
 
+	/**
+	 * Showing item to produce options
+	 */
+	public static ArrayList<Integer> itemOptions = new ArrayList<>();
+	public PacketSender sendMakeItemOption(int option, int zoom) {
+		itemOptions.clear();
+		itemOptions.add(option);
+		sendString(2799, new Item(option).getDefinition().getName());
+		sendInterfaceModel(1746, option, zoom);
+		sendChatboxInterface(4429);
+		return this;
+	}
+	public PacketSender sendMakeItemOption(int option) {
+		sendMakeItemOption(option, 180);
+		return this;
+	}
+	public PacketSender sendMakeItemOption(String text, int[] options) {
+		itemOptions.clear();
+		if(options.length == 2) {
+			sendString(8879, text);
+			sendString(8874, new Item(options[0]).getDefinition().getName());
+			sendString(8878, new Item(options[1]).getDefinition().getName());
+			sendInterfaceModel(8869, options[0], 180);
+			sendInterfaceModel(8870, options[1], 180);
+			sendChatboxInterface(8866); //sendFrame164
+		}
+		else if(options.length == 3) {
+			sendString(8898, text);
+			for(int i = 0; i < options.length; i++) {
+				sendString(8889 + i*4, new Item(options[i]).getDefinition().getName());
+				sendInterfaceModel(8883 + i, options[i], 180);
+			}
+			sendChatboxInterface(8880); //sendFrame164
+		}
+		return this;
+	}
+	public PacketSender sendMakeItemOption(int[] options) {
+		sendMakeItemOption("What would you like to make?", options);
+		return this;
+	}
+
 	public PacketSender sendMapState(int state) {
 		PacketBuilder out = new PacketBuilder(99);
 		out.put(state);
@@ -630,8 +672,7 @@ public class PacketSender {
 		out.putString(option);
 		player.getSession().write(out);
 		PlayerInteractingOption interactingOption = PlayerInteractingOption.forName(option);
-		if(option != null)
-			player.setPlayerInteractingOption(interactingOption);
+		player.setPlayerInteractingOption(interactingOption);
 		return this;
 	}
 
@@ -879,8 +920,7 @@ public class PacketSender {
 	public int getRegionOffset(Position position) {
 		int x = position.getX() - (position.getRegionX() << 4);
 		int y = position.getY() - (position.getRegionY() & 0x7);
-		int offset = ((x & 0x7)) << 4 + (y & 0x7);
-		return offset;
+		return ((x & 0x7)) << 4 + (y & 0x7);
 	}
 
 	public PacketSender(Player player) {
@@ -947,9 +987,9 @@ public class PacketSender {
 		PacketBuilder bldr = new PacketBuilder(152);
 		if (objectId != -1) // removing
 			player.getSession().write(bldr.put(0, ValueType.S).putShort(objectId, ByteOrder.LITTLE).put((objectType << 2) + (face & 3), ValueType.S).put(height));
-		if (objectId == -1 || objectId == 0 || objectId == 6951) {
+		/*if (objectId == -1 || objectId == 0 || objectId == 6951) {
 			//CustomObjects.spawnObject(player, new GameObject(objectId, new Position(objectX, objectY, height)));
-		}
+		}*/
 	}
 
 	/*public PacketSender constructMapRegion(Palette palette) {

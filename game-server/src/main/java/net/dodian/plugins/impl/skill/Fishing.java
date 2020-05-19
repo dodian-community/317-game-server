@@ -22,8 +22,8 @@ public class Fishing implements EventListener {
     private enum toolData {
         NET(303, -1, new Animation(621)),
         FLY_FISHING_ROD(309, 314, new Animation(622)),
-        LOBSTER_POT(301, 314, new Animation(619)),
-        HARPOON(311, 314, new Animation(618))
+        LOBSTER_POT(301, -1, new Animation(619)),
+        HARPOON(311, -1, new Animation(618))
         ;
         int id, bait;
         Animation animation;
