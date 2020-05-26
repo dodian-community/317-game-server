@@ -417,40 +417,40 @@ public class PacketSender {
 	/**
 	 * Showing item to produce options
 	 */
-	public static ArrayList<Integer> itemOptions = new ArrayList<>();
-	public PacketSender sendMakeItemOption(int option, int zoom) {
+	public static ArrayList<Item> itemOptions = new ArrayList<>();
+	public PacketSender sendMakeItemOption(Item option, int zoom) {
 		itemOptions.clear();
 		itemOptions.add(option);
-		sendString(2799, new Item(option).getDefinition().getName());
-		sendInterfaceModel(1746, option, zoom);
+		sendString(2799, option.getDefinition().getName());
+		sendInterfaceModel(1746, option.getId(), zoom);
 		sendChatboxInterface(4429);
 		return this;
 	}
-	public PacketSender sendMakeItemOption(int option) {
+	public PacketSender sendMakeItemOption(Item option) {
 		sendMakeItemOption(option, 180);
 		return this;
 	}
-	public PacketSender sendMakeItemOption(String text, int[] options) {
+	public PacketSender sendMakeItemOption(String text, Item[] options) {
 		itemOptions.clear();
 		if(options.length == 2) {
 			sendString(8879, text);
-			sendString(8874, new Item(options[0]).getDefinition().getName());
-			sendString(8878, new Item(options[1]).getDefinition().getName());
-			sendInterfaceModel(8869, options[0], 180);
-			sendInterfaceModel(8870, options[1], 180);
+			sendString(8874, options[0].getDefinition().getName());
+			sendString(8878, options[1].getDefinition().getName());
+			sendInterfaceModel(8869, options[0].getId(), 180);
+			sendInterfaceModel(8870, options[1].getId(), 180);
 			sendChatboxInterface(8866); //sendFrame164
 		}
 		else if(options.length == 3) {
 			sendString(8898, text);
 			for(int i = 0; i < options.length; i++) {
-				sendString(8889 + i*4, new Item(options[i]).getDefinition().getName());
-				sendInterfaceModel(8883 + i, options[i], 180);
+				sendString(8889 + i*4, options[i].getDefinition().getName());
+				sendInterfaceModel(8883 + i, options[i].getId(), 180);
 			}
 			sendChatboxInterface(8880); //sendFrame164
 		}
 		return this;
 	}
-	public PacketSender sendMakeItemOption(int[] options) {
+	public PacketSender sendMakeItemOption(Item[] options) {
 		sendMakeItemOption("What would you like to make?", options);
 		return this;
 	}
