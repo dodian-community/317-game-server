@@ -1,10 +1,12 @@
 package net.dodian.packets.handlers.impl.item;
 
+import net.dodian.game.events.impl.player.interact.item.PlayerItemOnItemUsage;
 import net.dodian.game.events.impl.player.interact.item.container.*;
 import net.dodian.old.world.model.Item;
 import net.dodian.packets.handlers.PacketHandler;
 import net.dodian.packets.handlers.PacketListener;
 import net.dodian.packets.impl.item.actions.container.*;
+import net.dodian.packets.impl.item.use.ItemOnItemPacket;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -38,5 +40,10 @@ public class ItemContainerActionPacketHandler extends PacketListener {
     @PacketHandler
     public void onSixth(ItemContainerSixthClickPacket packet) {
         eventsProvider.executeListeners(new PlayerItemContainerSixthClickEvent().create(packet.getPlayer(), new Item(packet.getId()), packet.getInterfaceId(), packet.getSlot()));
+    }
+
+    @PacketHandler
+    public void onItemUsage(ItemOnItemPacket packet) {
+        eventsProvider.executeListeners(new PlayerItemOnItemUsage().create(packet.getPlayer(), packet.getItemUsedSlot(), packet.getUsedWithSlot()));
     }
 }

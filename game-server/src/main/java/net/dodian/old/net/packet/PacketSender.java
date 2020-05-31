@@ -1,6 +1,7 @@
 package net.dodian.old.net.packet;
 
 import net.dodian.GameConstants;
+import net.dodian.old.engine.task.TaskManager;
 import net.dodian.old.world.entity.Entity;
 import net.dodian.old.world.entity.impl.object.GameObject;
 import net.dodian.old.world.entity.impl.player.Player;
@@ -439,12 +440,15 @@ public class PacketSender {
 			sendInterfaceModel(8869, options[0].getId(), 180);
 			sendInterfaceModel(8870, options[1].getId(), 180);
 			sendChatboxInterface(8866); //sendFrame164
+			itemOptions.add(options[0]);
+			itemOptions.add(options[1]);
 		}
 		else if(options.length == 3) {
 			sendString(8898, text);
 			for(int i = 0; i < options.length; i++) {
 				sendString(8889 + i*4, options[i].getDefinition().getName());
 				sendInterfaceModel(8883 + i, options[i].getId(), 180);
+				itemOptions.add(options[i]);
 			}
 			sendChatboxInterface(8880); //sendFrame164
 		}
