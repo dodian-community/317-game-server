@@ -30,7 +30,6 @@ import java.util.logging.Level;
 
 @Component
 public class Fletching implements EventListener {
-    private int amount;
     private static Item KNIFE = new Item(5605);
     private fletchArrowData arrowData = null;
     private ArrayList<fletchBowData> bowData = null;
@@ -237,6 +236,7 @@ public class Fletching implements EventListener {
             }
                 @Override
                 public void stop() {
+                    count = 0;
                     event.getPlayer().performAnimation(new Animation(65535));
                     this.setEventRunning(false);
                 }
