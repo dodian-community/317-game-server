@@ -16,7 +16,7 @@ This is a new Dodian version based off of Professor Oak's Elvarg release. This h
 3. Now you should be able to develop and test what you develop your local server/client instance. Good luck!
 
 #### Testing with the appropriate player rights
-When you run the server in dev mode. It will create some dummy data, among other things dummy users. Reference [DummyAccounts.java](./game-server/src/main/java/net/dodian/extend/plugins/dev/dummydata/DummyAccounts.java) for users.
+When you run the server in dev mode. It will create some dummy data, among other things dummy users. Reference [DummyAccountsPlugin.java](./game-server/src/main/java/net/dodian/plugins/impl/dummydata/DummyAccountsPlugin.java) for users.
 You specify the usernames found there for password. Example if you want to be an admin, you pick whatever username you desire and **admin** for password.
 
 #### How to write plugins?
