@@ -4,18 +4,16 @@ import lombok.Data;
 import net.dodian.old.world.entity.impl.player.Player;
 import net.dodian.old.world.model.container.impl.Bank;
 import net.dodian.old.world.model.syntax.EnterSyntax;
-import org.springframework.stereotype.Component;
 
-@Component
 @Data
 public class BankX implements EnterSyntax {
-	private final Bank bank;
 
 	private int itemId;
-	private int slotId;
+	private int slot;
 
-	public BankX(Bank bank) {
-		this.bank = bank;
+	public BankX(int itemId, int slot) {
+		this.itemId = itemId;
+		this.slot = slot;
 	}
 
 	@Override
@@ -26,10 +24,9 @@ public class BankX implements EnterSyntax {
 
 	@Override
 	public void handleSyntax(Player player, int input) {
-		if(itemId < 0 || slotId < 0 || input <= 0) {
+		if(itemId <= 0 || slot < 0 || input <= 0) {
 			return;
 		}
-		bank.deposit(player, itemId, slotId, input);
+		Bank.deposit(player, itemId, slot, input);
 	}
-
 }

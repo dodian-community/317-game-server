@@ -1,9 +1,5 @@
 package com.runescape;
 
-import java.applet.Applet;
-import java.awt.*;
-import java.awt.event.*;
-
 import com.runescape.Client.ScreenMode;
 import com.runescape.cache.graphics.Widget;
 import com.runescape.draw.ProducingGraphicsBuffer;
@@ -11,6 +7,9 @@ import com.runescape.io.packets.outgoing.impl.CloseInterface;
 import com.runescape.model.content.TabBindings;
 
 import javax.swing.*;
+import java.applet.Applet;
+import java.awt.*;
+import java.awt.event.*;
 
 public class GameApplet extends Applet implements Runnable, MouseListener,
         MouseMotionListener, MouseWheelListener, KeyListener, FocusListener,
@@ -497,6 +496,9 @@ public class GameApplet extends Applet implements Runnable, MouseListener,
         int i = keyevent.getKeyCode();
         int j = keyevent.getKeyChar();
 
+        System.out.println("Key code: " + i);
+        System.out.println("Key char: " + j);
+
         if (TabBindings.isBound(i)) {
             return;
         }
@@ -525,6 +527,7 @@ public class GameApplet extends Applet implements Runnable, MouseListener,
         if (i == 127)
             j = 8;
         if (i == 9)
+            // Tab
             j = 9;
         if (i == 10)
             j = 10;

@@ -42,7 +42,7 @@ public class EnterInputPacket extends GamePacket {
         return type.cast(this.value);
     }
 
-    private enum InputType {
+    public enum InputType {
         STRING(ENTER_SYNTAX_OPCODE),
         INTEGER(ENTER_AMOUNT_OPCODE);
 

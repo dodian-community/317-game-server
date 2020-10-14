@@ -10,11 +10,8 @@ import net.dodian.old.world.model.PlayerStatus;
 import net.dodian.old.world.model.container.ItemContainer;
 import net.dodian.old.world.model.container.StackType;
 import net.dodian.old.world.model.equipment.BonusManager;
-import net.dodian.old.world.model.syntax.impl.SearchBank;
 import net.dodian.orm.models.definitions.ItemDefinition;
 import org.springframework.stereotype.Component;
-
-import java.util.ArrayList;
 
 /**
  * Pretty decent bank system without flaws.
@@ -185,7 +182,7 @@ public class Bank extends ItemContainer {
 	/**
 	 * Deposits an item to the bank.
 	 * @param player
-	 * @param item
+	 * @param itemId
 	 * @param slot
 	 * @param amount
 	 */
@@ -208,13 +205,7 @@ public class Bank extends ItemContainer {
 				player.setCurrentBankTab(tab);
 			}
 
-			int deposited = 1;
-			for(Item item : player.getInventory().getItems()) {
-				if(item.getId() == itemId && deposited < amount) {
-					player.getInventory().switchItem(player.getBank(tab), new Item(itemId, amount), item.getSlot(), false, !player.isSearchingBank());
-					deposited++;
-				}
-			}
+			player.getInventory().switchItem(player.getBank(tab), new Item(itemId, amount), slot, false, !player.isSearchingBank());
 
 			if(player.isSearchingBank()) {
 				player.getBank(BANK_SEARCH_TAB_INDEX).refreshItems();
@@ -348,145 +339,6 @@ public class Bank extends ItemContainer {
 		if(fromSlot == 0 || toSlot == 0) {
 			Bank.reconfigureTabs(player);
 		}
-	}
-
-	/**
-	 * Handles a button pressed in the bank interface.
-	 * @param player
-	 * @param button
-	 * @return
-	 */
-	public boolean handleButton(Player player, int button, int action) {
-
-		if(player.getInterfaceId() == 32500) {
-			//Handle bank settings
-			switch(button) {
-			case 32503:
-				player.getPacketSender().sendInterfaceRemoval();
-				break;
-			case 32512:
-				player.getBank(player.getCurrentBankTab()).open();
-				break;
-			}
-			return true;		
-		} else if(player.getInterfaceId() == 5292) {
-			if(player.getStatus() == PlayerStatus.BANKING) {
-				int tab_select_start = 50070;
-				for(int bankId = 0; bankId < TOTAL_BANK_TABS; bankId++) {
-					if(button == tab_select_start + (bankId * 4)) {
-
-						final boolean searching = player.isSearchingBank();
-						if(searching) {
-							exitSearch(player, false);
-						}
-						
-						//First, check if empty
-						boolean empty = bankId > 0 ? Bank.isEmpty(player.getBank(bankId)) : false;
-
-						if(action == 1) {
-							//Collapse tab!!!
-
-							//Cannot collapse main tab
-							if(bankId == 0) {
-								return true;
-							}
-
-							//Cannot collapse empty tab
-							if(empty) {
-								return true;
-							}
-
-							ArrayList<Item> items = player.getBank(bankId).getValidItems();
-
-							//Check if main tab has space
-							if(player.getBank(0).getFreeSlots() < items.size()) {
-								player.getPacketSender().sendMessage("You don't have enough free slots in your Main tab to do that.");
-								return true;
-							}
-							
-							//Temporarily disabled note withdrawal...
-							final boolean noteWithdrawal = player.withdrawAsNote();
-							player.setNoteWithdrawal(false);
-
-							//Move items from tab to main tab
-							for (Item item : items) {
-								player.getBank(bankId).switchItem(player.getBank(0), item.copy(), player.getBank(bankId).getSlot(item.getId()), false, false);
-							}
-							
-							//Reactivate note withdrawal if it was active
-							player.setNoteWithdrawal(noteWithdrawal);
-
-							//Update tabs
-							reconfigureTabs(player);
-							
-							//Update
-							player.getBank(player.getCurrentBankTab()).refreshItems();
-
-						} else {
-
-							//Select tab!!!
-							if(!empty || bankId == 0) {
-
-								player.setCurrentBankTab(bankId);
-								player.getBank(bankId).open();
-
-							} else {
-								player.getPacketSender().sendMessage("To create a new tab, simply drag an item here.");
-								if(searching) {
-									player.getBank(player.getCurrentBankTab()).open();
-								}
-							}
-						}
-						return true;
-					}
-				}
-
-				switch(button) {
-				case 50013:
-					//Show menu
-					player.getPacketSender().sendInterfaceRemoval();
-					player.getPacketSender().sendInterface(32500);
-					break;
-				case 5386:
-					player.setNoteWithdrawal(true);
-					break;
-				case 5387:
-					player.setNoteWithdrawal(false);
-					break;
-				case 8130:
-					player.setInsertMode(false);
-					break;
-				case 8131:
-					player.setInsertMode(true);
-					break;
-				case 50004:
-					depositItems(player, player.getInventory(), false);
-					break;
-				case 50007:
-					depositItems(player, player.getEquipment(), false);
-					break;
-				case 5384:
-				case 50001:
-					player.getPacketSender().sendInterfaceRemoval();
-					break;
-				case 50010:
-
-					if(player.isSearchingBank()) {
-						exitSearch(player, true);
-						return true;
-					}
-
-					player.setEnterSyntax(new SearchBank());
-					player.getPacketSender().sendEnterInputPrompt("What do you wish to search for?");
-					break;
-				}
-			}
-			return true;
-		}
-
-
-
-		return false;
 	}
 
 	@Override
