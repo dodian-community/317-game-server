@@ -33,7 +33,7 @@ public class PacketProvider {
             return false;
         }
 
-        Server.getLogger().log(Level.INFO, "Received packet with opcode: " + packet.getOpcode());
+        //Server.getLogger().log(Level.INFO, "Received packet with opcode: " + packet.getOpcode());
 
         Optional<? extends GamePacket> optionalGamePacket = packets.stream()
                 .filter(gamePacket -> gamePacketHasOpcode(gamePacket, packet.getOpcode()))
@@ -46,6 +46,8 @@ public class PacketProvider {
 
         GamePacket gamePacket = optionalGamePacket.get().createFrom(packet, player);
         gamePacket.setOpcode(packet.getOpcode());
+
+        Server.getLogger().log(Level.INFO, "Decoded opcode " + packet.getOpcode() + " to: " + gamePacket.getClass());
 
         listeners.forEach(listener -> {
             List<Method> methods = Arrays.stream(listener.getClass().getMethods())

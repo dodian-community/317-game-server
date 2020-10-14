@@ -189,26 +189,33 @@ public class Bank extends ItemContainer {
 	 * @param slot
 	 * @param amount
 	 */
-	public static void deposit(Player player, int item, int slot, int amount) {
+	public static void deposit(Player player, int itemId, int slot, int amount) {
 		if(player.getStatus() == PlayerStatus.BANKING && player.getInterfaceId() == 5292) {
-			if(player.getInventory().getItems()[slot].getId() != item) {
+			if(player.getInventory().getItems()[slot].getId() != itemId) {
 				return;
 			}
 
-			if(amount == -1 || amount > player.getInventory().getAmount(item)) {
-				amount = player.getInventory().getAmount(item);
+			if(amount == -1 || amount > player.getInventory().getAmount(itemId)) {
+				amount = player.getInventory().getAmount(itemId);
 			}
 
 			if(amount <= 0) {
 				return;
 			}
 
-			final int tab = Bank.getTabForItem(player, item);
+			final int tab = Bank.getTabForItem(player, itemId);
 			if(!player.isSearchingBank()) {
 				player.setCurrentBankTab(tab);
 			}
 
-			player.getInventory().switchItem(player.getBank(tab), new Item(item, amount), slot, false, !player.isSearchingBank());
+			int deposited = 1;
+			for(Item item : player.getInventory().getItems()) {
+				if(item.getId() == itemId && deposited < amount) {
+					player.getInventory().switchItem(player.getBank(tab), new Item(itemId, amount), item.getSlot(), false, !player.isSearchingBank());
+					deposited++;
+				}
+			}
+
 			if(player.isSearchingBank()) {
 				player.getBank(BANK_SEARCH_TAB_INDEX).refreshItems();
 			}
