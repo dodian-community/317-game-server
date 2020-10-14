@@ -42,6 +42,7 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -735,5 +736,11 @@ public class Player extends Character {
 
     public boolean isSkulled() {
         return skullTimer > 0;
+    }
+
+    public void clearBank() {
+        Arrays.stream(this.getBanks()).forEach(bank -> {
+            bank.resetItems();
+        });
     }
 }
