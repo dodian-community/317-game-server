@@ -6,6 +6,7 @@ import net.dodian.managers.DefinitionsManager;
 import net.dodian.old.world.entity.impl.player.Player;
 import net.dodian.old.world.model.Item;
 import net.dodian.old.world.model.container.impl.Bank;
+import net.dodian.orm.models.entities.character.CharacterContainerItem;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.BeanFactory;
 import org.springframework.beans.factory.BeanFactoryAware;
@@ -18,7 +19,6 @@ import java.util.stream.Collectors;
  * 
  * @author relex lawl
  */
-
 public abstract class ItemContainer implements BeanFactoryAware {
 
 	protected DefinitionsManager definitionsManager;
@@ -43,6 +43,10 @@ public abstract class ItemContainer implements BeanFactoryAware {
 	 * such as a message when inventory is full.
 	 */
 	public abstract ItemContainer full();
+
+	public ItemContainer() {
+
+	}
 
 	/**
 	 * ItemContainer constructor to create a new instance and to define the player.
@@ -148,6 +152,16 @@ public abstract class ItemContainer implements BeanFactoryAware {
 	 */
 	public ItemContainer setItems(Item[] items) {
 		this.items = items;
+		return this;
+	}
+
+	public ItemContainer setItems(List<CharacterContainerItem> items) {
+		for(int i = 0; i < items.size(); i++) {
+			CharacterContainerItem item = items.get(i);
+			if(item != null && item.getItemId() != null && item.getAmount() != null) {
+				this.items[i] = new Item(item.getItemId(), item.getAmount());
+			}
+		}
 		return this;
 	}
 

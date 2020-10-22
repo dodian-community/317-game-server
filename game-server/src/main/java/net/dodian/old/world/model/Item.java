@@ -3,14 +3,21 @@ package net.dodian.old.world.model;
 import net.dodian.Server;
 import net.dodian.orm.models.definitions.ItemDefinition;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
 
 /**
  * Represents an item which is owned by a player.
  * 
  * @author relex lawl
  */
-
+@Entity
 public class Item {
+
+	public Item() {
+
+	}
 
 	/**
 	 * An Item object constructor.
@@ -33,6 +40,7 @@ public class Item {
 	/**
 	 * The item id.
 	 */
+	@Id
 	private int id;
 
 	/**

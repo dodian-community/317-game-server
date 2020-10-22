@@ -13,15 +13,34 @@ import net.dodian.old.world.model.equipment.BonusManager;
 import net.dodian.orm.models.definitions.ItemDefinition;
 import org.springframework.stereotype.Component;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
 /**
  * Pretty decent bank system without flaws.
  * @author Gabriel Hannason
  */
 @Component
+@Entity
 public class Bank extends ItemContainer {
+
+	@Id
+	private int id;
+
+	public Bank() {
+
+	}
 
 	public Bank(Player player) {
 		super(player);
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public int getId() {
+		return id;
 	}
 
 	@Override

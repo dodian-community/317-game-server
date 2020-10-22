@@ -101,7 +101,7 @@ public class World {
 	 * Saves all players in the game.
 	 */
 	public static void savePlayers() {
-		players.forEach(p -> p.save());
+		players.forEach(Player::save);
 	}
 
 	/**

@@ -2,13 +2,19 @@ package net.dodian.old.world.model;
 
 import net.dodian.old.util.Misc;
 
+import javax.persistence.Embeddable;
+
 /**
  * Represents a single world tile position.
  * 
  * @author relex lawl
  */
-
+@Embeddable
 public class Position {
+
+	public Position() {
+
+	}
 
 	/**
 	 * The Position constructor.

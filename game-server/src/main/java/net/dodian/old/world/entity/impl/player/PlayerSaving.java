@@ -1,22 +1,43 @@
 package net.dodian.old.world.entity.impl.player;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.JsonObject;
-import net.dodian.Server;
 import net.dodian.old.util.Misc;
-import net.dodian.old.world.model.container.impl.Bank;
+import net.dodian.orm.models.entities.character.Character;
+import net.dodian.orm.models.entities.character.CharacterAppearance;
+import net.dodian.orm.models.entities.character.CharacterSkills;
+import net.dodian.orm.repositories.CharacterRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.io.File;
-import java.io.FileWriter;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.util.logging.Level;
+import java.util.Optional;
 
+@Component
 public  class PlayerSaving {
 
-	public static void save(Player player) {
-		// Create the path and file objects.
+	private final CharacterRepository characterRepository;
+
+	@Autowired
+	public PlayerSaving(CharacterRepository characterRepository) {
+		this.characterRepository = characterRepository;
+	}
+
+	public void save(Player player) {
+		Optional<Character> characterOptional = this.characterRepository.findByName(player.getUsername());
+		Character character = this.characterRepository.findByName(player.getUsername()).orElse(new Character());
+
+		character.setName(player.getUsername());
+		character.setPosition(player.getPosition());
+		character.setSpellBook(player.getSpellbook());
+		character.setFightType(player.getCombat().getFightType());
+
+		character.setAppearance(new CharacterAppearance().set(player.getAppearance()));
+
+		CharacterSkills characterSkills = new CharacterSkills(player.getSkillManager().getSkills());
+		character.setCharacterSkills(characterSkills);
+
+		this.characterRepository.save(character);
+
+		/*// Create the path and file objects.
 		Path path = Paths.get("./data/saves/characters/", player.getUsername() + ".json");
 		File file = path.toFile();
 		file.getParentFile().setWritable(true);
@@ -85,10 +106,10 @@ public  class PlayerSaving {
 			object.add("friends", builder.toJsonTree(player.getRelations().getFriendList().toArray()));
 			object.add("ignores", builder.toJsonTree(player.getRelations().getIgnoreList().toArray()));
 
-			/** PRESETS **/
+			/** PRESETS **
 			object.add("presets", builder.toJsonTree(player.getPresets()));
 
-			/** BANK **/
+			/** BANK **
 			for(int i = 0; i < player.getBanks().length; i++) {
 				if(i == Bank.BANK_SEARCH_TAB_INDEX) {
 					continue;
@@ -106,7 +127,7 @@ public  class PlayerSaving {
 			// An error happened while saving.
 			Server.getLogger().log(Level.WARNING,
 					"An error has occured while saving a character file!", e);
-		}
+		}*/
 	}
 
 	public static boolean playerExists(String p) {

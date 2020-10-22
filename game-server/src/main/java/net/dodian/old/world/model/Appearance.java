@@ -1,6 +1,7 @@
 package net.dodian.old.world.model;
 
 import net.dodian.old.world.entity.impl.player.Player;
+import net.dodian.orm.models.entities.character.CharacterAppearance;
 
 /**
  * This file manages a player's appearance and properties, such as head hints, gender, prayer head hints, etc.
@@ -101,6 +102,21 @@ public class Appearance {
 		this.look = look;
 		player.getUpdateFlag().flag(Flag.PLAYER_APPEARANCE);
 	}
+
+	public void set(CharacterAppearance look) {
+		this.look[HEAD] = look.getHead();
+		this.look[CHEST] = look.getChest();
+		this.look[ARMS] = look.getArms();
+		this.look[HANDS] = look.getHands();
+		this.look[LEGS] = look.getLegs();
+		this.look[FEET] = look.getFeet();
+		this.look[HAIR_COLOUR] = look.getHairColor();
+		this.look[TORSO_COLOUR] = look.getTorsoColor();
+		this.look[LEG_COLOUR] = look.getLegsColor();
+		this.look[FEET_COLOUR] = look.getFeetColor();
+		this.look[SKIN_COLOUR] = look.getSkinColor();
+		this.look[GENDER] = look.getGender();
+	}
 	
 	/**
 	 * Sets a specific look.
@@ -168,6 +184,18 @@ public class Appearance {
 	/**
 	 * The index of said body part color in the look array.
 	 */
-	public static final int HAIR_COLOUR = 8, TORSO_COLOUR = 9, LEG_COLOUR = 10, FEET_COLOUR = 11, SKIN_COLOUR = 12,
-							HEAD = 1, CHEST = 2, ARMS = 3, HANDS = 4, LEGS = 5, FEET = 6, BEARD = 7, GENDER = 0;
+	public static final int
+			HAIR_COLOUR = 8,
+			TORSO_COLOUR = 9,
+			LEG_COLOUR = 10,
+			FEET_COLOUR = 11,
+			SKIN_COLOUR = 12,
+			HEAD = 1,
+			CHEST = 2,
+			ARMS = 3,
+			HANDS = 4,
+			LEGS = 5,
+			FEET = 6,
+			BEARD = 7,
+			GENDER = 0;
 }

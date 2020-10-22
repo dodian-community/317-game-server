@@ -10,6 +10,7 @@ import net.dodian.old.world.entity.impl.player.Player;
 import net.dodian.old.world.model.*;
 import net.dodian.old.world.model.equipment.BonusManager;
 import net.dodian.old.world.model.syntax.impl.SetLevel;
+import net.dodian.orm.models.entities.character.CharacterSkills;
 
 /**
  * Represents a player's skills in the game, also manages
@@ -517,6 +518,17 @@ public class SkillManager {
 
 		private int[] level, maxLevel, experience;
 
+		public int[] getExperience() {
+			return experience;
+		}
+
+		public int[] getLevel() {
+			return level;
+		}
+
+		public int[] getMaxLevel() {
+			return maxLevel;
+		}
 	}
 
 	public Skills getSkills() {
@@ -525,6 +537,90 @@ public class SkillManager {
 
 	public void setSkills(Skills skills) {
 		this.skills = skills;
+	}
+
+	public void setSkills(CharacterSkills characterSkills) {
+		this.skills = new Skills();
+
+		this.skills.level[0] = characterSkills.getAttack().getLevel();
+		this.skills.maxLevel[0] = characterSkills.getAttack().getMaxLevel();
+		this.skills.experience[0] = characterSkills.getAttack().getExperience();
+
+		this.skills.level[1] = characterSkills.getDefence().getLevel();
+		this.skills.maxLevel[1] = characterSkills.getDefence().getMaxLevel();
+		this.skills.experience[1] = characterSkills.getDefence().getExperience();
+
+		this.skills.level[2] = characterSkills.getStrength().getLevel();
+		this.skills.maxLevel[2] = characterSkills.getStrength().getMaxLevel();
+		this.skills.experience[2] = characterSkills.getStrength().getExperience();
+
+		this.skills.level[3] = characterSkills.getHitpoints().getLevel();
+		this.skills.maxLevel[3] = characterSkills.getHitpoints().getMaxLevel();
+		this.skills.experience[3] = characterSkills.getHitpoints().getExperience();
+
+		this.skills.level[4] = characterSkills.getPrayer().getLevel();
+		this.skills.maxLevel[4] = characterSkills.getPrayer().getMaxLevel();
+		this.skills.experience[4] = characterSkills.getPrayer().getExperience();
+
+		this.skills.level[5] = characterSkills.getMagic().getLevel();
+		this.skills.maxLevel[5] = characterSkills.getMagic().getMaxLevel();
+		this.skills.experience[5] = characterSkills.getMagic().getExperience();
+
+		this.skills.level[6] = characterSkills.getRanged().getLevel();
+		this.skills.maxLevel[6] = characterSkills.getRanged().getMaxLevel();
+		this.skills.experience[6] = characterSkills.getRanged().getExperience();
+
+		this.skills.level[7] = characterSkills.getCooking().getLevel();
+		this.skills.maxLevel[7] = characterSkills.getCooking().getMaxLevel();
+		this.skills.experience[7] = characterSkills.getCooking().getExperience();
+
+		this.skills.level[8] = characterSkills.getWoodcutting().getLevel();
+		this.skills.maxLevel[8] = characterSkills.getWoodcutting().getMaxLevel();
+		this.skills.experience[8] = characterSkills.getWoodcutting().getExperience();
+
+		this.skills.level[9] = characterSkills.getFletching().getLevel();
+		this.skills.maxLevel[9] = characterSkills.getFletching().getMaxLevel();
+		this.skills.experience[9] = characterSkills.getFletching().getExperience();
+
+		this.skills.level[10] = characterSkills.getFishing().getLevel();
+		this.skills.maxLevel[10] = characterSkills.getFishing().getMaxLevel();
+		this.skills.experience[10] = characterSkills.getFishing().getExperience();
+
+		this.skills.level[11] = characterSkills.getFiremaking().getLevel();
+		this.skills.maxLevel[11] = characterSkills.getFiremaking().getMaxLevel();
+		this.skills.experience[11] = characterSkills.getFiremaking().getExperience();
+
+		this.skills.level[12] = characterSkills.getCrafting().getLevel();
+		this.skills.maxLevel[12] = characterSkills.getCrafting().getMaxLevel();
+		this.skills.experience[12] = characterSkills.getCrafting().getExperience();
+
+		this.skills.level[13] = characterSkills.getMining().getLevel();
+		this.skills.maxLevel[13] = characterSkills.getMining().getMaxLevel();
+		this.skills.experience[13] = characterSkills.getMining().getExperience();
+
+		this.skills.level[14] = characterSkills.getSmithing().getLevel();
+		this.skills.maxLevel[14] = characterSkills.getSmithing().getMaxLevel();
+		this.skills.experience[14] = characterSkills.getSmithing().getExperience();
+
+		this.skills.level[15] = characterSkills.getHerblore().getLevel();
+		this.skills.maxLevel[15] = characterSkills.getHerblore().getMaxLevel();
+		this.skills.experience[15] = characterSkills.getHerblore().getExperience();
+
+		this.skills.level[16] = characterSkills.getAgility().getLevel();
+		this.skills.maxLevel[16] = characterSkills.getAgility().getMaxLevel();
+		this.skills.experience[16] = characterSkills.getAgility().getExperience();
+
+		this.skills.level[17] = characterSkills.getThieving().getLevel();
+		this.skills.maxLevel[17] = characterSkills.getThieving().getMaxLevel();
+		this.skills.experience[17] = characterSkills.getThieving().getExperience();
+
+		this.skills.level[18] = characterSkills.getSlayer().getLevel();
+		this.skills.maxLevel[18] = characterSkills.getSlayer().getMaxLevel();
+		this.skills.experience[18] = characterSkills.getSlayer().getExperience();
+
+		this.skills.level[19] = characterSkills.getRunecrafting().getLevel();
+		this.skills.maxLevel[19] = characterSkills.getRunecrafting().getMaxLevel();
+		this.skills.experience[19] = characterSkills.getRunecrafting().getExperience();
 	}
 
 	/**

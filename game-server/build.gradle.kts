@@ -42,6 +42,10 @@ dependencies {
     implementation("org.javassist:javassist:3.26.0-GA")
     implementation("org.apache.commons:commons-compress:1.18")
     implementation("log4j:log4j:1.2.17")
+    
+    implementation("net.dv8tion:JDA:4.2.0_209")
+    implementation("info.picocli:picocli:4.1.4")
+    implementation("commons-validator:commons-validator:1.6")
 
     compileOnly("org.projectlombok:lombok:1.18.10")
 
