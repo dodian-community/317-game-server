@@ -19,7 +19,7 @@ public final class Configuration {
 	/**
 	 * The address of the server that the client will be connecting to
 	 */
-	public static String server_address = "localhost"; // 108.61.41.186            localhost
+	public static String server_address = "127.0.0.1"; // 108.61.41.186            localhost
 	/**
 	 * The port of the server that the client will be connecting to
 	 */

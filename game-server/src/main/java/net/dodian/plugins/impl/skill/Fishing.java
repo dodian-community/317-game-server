@@ -74,7 +74,7 @@ public class Fishing implements EventListener {
     }
 
     @EventHandler
-    public void onFirstClickObject(PlayerNpcFirstClickEvent event) {
+    public void onFirstClickNpc(PlayerNpcFirstClickEvent event) {
         fishingData fish = getSpot(1, event.getNpc().getId());
         if(fish == null) {
             return;
@@ -97,7 +97,7 @@ public class Fishing implements EventListener {
     }
 
     @EventHandler
-    public void onSecondClickObject(PlayerNpcSecondClickEvent event) {
+    public void onSecondClickNpc(PlayerNpcSecondClickEvent event) {
         fishingData fish = getSpot(2, event.getNpc().getId());
         if(fish == null) {
             return;

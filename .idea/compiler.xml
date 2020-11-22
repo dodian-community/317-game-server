@@ -12,9 +12,10 @@
         <module name="dodian.game-server.main" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
+    <bytecodeTargetLevel target="1.8">
       <module name="dodian.ansible.main" target="11" />
       <module name="dodian.ansible.test" target="11" />
+      <module name="dodian.game-server.test" target="11" />
       <module name="dodian.plugins.main" target="1.8" />
       <module name="dodian.plugins.test" target="1.8" />
     </bytecodeTargetLevel>
