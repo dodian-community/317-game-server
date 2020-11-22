@@ -89,14 +89,14 @@ public class Woodcutting implements EventListener {
             return;
         }
 
-        if (tree.level > event.getPlayer().getSkillManager().getCurrentLevel(Skill.WOODCUTTING)) {
-            event.getPlayer().getPacketSender().sendMessage("You need level " + tree.level + " woodcutting to cut the " + event.getObject().getDefinition().getName() + "!");
-            return;
-        }
-
         AxeData axe = getAxe(event.getPlayer());
         if (axe == null) {
             event.getPlayer().getPacketSender().sendMessage("You do not have a suitable axe for your level to use!");
+            return;
+        }
+
+        if (tree.level > event.getPlayer().getSkillManager().getCurrentLevel(Skill.WOODCUTTING)) {
+            event.getPlayer().getPacketSender().sendMessage("You need level " + tree.level + " woodcutting to cut the " + event.getObject().getDefinition().getName() + "!");
             return;
         }
 
