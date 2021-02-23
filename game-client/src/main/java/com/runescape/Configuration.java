@@ -39,7 +39,8 @@ public final class Configuration {
 	/**
 	 * A string which indicates the Client's name.
 	 */
-	public static final String CLIENT_NAME = "Dodian.net Client";
+	public static final String CLIENT_NAME = "Dodian Client";
+	public static final String CLIENT_SLOGAN = "Version 2021";
 
 	/**
 	 * Dumps map region images when new regions are loaded.
@@ -49,7 +50,7 @@ public final class Configuration {
 	/**
 	 * Displays debug messages on loginscreen and in-game
 	 */
-	public static boolean clientData = false;
+	public static boolean clientData = true;
 
 	/**
 	 * Enables the use of music played through the client
@@ -59,7 +60,7 @@ public final class Configuration {
 	/**
 	 * Toggles the ability for a player to see roofs in-game
 	 */
-	public static boolean enableRoofs = false;
+	public static boolean enableRoofs = true;
 
 	/**
 	 * Used for change worlds button on login screen
