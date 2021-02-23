@@ -19,11 +19,11 @@ public final class GameFrame extends Frame {
 
 	public GameFrame(GameApplet applet, int width, int height, boolean resizable, boolean fullscreen) {
 		this.applet = applet;
-		setTitle(Configuration.CLIENT_NAME + " - Uber Server 2020");
+		setTitle(Configuration.CLIENT_NAME + " - " + Configuration.CLIENT_SLOGAN);
 		setResizable(resizable);
 		setUndecorated(fullscreen);
 		setVisible(true);
-		setAlwaysOnTop(true);
+		setAlwaysOnTop(false);
 		insets = getInsets();
 		if (resizable) {
 			setMinimumSize(new Dimension(766 + insets.left + insets.right, 536 + insets.top + insets.bottom));
