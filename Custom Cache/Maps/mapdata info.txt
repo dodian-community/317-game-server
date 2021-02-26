@@ -1,0 +1,12 @@
+All even numbers are mapdata
+All uneven numbers are the object data,
+
+So example: 400 is the map and 401 are the object that needs to load to 400.
+The dodian maps has the next number in the map data: 1xxxx
+
+All caves, dungeons and other things that not on the mainlands needs located up to (coords:) x:9000
+Also the cave has the nex number in the map data files 2xxxx
+
+Mainlands:
+
+Dungeons:
