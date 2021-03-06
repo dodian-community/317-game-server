@@ -33,7 +33,7 @@ public class AncientSpellBook implements Plugin, EventListener {
     @Getter
     private enum Locations {
         YANILLE(2606, 3102, 0, 21741),
-        SEERS(2534, 3485, 0, 13035),
+        SEERS(2534, 3229, 0, 13035),
         TAVERLY(2443, 3134, 0, 13045),
         ARDOUGNE(2662, 3309, 0, 13053),
         CATHERBY(2343,3115,0,13061),
