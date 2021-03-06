@@ -33,13 +33,13 @@ public class AncientSpellBook implements Plugin, EventListener {
     @Getter
     private enum Locations {
         YANILLE(2606, 3102, 0, 21741),
-        SEERS(2723, 3485, 0, 13035),
-        TAVERLY(2895, 3457, 0, 13045),
+        SEERS(2534, 3485, 0, 13035),
+        TAVERLY(2443, 3134, 0, 13045),
         ARDOUGNE(2662, 3309, 0, 13053),
-        CATHERBY(2804,3434,0,13061),
-        FISHING_GUILD(2597,3409,0, 13069),
-        LEGENDS_GUILD(2728,3346,0,13079),
-        GNOME_STRONGHOLD(2472,3438,0,13087)
+        CATHERBY(2343,3115,0,13061),
+        FISHING_GUILD(2601,3212,0, 13069),
+        LEGENDS_GUILD(2536,3156,0,13079),
+        GNOME_STRONGHOLD(2592,3179,0,13087)
         ;
 
         private int x;
