@@ -1,0 +1,30 @@
+All even numbers are mapdata
+All uneven numbers are the object data,
+
+So example: 400 is the map and 401 are the object that needs to load to 400.
+The dodian maps has the next number in the map data: 1xxxx
+
+All caves, dungeons and other things that not on the mainlands needs located up to (coords:) x:9000
+Also the cave has the nex number in the map data files 2xxxx
+
+Mainlands:
+
+Dungeons:
+20000 - Yanille Dungeon
+20001 - Yanille Dungeon Objects
+20002 - Yanille Dungeon 2
+20003 - Yanille Dungeon 2 Objects
+20004 - Jiggig Dungeon bottom level
+20005 - Jiggig Dungeon bottom level Objects
+20006 - Icequeen lair
+20007 - Icequeen lair objects
+20008 - Icequeen lair & white wolf pass
+20009 - Icequeen lair & white wolf pass objects
+20010 - Icequeen lair
+20011 - Icequeen lair objects
+20012 - Witchaven Dungeon
+20013 - Witchhaven Dungeon object
+20014 - Witchaven Dungeon 2
+20015 - Witchaven Dungeon 2 Objects
+20016 - Legends Guild Dungeon
+20017 - Legends Guild Dungeon Objects
