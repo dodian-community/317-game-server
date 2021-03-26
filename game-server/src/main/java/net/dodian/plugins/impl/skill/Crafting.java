@@ -36,9 +36,9 @@ public class Crafting implements EventListener {
 
     private enum leatherTan {
         REGULAR_LEATHER("Soft leather",50, 1739, 1741),
-        EMPTY_ONE("",-1, -1, -1),
-        EMPTY_TWO("",-1, -1, -1),
-        EMPTY_THREE("",-1, -1, -1),
+        HARD_LEATHER("Hard leather",150, 1739, 1743),
+        CURED_YAK_HIDE("Yak-hide",250, 10818, 10820),
+        SNAKESKIN_LEATHER("Snakeskin",500, 6289, 6287),
         GREEN_LEATHER("Green d'hide",1000, 1753, 1745),
         BLUE_LEATHER("Blue d'hide", 2000, 1751, 2505),
         RED_LEATHER("Red d'hide",5000, 1749, 2507),
@@ -53,6 +53,17 @@ public class Crafting implements EventListener {
             this.received = items[2];
         }
     }
+    private enum leatherOther {
+        XERICIAN_FABRIC("Xerican fabric",13383)
+        ;
+        String name;
+        int item;
+        leatherOther(String name, int... items) {
+            this.name = name;
+            this.item = items[0];
+        }
+    }
+
     public leatherTan getLeatherData(Item item) {
         for(leatherTan data : leatherTan.values()) {
             if(data.received == item.getId()) {
@@ -62,26 +73,47 @@ public class Crafting implements EventListener {
         return null;
     }
 
+
     private enum leatherCraft {
-        LEATHER_BODY(leatherTan.REGULAR_LEATHER, 14, 264, new Item(1129)),
+        //Leather
         LEATHER_GLOVES(leatherTan.REGULAR_LEATHER, 1, 144, new Item(1059)),
         LEATHER_BOOTS(leatherTan.REGULAR_LEATHER, 7, 160, new Item(1061)),
+        LEATHER_COWL(leatherTan.REGULAR_LEATHER, 9, 168, new Item(1167)),
         LEATHER_VAMBRACES(leatherTan.REGULAR_LEATHER, 11, 232, new Item(1063)),
+        LEATHER_BODY(leatherTan.REGULAR_LEATHER, 14, 264, new Item(1129)),
         LEATHER_CHAPS(leatherTan.REGULAR_LEATHER, 18, 304, new Item(1095)),
         LEATHER_COIF(leatherTan.REGULAR_LEATHER, 38, 416, new Item(1169)),
-        LEATHER_COWL(leatherTan.REGULAR_LEATHER, 9, 168, new Item(1167)),
-        GREEN_LEATHER_VAMBRACES(leatherTan.GREEN_LEATHER, 50, 970, new Item(1065)),
-        GREEN_LEATHER_CHAPS(leatherTan.GREEN_LEATHER, 54, 970, new Item(1099)),
-        GREEN_LEATHER_BODY(leatherTan.GREEN_LEATHER, 58, 970, new Item(1135)),
-        BLUE_LEATHER_VAMBRACES(leatherTan.BLUE_LEATHER, 62, 1580, new Item(2487)),
-        BLUE_LEATHER_CHAPS(leatherTan.BLUE_LEATHER, 66, 1580, new Item(2493)),
-        BLUE_LEATHER_BODY(leatherTan.BLUE_LEATHER, 70, 1580, new Item(2499)),
-        RED_LEATHER_VAMBRACES(leatherTan.RED_LEATHER, 73, 2460, new Item(2489)),
-        RED_LEATHER_CHAPS(leatherTan.RED_LEATHER, 76, 2460, new Item(2495)),
-        RED_LEATHER_BODY(leatherTan.RED_LEATHER, 79, 2460, new Item(2501)),
-        BLACK_LEATHER_VAMBRACES(leatherTan.BLACK_LEATHER, 82, 3720, new Item(2491)),
-        BLACK_LEATHER_CHAPS(leatherTan.BLACK_LEATHER, 85, 3720, new Item(2497)),
-        BLACK_LEATHER_BODY(leatherTan.BLACK_LEATHER, 88, 3720, new Item(2503))
+        //Hardleather
+        HARDLEATHER_BODY(leatherTan.HARD_LEATHER, 28, 420, new Item(1131)),
+        //Xerician
+        //XERICAN_HAT(leatherOther.XERICIAN_FABRIC, 43, 384, new Item(13385)), //gives incomatible error
+        //XERICAN_ROBE(leatherOther.XERICIAN_FABRIC, 43, 384, new Item(13389)), //gives incomatible error
+        //XERICAN_TOP(leatherOther.XERICIAN_FABRIC, 43, 384, new Item(13387)), //gives incomatible error
+        //Yak-hide
+        YAK_HIDE_LEGS(leatherTan.CURED_YAK_HIDE, 43, 384, new Item(10824)),
+        YAK_HIDE_BODY(leatherTan.CURED_YAK_HIDE, 46, 384, new Item(10822)),
+        //Snakeskinn
+        SNAKESKINN_BOOTS(leatherTan.SNAKESKIN_LEATHER, 45, 360, new Item(6328)),
+        SNAKESKINN_VAMBRACES(leatherTan.SNAKESKIN_LEATHER, 47, 420, new Item(6330)),
+        SNAKESKINN_BANDANA(leatherTan.SNAKESKIN_LEATHER, 48, 540, new Item(6326)),
+        SNAKESKINN_CHAPS(leatherTan.SNAKESKIN_LEATHER, 51, 600, new Item(6324)),
+        SNAKESKINN_BODY(leatherTan.SNAKESKIN_LEATHER, 53, 660, new Item(6322)),
+        //Green
+        GREEN_LEATHER_VAMBRACES(leatherTan.GREEN_LEATHER, 50, 744, new Item(1065)),
+        GREEN_LEATHER_CHAPS(leatherTan.GREEN_LEATHER, 54, 1448, new Item(1099)),
+        GREEN_LEATHER_BODY(leatherTan.GREEN_LEATHER, 58, 2232, new Item(1135)),
+        //Blue
+        BLUE_LEATHER_VAMBRACES(leatherTan.BLUE_LEATHER, 62, 840, new Item(2487)),
+        BLUE_LEATHER_CHAPS(leatherTan.BLUE_LEATHER, 66, 1680, new Item(2493)),
+        BLUE_LEATHER_BODY(leatherTan.BLUE_LEATHER, 70, 2520, new Item(2499)),
+        //Red
+        RED_LEATHER_VAMBRACES(leatherTan.RED_LEATHER, 73, 936, new Item(2489)),
+        RED_LEATHER_CHAPS(leatherTan.RED_LEATHER, 76, 1872, new Item(2495)),
+        RED_LEATHER_BODY(leatherTan.RED_LEATHER, 79, 2808, new Item(2501)),
+        //Black
+        BLACK_LEATHER_VAMBRACES(leatherTan.BLACK_LEATHER, 82, 1032, new Item(2491)),
+        BLACK_LEATHER_CHAPS(leatherTan.BLACK_LEATHER, 85, 2064, new Item(2497)),
+        BLACK_LEATHER_BODY(leatherTan.BLACK_LEATHER, 88, 3096, new Item(2503))
         ;
         leatherTan leather;
         int level, xp;
@@ -104,12 +136,16 @@ public class Crafting implements EventListener {
     }
 
     private enum gemCraft {
-        SAPPHIRE(1623, 20, 888, 300, new Item(1607)),
-        EMERALD(1621, 27, 889, 408, new Item(1605)),
-        RUBY(1619, 34, 887, 510, new Item(1603)),
-        DIAMOND(1617, 43, 886, 648, new Item(1601)),
-        DRAGONSTONE(1631, 55, 885, 822, new Item(1615)),
-        ONYX(6571, 67, 2717,1008, new Item(6573))
+        OPAL(1625, 1, 888, 180, new Item(1609)),
+        JADE(1627, 20, 888, 240, new Item(1611)),
+        RED_TOPAZ(1629, 20, 888, 300, new Item(1613)),
+        SAPPHIRE(1623, 20, 888, 600, new Item(1607)),
+        EMERALD(1621, 27, 889, 810, new Item(1605)),
+        RUBY(1619, 34, 887, 1020, new Item(1603)),
+        DIAMOND(1617, 43, 886, 1290, new Item(1601)),
+        DRAGONSTONE(1631, 55, 885, 1650, new Item(1615)),
+        ONYX(6571, 67, 2717,2010, new Item(6573)),
+        ZENYTE(19496, 89, 888, 2400, new Item(19493))
         ;
         int itemId, level, anim, xp;
         Item produce;
@@ -209,7 +245,7 @@ public class Crafting implements EventListener {
             leatherTan tan = index == -1 ? null : leatherTan.values()[index%8];
             if(index == -1 || tan == null || tan.price == -1 || event.getPlayer().getInventory().getAmount(tan.required) == 0) {
                 if(tan != null && tan.price != -1 && event.getPlayer().getInventory().getAmount(tan.required) == 0)
-                    event.getPlayer().getPacketSender().sendMessage("You do not have any leather of that kind to tan!");
+                    event.getPlayer().getPacketSender().sendMessage("You do not have any hides for that tan!");
                 return;
             }
             if(index / 8 == 3)
@@ -238,7 +274,7 @@ public class Crafting implements EventListener {
 
     @EventHandler
     public void onItemOnObject(PlayerItemOnObjectEvent event) {
-        if(event.getItem().getId() != 2357 || (event.getObject().getId() != 3994 && event.getObject().getId() != 11666)) {
+        if(event.getItem().getId() != 2357 || (event.getObject().getId() != 3994)) {
             return;
         }
         event.getPlayer().getPacketSender().sendInterface(4161);
@@ -251,7 +287,7 @@ public class Crafting implements EventListener {
             for(leatherTan data : leatherTan.values()) {
                 event.getPlayer().getPacketSender().sendString(14777 + data.ordinal(), data.name);
                 event.getPlayer().getPacketSender().sendString(14785 + data.ordinal(), data.price != -1 ? data.price + " coins" : "");
-                event.getPlayer().getPacketSender().sendInterfaceModel(14769 + data.ordinal(), data.required, 250);
+                event.getPlayer().getPacketSender().sendInterfaceModel(14769 + data.ordinal(), data.received, 250);
             }
             event.getPlayer().getPacketSender().sendInterface(14670);
         }
