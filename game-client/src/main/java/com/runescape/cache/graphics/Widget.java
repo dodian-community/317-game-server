@@ -276,7 +276,7 @@ public final class Widget {
 					if (widget.atActionType == OPTION_RESET_SETTING)
 						widget.tooltip = "Select";
 					if (widget.atActionType == OPTION_CONTINUE)
-						widget.tooltip = "Lol Continue";
+						widget.tooltip = "Continue";
 				}
 			}
 		}
